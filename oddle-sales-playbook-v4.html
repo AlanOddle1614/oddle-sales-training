@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Sell Oddle — Sales Pitch Playbook</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --purple:#3B0764;--purple-l:#7C3AED;--purple-bg:#F5F3FF;--purple-bdr:#EDE9FE;
+  --fg:#1A1A1A;--muted:#6B7280;--border:#E5E7EB;
+  --green:#059669;--green-bg:#ECFDF5;--green-bdr:#A7F3D0;
+  --orange:#D97706;--orange-bg:#FFFBEB;--orange-bdr:#FDE68A;
+  --red:#DC2626;--red-bg:#FEF2F2;--red-bdr:#FECACA;
+  --blue:#2563EB;--blue-bg:#EFF6FF;--blue-bdr:#BFDBFE;
+  --r:10px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;color:var(--fg);background:#fff;line-height:1.7}
+a{color:var(--purple-l);text-decoration:none}
+
+/* Top bar */
+.topbar{background:var(--purple);color:#fff;padding:14px 32px;position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:16px}
+.topbar h1{font-size:17px;font-weight:700}
+.topbar .sub{font-size:12px;opacity:.6;margin-left:auto}
+
+/* Layout */
+.wrap{display:flex}
+.side{width:240px;position:sticky;top:52px;height:calc(100vh - 52px);overflow-y:auto;border-right:1px solid var(--border);padding:20px 0;flex-shrink:0;font-size:13px;background:#FAFAFA}
+.side .g{padding:0 16px;margin-bottom:18px}
+.side .g-t{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:4px}
+.side a{display:block;padding:5px 16px;color:var(--muted);border-left:3px solid transparent;transition:all .1s}
+.side a:hover{color:var(--purple);background:var(--purple-bg)}
+
+.content{flex:1;max-width:780px;padding:40px 48px 120px;margin:0 auto}
+
+/* Typography */
+h2{font-size:28px;font-weight:700;color:var(--purple);margin:56px 0 8px;padding-top:20px}
+h2:first-child{margin-top:0}
+h3{font-size:20px;font-weight:700;margin:32px 0 8px}
+h4{font-size:16px;font-weight:700;margin:24px 0 6px}
+p{margin-bottom:14px;font-size:15px}
+ul,ol{margin-bottom:14px;padding-left:24px}
+li{margin-bottom:6px;font-size:15px}
+hr{border:none;border-top:1px solid var(--border);margin:40px 0}
+
+/* Script / quote blocks */
+.say{background:var(--purple-bg);border-left:4px solid var(--purple-l);padding:14px 20px;border-radius:0 8px 8px 0;margin:12px 0 16px;font-style:italic;font-size:15px;line-height:1.7}
+
+/* Tables */
+table{width:100%;border-collapse:collapse;margin:12px 0 20px;font-size:14px}
+th{background:var(--purple);color:#fff;padding:10px 14px;text-align:left;font-weight:600}
+td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:top}
+
+/* Callouts */
+.tip,.warn,.crit,.info{padding:14px 18px;border-radius:var(--r);margin:14px 0 18px;font-size:14px}
+.tip{background:var(--green-bg);border:1px solid var(--green-bdr)}
+.warn{background:var(--orange-bg);border:1px solid var(--orange-bdr)}
+.crit{background:var(--red-bg);border:1px solid var(--red-bdr)}
+.info{background:var(--blue-bg);border:1px solid var(--blue-bdr)}
+
+/* Archetype variation boxes — always visible, color coded */
+.arch-box{border-radius:var(--r);padding:16px 18px;margin:14px 0 18px;font-size:14px}
+.arch-box h5{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px}
+.arch-box p,.arch-box ul{margin-bottom:6px}
+.arch-box ul{padding-left:20px}
+.arch-est{background:#F0F9FF;border:1px solid #BAE6FD;} .arch-est h5{color:#0369A1}
+.arch-suit{background:#FDF4FF;border:1px solid #F0ABFC;} .arch-suit h5{color:#A21CAF}
+.arch-tech{background:var(--orange-bg);border:1px solid var(--orange-bdr);} .arch-tech h5{color:var(--orange)}
+
+/* Flow diagram */
+.flow{display:flex;gap:4px;margin:16px 0 28px;flex-wrap:wrap}
+.fs{flex:1;min-width:68px;background:#fff;border:2px solid var(--border);border-radius:8px;padding:10px 6px;text-align:center}
+.fs .fn{font-size:10px;font-weight:700;color:var(--muted)}
+.fs .ft{font-size:11px;font-weight:700}
+.fs.hi{border-color:var(--green);background:var(--green-bg)}
+.fa{display:flex;align-items:center;color:var(--border);font-size:14px}
+
+/* Step headers */
+.step-head{display:flex;align-items:center;gap:12px;margin:56px 0 8px;padding-top:20px}
+.step-num{width:36px;height:36px;border-radius:50%;background:var(--purple);color:#fff;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.step-head h2{margin:0;padding:0}
+.step-head .step-time{font-size:13px;color:var(--muted);font-weight:500;margin-left:auto}
+
+/* Planner — collapsible at top */
+.planner-toggle{background:var(--purple-bg);border:1px solid var(--purple-bdr);border-radius:var(--r);padding:14px 20px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;font-weight:600;font-size:15px;color:var(--purple)}
+.planner-toggle::after{content:'▸';transition:transform .15s}
+.planner-toggle.open::after{transform:rotate(90deg)}
+.planner-body{display:none;background:#fff;border:1px solid var(--purple-bdr);border-top:none;border-radius:0 0 var(--r) var(--r);padding:20px}
+.planner-body.open{display:block}
+.pl-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:14px}
+.pl-grid label{display:block;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
+.pl-grid select{width:100%;padding:8px 10px;border:2px solid var(--border);border-radius:6px;font-family:inherit;font-size:13px}
+.pl-checks{margin-bottom:14px}
+.pl-checks>label{display:block;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px}
+.chk-row{display:flex;flex-wrap:wrap;gap:6px}
+.chk{display:flex;align-items:center;gap:5px;padding:6px 12px;border:2px solid var(--border);border-radius:6px;cursor:pointer;font-size:12px;user-select:none;transition:all .1s}
+.chk:hover{border-color:var(--purple-l)}
+.chk.on{border-color:var(--purple);background:var(--purple-bg);font-weight:600}
+.chk input{display:none}
+.gp{background:var(--purple-bg);border-radius:var(--r);padding:18px;margin-top:14px;display:none}
+.gp.show{display:block}
+.gp h4{color:var(--purple);margin:0 0 10px;font-size:15px}
+.gp-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.gp-card{background:#fff;border-radius:8px;padding:12px;font-size:13px}
+.gp-card h5{font-size:12px;font-weight:700;color:var(--purple);margin-bottom:4px}
+.gp-card ul{padding-left:16px;margin:0}
+
+@media(max-width:860px){
+  .side{display:none}
+  .content{padding:24px 20px 80px}
+  .pl-grid{grid-template-columns:1fr}
+  .gp-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <h1>How to Sell Oddle</h1>
+  <span class="sub">Sales Pitch Playbook</span>
+</div>
+
+<div class="wrap">
+<nav class="side">
+  <div class="g">
+    <div class="g-t">Prepare</div>
+    <a href="#top">Overview</a>
+    <a href="#philosophy">Sales Philosophy</a>
+    <a href="#archetypes">Know Your Merchant</a>
+  </div>
+  <div class="g">
+    <div class="g-t">The Pitch Flow</div>
+    <a href="#step1">1. Rapport</a>
+    <a href="#step2">2. Intent Discovery</a>
+    <a href="#step3">3. Diagnostic Frame</a>
+    <a href="#step4">4. The Diagnostic</a>
+    <a href="#step5">5. Summary</a>
+    <a href="#step6">6. Get Buy-In</a>
+    <a href="#step7">7. General Introduction</a>
+    <a href="#step8">8. First Close</a>
+    <a href="#step9">9. Demo</a>
+    <a href="#step10">10. Final Close</a>
+  </div>
+  <div class="g">
+    <div class="g-t">Reference</div>
+    <a href="#prodmap">Product Mapping</a>
+    <a href="#objections">Objection Handling</a>
+    <a href="#tips">Value Tips Library</a>
+  </div>
+</nav>
+
+<div class="content">
+
+<!-- ============================================================ -->
+<h2 id="top">How to Sell Oddle</h2>
+
+<p>A diagnostic-led sales system. You don't pitch. You guide merchants to see their own gaps — then show them the way out.</p>
+
+<p>This playbook teaches you the full pitch flow from rapport to close. Read it top to bottom to learn the system. Every step includes the exact questions to ask, what to listen for, and how to respond. Where the approach changes based on the type of merchant, you'll see colored <strong>archetype boxes</strong> inline — read those too. They're part of the learning.</p>
+
+<div class="planner-toggle" id="pt" onclick="document.getElementById('pt').classList.toggle('open');document.getElementById('pb').classList.toggle('open')">
+  Pre-Call Planner — Generate a Call Game Plan
+</div>
+<div class="planner-body" id="pb">
+<p style="font-size:13px;color:var(--muted);margin-bottom:12px">Before a call, select the merchant's profile to get a tailored game plan. This is a prep tool — the full learning is in the pitch flow below.</p>
+<div class="pl-grid">
+  <div><label>Establishment</label><select id="sel-est" onchange="genPlan()"><option value="">—</option><option value="new">New (&lt;1yr)</option><option value="growing">Growing</option><option value="established">Established / Heritage</option></select></div>
+  <div><label>Product Suitability</label><select id="sel-suit" onchange="genPlan()"><option value="">—</option><option value="both">Reservation + Delivery</option><option value="del">Delivery Only</option><option value="res">Reservation Only</option></select></div>
+  <div><label>Source</label><select id="sel-src" onchange="genPlan()"><option value="">—</option><option value="inbound">Inbound / Referral</option><option value="cold">Cold Outreach</option></select></div>
+</div>
+<div class="pl-checks">
+  <label>Current Tech (check what they have — leave empty if unknown)</label>
+  <div class="chk-row">
+    <label class="chk" onclick="this.classList.toggle('on');this.querySelector('input').checked=this.classList.contains('on');genPlan()"><input type="checkbox" value="eshop"> Own eShop</label>
+    <label class="chk" onclick="this.classList.toggle('on');this.querySelector('input').checked=this.classList.contains('on');genPlan()"><input type="checkbox" value="reserve"> Reservation System</label>
+    <label class="chk" onclick="this.classList.toggle('on');this.querySelector('input').checked=this.classList.contains('on');genPlan()"><input type="checkbox" value="loyalty"> Loyalty / Members</label>
+    <label class="chk" onclick="this.classList.toggle('on');this.querySelector('input').checked=this.classList.contains('on');genPlan()"><input type="checkbox" value="email"> Email / CRM</label>
+  </div>
+</div>
+<div class="gp" id="gameplan"><h4>Your Call Game Plan</h4><div id="gp-c"></div></div>
+</div>
+
+<h3>The Full Pitch Flow</h3>
+<div class="flow">
+  <div class="fs"><div class="fn">1</div><div class="ft">Rapport</div></div><div class="fa">›</div>
+  <div class="fs"><div class="fn">2</div><div class="ft">Intent</div></div><div class="fa">›</div>
+  <div class="fs"><div class="fn">3</div><div class="ft">Frame</div></div><div class="fa">›</div>
+  <div class="fs"><div class="fn">4</div><div class="ft">Diagnostic</div></div><div class="fa">›</div>
+  <div class="fs"><div class="fn">5</div><div class="ft">Summary</div></div><div class="fa">›</div>
+  <div class="fs hi"><div class="fn">6</div><div class="ft">Buy-In</div></div><div class="fa">›</div>
+  <div class="fs"><div class="fn">7</div><div class="ft">Intro</div></div><div class="fa">›</div>
+  <div class="fs"><div class="fn">8</div><div class="ft">Close</div></div><div class="fa">›</div>
+  <div class="fs"><div class="fn">9</div><div class="ft">Demo</div></div><div class="fa">›</div>
+  <div class="fs"><div class="fn">10</div><div class="ft">Close</div></div>
+</div>
+
+<!-- ============================================================ -->
+<hr>
+<h2 id="philosophy">Sales Philosophy</h2>
+
+<h3>Diagnose, Don't Pitch</h3>
+<p>A doctor doesn't walk into the room and say "you need surgery." They ask questions, run tests, and help the patient understand what's happening. Then the patient asks for help. That's what we do.</p>
+<p>You are not here to sell software. You are here to help a restaurant owner see — with their own numbers and their own words — where they're leaking revenue, overpaying, or flying blind. The pitch becomes inevitable because the merchant already sees the problem.</p>
+
+<h3>Questions Drive Insight, Not Statements</h3>
+<p>When you tell a merchant "you have a data gap," they can disagree. When you ask "how many of your 5,000 diners do you actually have contact info for?" and they calculate 500 — they can't disagree with their own math. The question is always more powerful than the statement.</p>
+
+<h3>The 5-Step Pre-Pitch Process</h3>
+<p>Before any product is mentioned, every call moves through these steps:</p>
+<ol>
+<li><strong>Discover Intent</strong> — why are they here?</li>
+<li><strong>Discover Gaps & Opportunities, establish anchors</strong> — Socratic questioning adapted to their profile</li>
+<li><strong>Summarize & Confirm</strong> — mirror the gaps back, merchant agrees</li>
+<li><strong>Get Buy-In</strong> — merchant confirms they want to resolve these gaps</li>
+<li><strong>Then and only then</strong> → General Introduction & Demo</li>
+</ol>
+
+<h3>The Five Gaps — What You're Looking For</h3>
+<p>Every restaurant has some combination of these five gaps. Your job during the diagnostic is to find which ones apply, quantify them, and help the merchant see them clearly. Memorize this table — it's your mental checklist.</p>
+
+<table>
+<tr><th>Gap</th><th>What It Means</th><th>The Key Question</th></tr>
+<tr><td><strong>Data Gap</strong></td><td>Most customers are invisible. No contact info, no way to bring them back. Reservations only capture the booker — not the group.</td><td>"How many diners per month? How many do you actually have data on?"</td></tr>
+<tr><td><strong>Insight Gap</strong></td><td>Even with some data, they don't know WHY customers come — which channel, how far they travel, what drives return visits.</td><td>"Do you know how your customers discover you?"</td></tr>
+<tr><td><strong>Engagement Gap</strong></td><td>Data sits idle. They're not segmenting, not targeting, not doing anything to drive repeat visits.</td><td>"What are you doing today to bring customers back?"</td></tr>
+<tr><td><strong>Revenue Gap</strong></td><td>Missing entire sales channels — corporate, group, direct delivery — because they only work with marketplaces or don't have online ordering.</td><td>"Do you think customers order for families, offices, groups? Are you capturing those?"</td></tr>
+<tr><td><strong>Operational Gap</strong></td><td>Tools are fragmented, expensive, or underperforming. No visibility into traffic, conversion, or logistics.</td><td>"Do you know your online traffic? Conversion rate?"</td></tr>
+</table>
+
+<div class="tip"><strong>The sequence is flexible. The thoroughness is not.</strong> You don't always go Data → Insight → Engagement → Revenue → Operations. You lead with whatever the merchant cares about most. But by the end of the diagnostic, you should have covered all five. Think of them as a checklist, not a script.</div>
+
+<h3>Two Things You Must Do Throughout Every Step</h3>
+<p><strong>1. Establish that Oddle truly knows F&B.</strong> Every question you ask should carry an embedded insight about the restaurant business. The merchant should walk away thinking "these people really know their stuff."</p>
+<p><strong>2. Give value along the way.</strong> Drop small tips that help the merchant even if they don't sign up — how to improve Google ranking, why Google reviews matter, how email frequency drives recall. Each tip builds trust and proves you're a revenue partner, not a tool vendor. See <a href="#tips">Value Tips Library</a> for a bank of these.</p>
+
+<h3>Always Lead with the Big Picture</h3>
+<p>When you do introduce Oddle, start with the overall methodology — <strong>New → Known → Repeat</strong> — and how Oddle helps restaurants grow revenue organically. Never lead with a specific product. eShop, Reserve, Enrolment — these are parts of the ecosystem. Presenting any one as THE solution reduces Oddle to a tool instead of a revenue growth system.</p>
+
+<h3>"I Don't Know" Is Not a Dead End</h3>
+<table>
+<tr><th>What they mean</th><th>What you do</th></tr>
+<tr><td>They don't manage that area</td><td>Guide to an estimate: "Roughly how many diners on a typical weekday?"</td></tr>
+<tr><td>They've never checked</td><td>The fact they don't know IS the gap. "That's very common. Would it help if we looked together?"</td></tr>
+<tr><td>They have tech but can't answer</td><td>"Seems like you don't have full visibility. I'm guessing your vendor hasn't engaged you in a while to share how you're doing?" — the inability to answer IS the diagnosis, and positions Oddle as a partner vs a tool vendor.</td></tr>
+</table>
+
+<div class="crit"><strong>The No-Pitch Rule:</strong> For the first 10–15 minutes of any meeting — no pitching. Only questions. If you're talking about Oddle's features before you've diagnosed their gaps, you've jumped ahead. Go back.</div>
+
+<!-- ============================================================ -->
+<hr>
+<h2 id="archetypes">Know Your Merchant</h2>
+<p>Every merchant is different. The pitch flow is always the same 10 steps — but within those steps, what you emphasise, what questions you dig into, and which products you lead with changes based on three dimensions. Learn these. You'll be reading these situations in real time during every call.</p>
+
+<h3>Dimension 1: Establishment</h3>
+<table>
+<tr><th>Type</th><th>What it means for you</th></tr>
+<tr><td><strong>New</strong> (&lt;1 year)</td><td>Still figuring things out. Lighter diagnostic — they may not have enough history for deep gap quantification. Frame Oddle as the foundation: <em>"You're building your infrastructure now — this is the best time to get it right."</em> If they're very new, preemptively name it: <em>"You're just getting started, so you're setting up your foundation, right?"</em></td></tr>
+<tr><td><strong>Growing</strong> (1-3+ years)</td><td>Have traction. Respect what they've built. Frame Oddle as the system that scales what's working: <em>"You've got momentum — let's make sure you're capturing it."</em> Full diagnostic usually works well — they have enough data to quantify gaps.</td></tr>
+<tr><td><strong>Established / Heritage</strong></td><td>Been around for years, well-known brands. Don't talk down to them. Frame as optimisation: <em>"You already have the customers. The question is whether you're getting everything you should from that base."</em> These merchants often have the biggest data gaps precisely because they've "been fine without it."</td></tr>
+</table>
+
+<h3>Dimension 2: Product Suitability</h3>
+<table>
+<tr><th>Type</th><th>Examples</th><th>Products that fit</th></tr>
+<tr><td><strong>Reservation + Delivery</strong></td><td>Keng Eng Kee, Abundance, Test Kitchen</td><td>Reserve + eShop + Enrolment + CDP + Email. Full system. These merchants get the most value from unified data across dine-in and online.</td></tr>
+<tr><td><strong>Delivery Only</strong></td><td>Jollibee, Popeyes, One Fattened Calf, Crave</td><td>eShop + Enrolment + CDP + Email. No reservation. eShop is the revenue driver. Enrolment captures in-store customers.</td></tr>
+<tr><td><strong>Reservation Only</strong></td><td>Sushidan, private dining concepts</td><td>Reserve + Enrolment* + CDP + Email. *Super fine dining may not suit QR-based enrolment — use concierge-style capture instead.</td></tr>
+</table>
+<div class="tip"><strong>All types are suitable for Enrolment, CDP and Email Marketing</strong> — the core principle (capture data → understand → engage → repeat) applies universally. Only the mechanism may differ (QR scan vs concierge-style for fine dining).</div>
+
+<h3>Dimension 3: Current Tech Stack</h3>
+<p>This changes your diagnostic approach the most. For each product area, the merchant either has an existing solution or doesn't. And it's per-product — they might have a reservation system but no eShop, or vice versa. You may not know about loyalty/members until you're in the meeting.</p>
+
+<table>
+<tr><th>If they have an existing tool</th><th>If they don't</th></tr>
+<tr><td>Probe three layers in order:<br><strong>1. Cost:</strong> Are they overpaying?<br><strong>2. Value:</strong> Is it delivering outcomes? "You have an eShop — is it driving sales?" The Socratic method works here because you're questioning whether the tool produces results, not just exists.<br><strong>3. Fragmentation:</strong> Are their tools connected? Does the eShop know who the dine-in customers are?</td><td>Surface the absence. The gap is straightforward — they don't have it, so they're missing the revenue, data, or engagement it would provide. Ask why they haven't set it up (know-how? logistics? cost? just haven't gotten to it?) — each answer gives you an angle.</td></tr>
+</table>
+
+<p>You'll see these dimensions referenced throughout the pitch flow below. When a step changes based on archetype, it's called out in a colored box.</p>
+
+<!-- ============================================================ -->
+<hr>
+
+<div class="step-head" id="step1">
+  <div class="step-num">1</div>
+  <h2 style="margin:0;padding:0">Rapport</h2>
+  <div class="step-time">~1 min</div>
+</div>
+
+<div class="say">"How's business?"</div>
+
+<p>That's it. Light rapport — food, familiarity if you've been to the restaurant, a genuine compliment if something stood out. Then transition quickly.</p>
+
+<div class="warn"><strong>Common mistake:</strong> New reps spend 5–10 minutes on rapport because they're nervous about the diagnostic. One minute is enough. The best rapport is built through a great diagnostic conversation, not small talk.</div>
+
+<!-- ============================================================ -->
+
+<div class="step-head" id="step2">
+  <div class="step-num">2</div>
+  <h2 style="margin:0;padding:0">Intent Discovery</h2>
+  <div class="step-time">~2 min</div>
+</div>
+
+<p>Understand why they took the meeting. This calibrates everything that follows.</p>
+
+<div class="say">"What made you want to meet with us?"</div>
+
+<p>Their answer tells you where to <em>start</em> the diagnostic. It doesn't change what you cover — it changes the order.</p>
+
+<table>
+<tr><th>If they say...</th><th>What it tells you</th><th>Where to start the diagnostic</th></tr>
+<tr><td>"I need help with delivery"</td><td>Revenue is the pain.</td><td>Start with the eShop/delivery probe. "Great — why so? How are you planning to grow this? Do you already have demand?"</td></tr>
+<tr><td>"A friend recommended you" / "I saw another restaurant using you"</td><td>Social proof brought them in. Curious but unspecific.</td><td>Ask which restaurant and what caught their eye. Then run the full diagnostic from the top.</td></tr>
+<tr><td>"I want to save on costs"</td><td>Cost is the pain. Comparison shopping.</td><td>Start with the tech stack probe. "What are you using today and roughly how much are you paying?"</td></tr>
+<tr><td>"Just curious" / "Tell me what you do"</td><td>Low intent. Needs warming up.</td><td>Don't pitch. Set the diagnostic frame (Step 3) and let the conversation build their interest.</td></tr>
+<tr><td>"I need reservations" / specific product ask</td><td>They think they need one tool. Don't see the system yet.</td><td>"Before I show you that, would it be okay if I understand your business a bit first?"</td></tr>
+</table>
+
+<p>Also ask:</p>
+<div class="say">"How did you hear about Oddle?"</div>
+<p>If referred, ask who. It tells you their network and what angle resonated. If they've used Oddle as a consumer — great, they already know the experience.</p>
+
+<div class="tip"><strong>Remember:</strong> Intent tells you the entry point, not the destination. No matter where you start, by the Summary (Step 5) you should have explored all relevant areas.</div>
+
+<!-- ============================================================ -->
+
+<div class="step-head" id="step3">
+  <div class="step-num">3</div>
+  <h2 style="margin:0;padding:0">Set the Diagnostic Frame</h2>
+  <div class="step-time">~30 sec</div>
+</div>
+
+<p>Ask permission. Position yourself as a consultant, not a salesperson.</p>
+
+<div class="say">"Before I share more about what we do, I'd love to understand your business first — where the gaps might be, where the opportunities are. Would it be okay if I ask you a few questions?"</div>
+
+<p>This does three things: it gives you control of the conversation, positions you as someone here to understand (not demo), and gets their explicit permission to be open.</p>
+
+<div class="warn"><strong>If they say "just show me what you have":</strong> Go into the General Introduction (Step 7), but weave diagnostic questions into the presentation as you go. "This is our reservation product — by the way, are you using one currently? How many bookings?" You're still diagnosing, just inside the presentation.</div>
+
+<!-- ============================================================ -->
+
+<div class="step-head" id="step4">
+  <div class="step-num">4</div>
+  <h2 style="margin:0;padding:0">The Diagnostic</h2>
+  <div class="step-time">~10-15 min</div>
+</div>
+
+<p>This is the core of the entire system. Below are the exact questions to ask, organized into five probes. Your intent discovery (Step 2) tells you which probe to start with, but aim to cover all relevant areas by the time you reach the Summary.</p>
+
+<div class="info"><strong>Seasoned rep move — Offer to Check Together.</strong> When a merchant doesn't have numbers handy, offer: <em>"Do you mind if we take a quick look at your system right now?"</em> This turns the meeting into a working session and builds massive trust. You're not just asking questions — you're helping them see their own data. Look for: total bookings, online vs manual split, return customer %, monthly GMV, traffic, conversion rate, new members vs total diners. <strong>Note:</strong> most merchants who genuinely "don't know" also can't log into their systems on the spot — so this works best when you sense the data exists but they just haven't checked recently.</div>
+
+<!-- PROBE A -->
+<h3>Probe A — Baseline: Understand Their Business</h3>
+<p>Always start here. These establish the foundation for everything.</p>
+
+<table>
+<tr><th>#</th><th>Question</th><th>What you're listening for</th><th>What to do next</th></tr>
+<tr><td>1</td><td><strong>"Tell me about your business — how long have you been open? How many outlets?"</strong></td><td>Confirms establishment level. Single or multi-outlet.</td><td>Let them talk. You're calibrating your approach.</td></tr>
+<tr><td>2</td><td><strong>"How's business been?"</strong></td><td>Open-ended — lets them tell you what they care about.</td><td>If "good/busy" → "Are you at capacity or room to grow?"<br>If "could be better" → "What does 'better' look like for you?"<br>If "struggling" → "What's the biggest challenge?"</td></tr>
+<tr><td>3</td><td><strong>"Roughly how many diners / customers do you serve per month?"</strong></td><td>THE anchor number. Every gap calculation uses this.</td><td>If they know → write it down.<br>If they don't know → guide: "What's monthly revenue, roughly? Average spend per customer?" and divide.<br>Or: "How many on a typical weekday? Weekend?" and multiply out.</td></tr>
+<tr><td>4</td><td><strong>"What are you looking to grow? Where do you feel the most potential is?"</strong></td><td>Their growth direction — determines which products matter most.</td><td>If "online delivery" → eShop is primary. Dig into delivery probe.<br>If "more repeat visits" → Enrolment + Email is primary.<br>If "efficiency" → start with tech stack, weave in growth.<br>If "everything / not sure" → run the full diagnostic.</td></tr>
+</table>
+
+<div class="arch-box arch-est">
+<h5>How this changes by establishment</h5>
+<p><strong>New (&lt;1yr):</strong> They may not have enough history to answer Q3 precisely. That's fine — estimates work. Add: <em>"What's been the main thing holding you back from growing faster?"</em> Common answers: lack of know-how, coordination, just haven't gotten to it. If very new, preemptively say: <em>"You're relatively new, so you're getting your foundation right — yes?"</em></p>
+<p><strong>Established:</strong> They'll have answers but may be complacent — "we've been fine." The diagnostic needs to surface what they're missing despite their success. Push harder on Q4: <em>"You've been around a long time. Where do you feel you're leaving the most on the table?"</em></p>
+</div>
+
+<h4>The Capacity Question</h4>
+<div class="say">"Are you at maximum capacity?"</div>
+<p>This question is a fork in the road. The answer changes what you sell and how you frame it.</p>
+
+<table>
+<tr><th>If they say...</th><th>What it means for your pitch</th></tr>
+<tr><td><strong>"We're packed every night" / "We sell out daily"</strong></td><td>You can't sell them more covers. But you CAN sell them: <strong>(1)</strong> eShop to solve logistics for takeaway/delivery they're already doing, <strong>(2)</strong> Enrolment to capture data NOW during peak — because when the hype fades, they'll need that database to bring people back, <strong>(3)</strong> CDP + Email to activate that database. Frame it: <em>"You're full now — but are you capturing these customers so you can reach them when things slow down?"</em></td></tr>
+<tr><td><strong>"Weekdays are slow" / "Lunch is empty"</strong></td><td>Clear growth opportunity. Data capture + proximity targeting is the play: <em>"If you knew which customers live or work within 2km, you could send them a midweek lunch offer. 1,000 emails → 300 opens → 50 claims → 30 extra covers on your quietest day."</em></td></tr>
+<tr><td><strong>"We're doing okay but want to grow"</strong></td><td>Broad opportunity. Run the full diagnostic across all five gaps. They're open to everything.</td></tr>
+</table>
+
+<div class="warn"><strong>Why this matters:</strong> A packed restaurant and a struggling restaurant need completely different pitches. Packed = capture and retain. Struggling = drive traffic and repeat visits. Getting this wrong means pitching growth to someone who doesn't need more covers, or pitching retention to someone who doesn't have enough customers to retain.</div>
+
+<!-- PROBE B -->
+<h3>Probe B — Reservation <span style="font-size:13px;font-weight:500;color:var(--muted)">(skip if delivery-only merchant)</span></h3>
+
+<h4>If they have a reservation system:</h4>
+<table>
+<tr><th>#</th><th>Question</th><th>What you're listening for</th><th>What to do next</th></tr>
+<tr><td>5</td><td><strong>"What reservation system are you using? How much are you paying?"</strong></td><td>The cost. Many pay $200-500/mo or $1-2 per cover.</td><td>Write it down for the cost stack.</td></tr>
+<tr><td>6</td><td><strong>"How many bookings per month? And roughly how many covers per booking?"</strong></td><td>Build the known-customer math.</td><td>Do the math out loud (see below).</td></tr>
+<tr><td>7</td><td><strong>"Beyond managing bookings — is the system helping you grow? Bringing more customers?"</strong></td><td>Value gap. Almost always "no, it just manages bookings."</td><td>"So it's an operational tool, not a growth tool. It manages who's coming but doesn't help you get more people to come."</td></tr>
+</table>
+
+<div class="crit"><strong>Critical: Do the reservation math out loud.</strong><br>
+"So 500 bookings a month at 3 per group — that's 1,500 diners through reservations. But the reservation only captures the person who booked — not the other 2 at the table. So from 500 bookings, you actually know <strong>500 customers, not 1,500</strong>."<br><br>
+Against total diners: "You serve 5,000 diners. You know 500 from reservations. That's <strong>90% of your customers walking out invisible</strong> — you have no idea who they are, no way to bring them back." Let the silence work.</div>
+
+<h4>If they don't have a reservation system:</h4>
+<table>
+<tr><th>#</th><th>Question</th><th>What to do next</th></tr>
+<tr><td>5</td><td><strong>"How do customers book with you? Phone? WhatsApp? Walk-in only?"</strong></td><td>If manual: "How much time does that take? Do you miss bookings after hours?"</td></tr>
+<tr><td>6</td><td><strong>"When someone books, do you capture their info — name, phone, email?"</strong></td><td>Almost always minimal. "So customers book, dine, and leave — and you have no way to contact them afterwards."</td></tr>
+</table>
+
+<!-- PROBE C -->
+<h3>Probe C — Online Ordering / Delivery <span style="font-size:13px;font-weight:500;color:var(--muted)">(skip if reservation-only merchant)</span></h3>
+
+<h4>If they have their own eShop / online ordering:</h4>
+<table>
+<tr><th>#</th><th>Question</th><th>What you're listening for</th><th>What to do next</th></tr>
+<tr><td>8</td><td><strong>"What are you using for online ordering? How much are you paying?"</strong></td><td>Cost gap — subscription + commission.</td><td>Write it down.</td></tr>
+<tr><td>9</td><td><strong>"How much is your eShop doing in monthly sales? Is it where you want it to be?"</strong></td><td>Value gap — is the tool delivering?</td><td>If they know + it's low: "What's holding it back — traffic, conversion, or order size?"<br>If they don't know: "You don't know your own online sales? That's quite telling. When's the last time your vendor shared a report or suggested improvements?"</td></tr>
+<tr><td>10</td><td><strong>"Do you know your online traffic? Conversion rate?"</strong></td><td>Almost never tracked.</td><td>"If you don't know traffic and conversion, it's hard to know which lever to pull. The formula is Traffic × Conversion × Average Basket Size = Revenue."</td></tr>
+<tr><td>11</td><td><strong>"Is your eShop data connected to your other systems? Does it know who your dine-in customers are?"</strong></td><td>Fragmentation. Almost always siloed.</td><td>"So a customer dines Saturday, orders delivery Tuesday, and they look like two separate people in your system?"</td></tr>
+</table>
+
+<div class="arch-box arch-tech">
+<h5>When they have tech but can't answer Q9-10</h5>
+<p>This is the hardest merchant profile. Ask them to guess. If they genuinely can't:</p>
+<p><em>"It seems like you don't have full visibility into how your business is performing. And I'm guessing your current vendor hasn't engaged you in a while to share how you're doing or how you could improve — am I right?"</em></p>
+<p>This does double duty: surfaces the execution gap AND positions the difference between tool vendors (give you the system, goodbye) and Oddle as a revenue partner (we engage merchants to drive growth).</p>
+</div>
+
+<h4>If they don't have their own online ordering (marketplace only or nothing):</h4>
+<table>
+<tr><th>#</th><th>Question</th><th>What you're listening for</th><th>What to do next</th></tr>
+<tr><td>8</td><td><strong>"Are you on any marketplaces — GrabFood, Deliveroo? How's that going?"</strong></td><td>Current delivery situation.</td><td>If some volume: "What's your typical order size? Around $20-30?" → "Those are impulse orders. That's what marketplaces are built for."</td></tr>
+<tr><td>9</td><td><strong>"Do you think customers also order for groups, families, offices — not just individual meals?"</strong></td><td>The corporate/group opportunity.</td><td>Almost always yes — they get ad-hoc requests. "Those orders are $100-120 average, planned 6+ hours ahead. Completely different customer. Are you capturing those today?"</td></tr>
+<tr><td>10</td><td><strong>"Why haven't you set up your own online ordering? Know-how? Logistics? Cost? Just haven't gotten to it?"</strong></td><td>Each answer gives you an angle.</td><td>Know-how → "We set it up and teach you."<br>Logistics → "We handle delivery end-to-end. You cook."<br>Haven't gotten to it → "Every month is revenue on the table."</td></tr>
+</table>
+
+<div class="crit"><strong>Key positioning — never forget:</strong> eShop is a NEW sales channel, not a cheaper marketplace. Marketplace customers = impulse, $20-30, last-minute. eShop customers = corporate, group, planned, $100-120+. Completely different people. Think Nike and Footlocker — Nike doesn't close Footlocker. Nike opens its own shop for customers who come looking for Nike specifically.</div>
+
+<!-- PROBE D -->
+<h3>Probe D — Customer Data & Engagement <span style="font-size:13px;font-weight:500;color:var(--muted)">(always — all merchants)</span></h3>
+<p>Every merchant, regardless of suitability, should be probed here. This is where Enrolment, CDP, and Email Marketing live.</p>
+
+<table>
+<tr><th>#</th><th>Question</th><th>If they say...</th><th>Your response</th></tr>
+<tr><td>12</td><td><strong>"Do you capture your customers' data today? Do you have a database?"</strong></td><td><em>"Not really" / "No formal system"</em></td><td>"So customers come, enjoy the food, and leave — and you have no way to reach them. Whether they come back is entirely up to chance?"</td></tr>
+<tr><td></td><td></td><td><em>"We have a loyalty / members program"</em></td><td>→ Go to Q13 to probe depth.</td></tr>
+<tr><td></td><td></td><td><em>"Through reservations"</em></td><td>"Reservations capture the booker — but what about their guests? And walk-ins are completely invisible."</td></tr>
+<tr><td>13</td><td><strong>"How many members / contacts do you have? How many new ones per month?"</strong></td><td>Almost always low vs total diners.</td><td>Do the math: "200 new members but 5,000 diners — that's 4% capture rate. What about the other 96%?"</td></tr>
+<tr><td>14</td><td><strong>"Do you know how customers discover you? Instagram? Google? Walk-past?"</strong></td><td>Almost always gut feel, not data.</td><td>"How do you know — is that measured or a gut feel?" Then: "If 60% come from Google, you'd invest differently than if 60% come from Instagram. Right now you're spending blind."</td></tr>
+<tr><td>15</td><td><strong>"What are you doing to bring customers back?"</strong></td><td><em>"Nothing really"</em></td><td>"So a customer dines with you, enjoys the food, and then... nothing. No message, no offer, no reminder. Whether they come back is entirely up to chance?"</td></tr>
+<tr><td></td><td></td><td><em>"We post on Instagram / social media"</em></td><td>"That reaches followers — but does it reach the specific customer who dined with you last Tuesday and hasn't been back? Social media is broadcast. It goes to everyone — including people who've never visited. Engagement is personal — the right message to the right customer at the right time."</td></tr>
+<tr><td></td><td></td><td><em>"We send emails / promotions"</em></td><td>"Great — when you send, do you send the same message to everyone, or do you segment?" (Almost always the same.) "So your VIP who comes every week and a first-timer who came once three months ago get the same message? Would you talk to those two customers the same way in person?"</td></tr>
+<tr><td></td><td></td><td><em>"We try to segment"</em></td><td>"What segments? How are you deciding who gets what?" Usually it's very basic — if at all. Most merchants think sending to "all" is engagement. Real engagement = right message, right person, right time.</td></tr>
+<tr><td>16</td><td><strong>"Do you know your return visit rate? Of all the customers who dine with you, what percentage come back within 60 or 90 days?"</strong></td><td>Almost never known.</td><td>"Industry average: about 85% of first-timers don't return within a year. Not because the food is bad — because nobody followed up. But here's the thing — if you can get them to a 2nd visit, there's a 30-40% chance of a 3rd. The 2nd visit is the most valuable moment in your business. Are you doing anything to drive it?"</td></tr>
+</table>
+
+<!-- PROBE E -->
+<h3>Probe E — Cost Stack <span style="font-size:13px;font-weight:500;color:var(--muted)">(only if they have existing tools)</span></h3>
+
+<div class="say">"Just so I have the full picture — what are you paying today across all your tools?"</div>
+
+<table>
+<tr><th>Tool</th><th>Typical range</th></tr>
+<tr><td>Reservation</td><td>$200-500/mo or $1-2 per cover</td></tr>
+<tr><td>eShop / Online ordering</td><td>$100-300/mo + commission</td></tr>
+<tr><td>Loyalty / CRM</td><td>$50-200/mo</td></tr>
+<tr><td>Email marketing</td><td>$0-150/mo</td></tr>
+</table>
+
+<p>Add it up. The total shapes your summary and close.</p>
+
+<h4>When the total is high ($650+/month) — cost is your lever</h4>
+<div class="say">"You're paying $X per month across [N] tools, and they don't talk to each other. Oddle gives you all of that — plus data capture and engagement — for $215. The savings are immediate, before we even talk about growth."</div>
+
+<h4>When Oddle is actually more expensive — value is your lever</h4>
+<p>Sometimes the merchant is using cheap or free tools and Oddle costs more on a pure subscription basis. Don't try to win on price — you'll lose. Win on value.</p>
+<div class="say">"You're right — on a pure subscription comparison, your current setup might be cheaper. But the question is: is it helping you grow? Can your current eShop drive corporate orders? Does your reservation system feed data into your marketing? Are you capturing walk-in customers? The $215 isn't just for the tools — it's for the system that connects everything and the team that walks with you to drive growth."</div>
+<p>The question isn't what the tools cost — it's what the gaps are costing them in missed revenue.</p>
+
+<h4>Siloed Data — The Hidden Problem</h4>
+<p>This comes up when a merchant already has multiple tools — their own reservation system, their own eShop, maybe a loyalty program. They think they're covered. But ask:</p>
+
+<table>
+<tr><th>Question</th><th>If they say...</th><th>Your response</th></tr>
+<tr><td><strong>"These tools you're using — are they connected? Does your reservation data feed into your marketing? Does your eShop know who your dine-in customers are?"</strong></td><td><em>"No, they're separate"</em> (almost always)</td><td>"So a customer books a table on Saturday, orders delivery on Tuesday, and signs up for your loyalty on Wednesday — and you see that as three separate people?"</td></tr>
+<tr><td><strong>"How are you analysing the data across these systems?"</strong></td><td><em>"We pull reports separately" / "We don't really"</em></td><td>"How much time does that take? And even when you do — can you answer a simple question like 'how many of my reservation customers also order delivery'?"</td></tr>
+<tr><td><strong>"Are you spending time manually exporting, combining spreadsheets?"</strong></td><td><em>"Yes, it's a lot of work"</em></td><td>"What if all of that was automatic? One customer profile, every touchpoint — dine-in, delivery, reservation — in one view. No exporting, no spreadsheets."</td></tr>
+</table>
+
+<div class="crit"><strong>Why this is so powerful:</strong> Siloed data is the reason merchants can't do effective engagement even when they have tools. They can't segment because data is in 4 different places. They can't track the customer journey because each system only sees one touchpoint. This is the strongest argument for a unified system — and the hardest thing for competitors to replicate. One customer, one profile, every channel.</div>
+
+<!-- ============================================================ -->
+
+<div class="step-head" id="step5">
+  <div class="step-num">5</div>
+  <h2 style="margin:0;padding:0">The Summary</h2>
+  <div class="step-time">~2 min</div>
+</div>
+
+<p>Mirror back what the merchant told you. Their language, their numbers. This turns the diagnostic into a mandate.</p>
+
+<h4>Move 1: Acknowledge</h4>
+<div class="say">"Thank you for sharing all of that. Everything you've told me is really important — it gives me a much clearer picture of where your business is and where the potential is."</div>
+
+<h4>Move 2: Stack the gaps — lead with revenue</h4>
+<p>Always start with revenue growth. That's what every merchant cares about most. Then layer the other gaps.</p>
+
+<div class="say">"From what you've shared, I see a few things.<br><br>
+First, there's a clear growth opportunity — [tailor: 'those corporate and group orders you're getting ad-hoc could be a real revenue channel' OR 'driving more return visits from your existing customers'].<br><br>
+But to do that effectively, you need the data. Right now, from the [X] customers you serve monthly, you only know [Y] of them. That's [Z]% walking out invisible — you can't bring them back, engage them, or even tell who your regulars are.<br><br>
+[If applicable: 'And you're paying $[total] across [N] tools that don't talk to each other.']<br><br>
+So the opportunity is real — the infrastructure to capture it isn't there yet."</div>
+
+<div class="tip"><strong>Always use their numbers, not yours.</strong> "From your 5,000 diners and 500 bookings" — not "most restaurants have this problem." Their numbers make it personal and undeniable.</div>
+
+<div class="arch-box arch-tech">
+<h5>Summary adaptation for tech-stack merchants</h5>
+<p><strong>If cost was the theme:</strong> "You're paying $X for tool A and $Y for tool B — $Z total for just two functions. And from what you've shared, they're not fully delivering on growth."</p>
+<p><strong>If value was the theme:</strong> "You have the tools, but the data is siloed, the engagement isn't happening, and the sales channel isn't performing to its potential."</p>
+<p><strong>If they couldn't answer questions (no numbers):</strong> "What stands out is that you have tools in place but don't have full visibility into how they're performing. And it sounds like your current providers haven't been helping you figure that out either."</p>
+</div>
+
+<h4>Move 3: Confirm agreement</h4>
+<div class="say">"Does that sound about right? Are these the main areas where you see opportunity?"</div>
+
+<div class="crit"><strong>Wait for them to say yes.</strong> This is critical. They must explicitly agree on the gaps before you move forward. If they push back, adjust. If they add something you missed, acknowledge it. Do not proceed until you have agreement.</div>
+
+<!-- ============================================================ -->
+
+<div class="step-head" id="step6">
+  <div class="step-num" style="background:var(--green)">6</div>
+  <h2 style="margin:0;padding:0">Get Buy-In</h2>
+  <div class="step-time">NEW</div>
+</div>
+
+<p>The merchant has agreed on their gaps. Now get their commitment to act on them — before you present anything about Oddle.</p>
+
+<div class="say">"So based on what we've discussed — you want to [grow online sales / capture more customer data / drive repeat visits / lower your tech costs]. If we have a system that addresses these gaps, is that something you'd want to explore?"</div>
+
+<p>You're asking a simple question: <strong>if I can solve what you just told me is broken, do you want to hear about it?</strong></p>
+
+<table>
+<tr><th>If they say...</th><th>What you do</th></tr>
+<tr><td>"Yes, show me"</td><td>Move to General Introduction (Step 7). You have permission to present.</td></tr>
+<tr><td>"Yes, but I'm looking at other options"</td><td>"Of course — let me share how we approach it, and you can compare." Still go to Step 7.</td></tr>
+<tr><td>"I'm not sure yet"</td><td>"What's holding you back — timing, budget, or something else?" Address hesitation first.</td></tr>
+<tr><td>"Not really"</td><td>Rare if Steps 4-5 were done well. Go back: "Earlier you mentioned [gap]. Has something changed?"</td></tr>
+</table>
+
+<div class="warn"><strong>Why this step matters:</strong> Without buy-in, your introduction is a product tour they passively watch. With buy-in, it's the answer to a question they asked. That's the difference between a demo and a decision.</div>
+
+<div class="arch-box arch-tech">
+<h5>Buy-in for tech-stack merchants</h5>
+<p>They already have tools, so they may be skeptical about switching. Frame it as: <em>"I'm not asking you to throw everything out. Let me show you how restaurants in your position have approached this — you can judge for yourself."</em></p>
+</div>
+
+<div class="arch-box arch-est">
+<h5>Buy-in for new businesses</h5>
+<p><em>"You're building your foundation right now. If there's a system that captures every customer from day one and grows with you — would that be worth looking at?"</em></p>
+</div>
+
+<!-- ============================================================ -->
+
+<div class="step-head" id="step7">
+  <div class="step-num">7</div>
+  <h2 style="margin:0;padding:0">General Introduction</h2>
+  <div class="step-time">~10 min</div>
+</div>
+
+<p>Walk through the Oddle overview deck. Always start with the big picture — the methodology and system — before any product.</p>
+
+<div class="crit"><strong>Always lead with the big picture.</strong> New → Known → Repeat. How Oddle helps restaurants grow revenue organically. Never lead with a specific product.</div>
+
+<table>
+<tr><th>Deck Section</th><th>How to handle</th></tr>
+<tr><td><strong>Restaurant challenges</strong></td><td>Fast. "You'll recognise this — it's exactly what we just discussed."</td></tr>
+<tr><td><strong>Two Leakages</strong></td><td>Connect to their specific leakages from the diagnostic.</td></tr>
+<tr><td><strong>New → Known → Repeat</strong></td><td><strong>Take time here.</strong> This is the methodology that ties everything together.</td></tr>
+<tr><td><strong>Success stories</strong></td><td>Pick stories that mirror this merchant's situation (see archetype box below).</td></tr>
+<tr><td><strong>5 products, 1 system</strong></td><td>Go deeper on products that map to their gaps. Touch the rest lightly.</td></tr>
+<tr><td><strong>What makes Oddle different</strong></td><td>Revenue partner, not tool vendor. Methodology + execution support.</td></tr>
+<tr><td><strong>Pricing ($215/month)</strong></td><td>Confident. Anchor against their total current tech spend or rental cost.</td></tr>
+</table>
+
+<h4>Connecting products to their gaps</h4>
+<table>
+<tr><th>Their gap</th><th>Product</th><th>What to say</th></tr>
+<tr><td>Can't identify customers</td><td>Enrolment</td><td>"This is how restaurants turn 90% invisible into 40-60% known."</td></tr>
+<tr><td>Don't know why they come</td><td>Enrolment + CDP</td><td>"This captures how they found you, whether they're local, what brought them."</td></tr>
+<tr><td>Not driving repeat visits</td><td>Email + CDP</td><td>"This is how you go from hoping they return to engineering it."</td></tr>
+<tr><td>Missing direct revenue channel</td><td>eShop</td><td>"Your own Nike shop — for the customers who come looking for you."</td></tr>
+<tr><td>Fragmented / expensive tools</td><td>Full system</td><td>"One system, one profile, $215/month vs $[X] across disconnected tools."</td></tr>
+</table>
+
+<div class="arch-box arch-suit">
+<h5>Which products to emphasise by suitability</h5>
+<p><strong>Reservation + Delivery:</strong> Full system — biggest value is unified data across channels. Show how dine-in and online feed one customer profile.</p>
+<p><strong>Delivery Only:</strong> eShop is the revenue driver. Enrolment captures in-store walk-ins. CDP + Email activates the database.</p>
+<p><strong>Reservation Only:</strong> Reserve + data capture (Enrolment or concierge-style for fine dining). CDP + Email for engagement. No need to spend time on eShop.</p>
+</div>
+
+<div class="arch-box arch-est">
+<h5>Recommended starting products by establishment</h5>
+<p><strong>New:</strong> eShop + Enrolment — open the channel, capture every customer from day one. CDP + Email once the database builds.</p>
+<p><strong>Growing:</strong> Lead with whatever addresses the biggest gap — they have some traction, so pick the lever that moves the needle most.</p>
+<p><strong>Established / Heritage:</strong> Often Enrolment + CDP + Email first — they already have customers, the opportunity is knowing who they are and bringing them back. Add eShop if they don't have one.</p>
+</div>
+
+<div class="warn"><strong>Never recommend more than 2-3 products to start.</strong> "Let's start here. The rest is available whenever you're ready — no new contract, no new vendor." This prevents overwhelm.</div>
+
+<!-- ============================================================ -->
+
+<div class="step-head" id="step8">
+  <div class="step-num">8</div>
+  <h2 style="margin:0;padding:0">First Close</h2>
+</div>
+
+<p>Always try to close before demoing. If they're ready, don't talk them out of it.</p>
+
+<div class="say">"Based on everything we've discussed — are you ready to get started? Or are there specific things you'd like to see or understand better first?"</div>
+
+<table>
+<tr><th>They say...</th><th>You do...</th><th>The script</th></tr>
+<tr><td>"Let's do it"</td><td>Move to onboarding.</td><td>"Great — I'll send you the sign-up link today. The main things from your side are menu info and brand guidelines. Our team handles the rest. You could be live within a week."</td></tr>
+<tr><td>"Can you show me how it works?"</td><td>Go to Demo (Step 9). But focus it.</td><td>"Sure — which part are you most keen to see? The online ordering, the data capture, or the marketing?"</td></tr>
+<tr><td>"I need to think about it"</td><td>Pin down the real hesitation.</td><td>"Of course. What specifically do you want to think through — the cost, the transition, or something else?"</td></tr>
+<tr><td>"Need to talk to my partner / boss"</td><td>Offer a second call.</td><td>"Would it help if I joined a quick call with them? I can answer their questions directly."</td></tr>
+<tr><td>"Send me more info"</td><td>Set a specific follow-up.</td><td>"Happy to. I'll send a summary tonight. Can I follow up with you on [specific day, e.g., Monday]?"</td></tr>
+</table>
+
+<div class="warn"><strong>Never demo when they're ready to buy.</strong> A demo at this point gives them time to find things to worry about. The best meetings end with a handshake, not a screen share.</div>
+
+<!-- ============================================================ -->
+
+<div class="step-head" id="step9">
+  <div class="step-num">9</div>
+  <h2 style="margin:0;padding:0">Demo (If Needed)</h2>
+</div>
+
+<p>You're here because the merchant wants to see the product. Make it focused — show what they asked about, not the full suite.</p>
+
+<div class="info"><strong>A separate Demo Guide is available</strong> with detailed product-by-product flows, live merchant examples, and the recommended sequence. This section covers the principles only.</div>
+
+<table>
+<tr><th>Principle</th><th>What it means</th></tr>
+<tr><td><strong>Show what they asked for</strong></td><td>They told you which part. Don't demo everything.</td></tr>
+<tr><td><strong>Live examples, not sandbox</strong></td><td>Show real merchant pages — real data, real campaigns, real results.</td></tr>
+<tr><td><strong>Use mirror merchants</strong></td><td>Show restaurants similar to theirs — same cuisine, location, or model.</td></tr>
+<tr><td><strong>Connect back to gaps</strong></td><td>"You said 90% of customers are invisible? This restaurant captures 60%."</td></tr>
+<tr><td><strong>Follow New → Known → Repeat</strong></td><td>eShop/Reserve = New. Enrolment/CDP = Known. Email = Repeat.</td></tr>
+</table>
+
+<div class="arch-box arch-suit">
+<h5>Demo focus by suitability</h5>
+<p><strong>Reservation + Delivery:</strong> Show the full consumer journey — reservation from Google, in-restaurant enrolment, online ordering, then unified CDP and email. This is the most powerful demo because it shows data compounding across channels.</p>
+<p><strong>Delivery Only:</strong> Lead with eShop examples (Jollibee AOV data is the killer proof point). Then show Enrolment for in-store capture. Then CDP + Email.</p>
+<p><strong>Reservation Only:</strong> Lead with Reserve (Google integration, backend views). Then Enrolment for data capture. Then CDP + Email for engagement. Skip eShop entirely.</p>
+</div>
+
+<p>After the demo → move to Final Close (Step 10).</p>
+
+<!-- ============================================================ -->
+
+<div class="step-head" id="step10">
+  <div class="step-num">10</div>
+  <h2 style="margin:0;padding:0">Final Close</h2>
+</div>
+
+<div class="say">"Does that give you a clearer picture? Are you ready to get started?"</div>
+
+<p>If the first ask doesn't land, use these progressively:</p>
+
+<h4>Close A: Direct — they're ready</h4>
+<div class="say">"Great — I'll send you the sign-up form. Once you fill it in, our team pulls your menu, sets up your eShop, and gets you live within a week. The Enrolment program we set up in parallel. Sound good?"</div>
+<p>Be specific about next steps. Vague closes lead to vague follow-ups.</p>
+
+<h4>Close B: Hesitation — they have a specific concern</h4>
+<div class="say">"What's the one thing holding you back right now?"</div>
+
+<table>
+<tr><th>Concern</th><th>Response</th></tr>
+<tr><td>"It's the cost"</td><td>"$215/month is roughly $7/day. One extra delivery order per week covers it. And first $3,000/month has no extra commission. But the real question: what's it costing you NOT to capture customer data?"</td></tr>
+<tr><td>"I don't have time"</td><td>"That's why we have a dedicated success manager for 45-60 days. They do the heavy lifting — setup, first campaigns, optimization. After that, automations run on autopilot."</td></tr>
+<tr><td>"Need to check with partner"</td><td>"Would it help if I joined a 15-minute call with both of you? When works best?"</td></tr>
+<tr><td>"Want to compare options"</td><td>"Of course. The key question for any provider: do they give you a tool, or walk with you to drive growth? We'll be here when you're ready."</td></tr>
+</table>
+
+<h4>Close C: Soft — interested but needs time</h4>
+<div class="say">"No rush at all. I'll send you a summary tonight — the gaps, the opportunities, and the pricing. Sleep on it. Can I follow up on [specific day]?"</div>
+
+<p>Always secure before hanging up:</p>
+<ul>
+<li>A specific follow-up day (not "sometime next week")</li>
+<li>Their preferred channel (WhatsApp is usually best in SG/MY/TW)</li>
+<li>What you'll send them (summary, pricing, sign-up link)</li>
+</ul>
+
+<div class="crit"><strong>The follow-up IS the close.</strong> Most deals don't close on the first call. They close in the follow-up. Stick to this cadence:</div>
+
+<table>
+<tr><th>When</th><th>What</th><th>How</th></tr>
+<tr><td><strong>Same evening</strong></td><td>Send the summary</td><td>WhatsApp or email. Recap the gaps, the opportunities, the pricing. Keep it tight — 1 page max. Include the sign-up link.</td></tr>
+<tr><td><strong>The exact day you promised</strong></td><td>Follow up</td><td>"Hi [name], just following up as promised. Have you had a chance to think through what we discussed? Happy to answer any questions."</td></tr>
+<tr><td><strong>+2 days if no response</strong></td><td>One more nudge</td><td>Short: "Hey — just checking in. Let me know if you'd like to chat again or if you're ready to get started."</td></tr>
+<tr><td><strong>+2 weeks</strong></td><td>Value, not pressure</td><td>Send something useful — a relevant article, a campaign idea for their cuisine type, a tip from the Value Tips Library. <em>"Thought of you when I saw this — might be useful for [their specific situation]."</em></td></tr>
+<tr><td><strong>Monthly after that</strong></td><td>Stay in orbit</td><td>Light touch. Don't chase. They know you exist. When the timing is right, they'll come back — and they'll remember the rep who helped them think, not the one who hounded them.</td></tr>
+</table>
+
+<!-- ============================================================ -->
+<hr>
+
+<h2 id="prodmap">Product Mapping Reference</h2>
+
+<h3>By Gap → Product → Outcome</h3>
+<table>
+<tr><th>Gap identified</th><th>Primary product</th><th>Supporting</th><th>Outcome to sell</th></tr>
+<tr><td>Data Gap</td><td>Enrolment</td><td>Reserve, CDP</td><td>"Turn 90% invisible into 60%+ known"</td></tr>
+<tr><td>Insight Gap</td><td>Enrolment + CDP</td><td>—</td><td>"Know how they found you, where they live, how often they visit"</td></tr>
+<tr><td>Engagement Gap</td><td>Email Marketing</td><td>CDP</td><td>"Drive the 2nd visit. Automate win-back. Segment by behaviour."</td></tr>
+<tr><td>Revenue Gap</td><td>eShop</td><td>Oddle Eats, Email</td><td>"Open a $100+ AOV channel for corporate/group"</td></tr>
+<tr><td>Operational Gap</td><td>Full system</td><td>—</td><td>"One system, one customer profile, $215/month"</td></tr>
+</table>
+
+<h3>By Suitability → Starting Products</h3>
+<table>
+<tr><th>Suitability</th><th>Start with</th><th>Then add</th></tr>
+<tr><td>Reservation + Delivery</td><td>Reserve + eShop + Enrolment</td><td>CDP + Email (once database builds)</td></tr>
+<tr><td>Delivery Only</td><td>eShop + Enrolment</td><td>CDP + Email</td></tr>
+<tr><td>Reservation Only</td><td>Reserve + Enrolment*</td><td>CDP + Email</td></tr>
+</table>
+<p style="font-size:13px;color:var(--muted)">*Fine dining: Enrolment may use concierge-style capture instead of QR scan.</p>
+
+<!-- ============================================================ -->
+<hr>
+
+<h2 id="objections">Objection Handling</h2>
+
+<h4>"Your eShop is more expensive than what I have"</h4>
+<p><strong>Angle 1 — Surface their value gap:</strong> "Can your eShop sales be higher?" / "Are you having logistics issues?" / "Is your eShop data unified with dine-in?" — almost always no on all counts.</p>
+<p><strong>Angle 2 — Growth math:</strong> "Your eShop does $10K/month. The difference is 6.5% above $3K — about $455. If we drive even $1K more through abandoned cart recovery, corporate orders, and Oddle Eats — you've covered it."</p>
+<p><strong>Angle 3 — Reframe:</strong> "Don't compare eShop to eShop. Compare your total tech stack to Oddle. $215 for everything unified vs $X across disconnected tools."</p>
+
+<h4>"I already have a loyalty program"</h4>
+<p>Probe value: "How many new members per month? What's the return rate? Are you using the data?" Usually the data sits idle. "The program isn't the problem — the question is whether it's driving outcomes."</p>
+
+<h4>"I don't have time for another tool"</h4>
+<p>"That's exactly why we assign a dedicated success manager for 45-60 days. They set up everything, build campaigns, optimize. After that, automations run themselves."</p>
+
+<h4>"Can I start with just one product?"</h4>
+<p>"Absolutely. Most start with 1-2. That's the beauty of one system — the rest is there when you're ready. No new contract, no new vendor."</p>
+
+<h4>"My current vendor gives me an account manager"</h4>
+<p>"When's the last time they proactively shared a performance report? Suggested a campaign? Told you something about your business you didn't know? An account manager who responds to tickets is different from a revenue partner who drives growth."</p>
+
+<h4>"I need to see it working at a restaurant like mine"</h4>
+<p>This is a social proof ask — they want to know restaurants like theirs are succeeding. Name 2-3 similar ones, share high-level results (keep specifics vague), offer to show public-facing pages.</p>
+
+<h4>"$215/month is a lot for me right now"</h4>
+<p>"Every dollar matters. But rent and manpower are fixed whether you serve 50 or 100 customers. Every additional customer is almost pure margin. If the system drives 2-3 extra orders a month — very conservative — it's paid for itself. And you're building a database that compounds."</p>
+
+<!-- ============================================================ -->
+<hr>
+
+<h2 id="tips">Value Tips Library</h2>
+<p>Drop these throughout the call to build trust and demonstrate F&B expertise. Each one helps the merchant even if they don't sign up.</p>
+
+<h4>Google search ranking</h4>
+<p>"When someone Googles your name, what shows up? If there's no direct ordering link, you're losing orders to marketplaces who rank for your name."</p>
+
+<h4>Google reviews > Instagram followers</h4>
+<p>"A customer deciding where to eat tonight is Googling, not scrolling Instagram. 100 reviews at 4.5 stars does more for walk-in traffic than 10K followers."</p>
+
+<h4>How to grow Google reviews</h4>
+<p>"Print a QR code linking to your Google review page. Put it on the table or hand it with the bill. Better yet — your Enrolment thank-you screen can include a review link."</p>
+
+<h4>Delivery fee psychology</h4>
+<p>"Customers are more sensitive to delivery fees than food markup. $21 delivery fee kills conversion. Mark up food 15% and charge $7 delivery? Same economics, way more orders."</p>
+
+<h4>The corporate order opportunity</h4>
+<p>"Corporates don't use GrabFood for team lunches. They Google '[cuisine] catering near me' or go to a restaurant they know. No ordering page? That $150 order goes to someone else."</p>
+
+<h4>Email frequency — the Nike lesson</h4>
+<p>"Most restaurants send one email a month. Nike sends two a week. Open rate is under 15% — but when you want sneakers, Nike is the first name in your head. Top-of-mind recall > open rates. Send weekly."</p>
+
+<h4>The 2nd visit is everything</h4>
+<p>"85% of first-timers don't return within a year. But get them to a 2nd visit — 30-40% chance of a 3rd. All energy should go to driving that 2nd visit."</p>
+
+<h4>Off-peak revenue hack</h4>
+<p>"Wednesday lunch is quiet? Send nearby customers a midweek offer Monday morning. 1,000 emails → 300 opens → 50 claims → 30 show up. 30 extra covers on your slowest day, for the cost of 30 drinks."</p>
+
+<h4>Weekend revenue for weekday shops</h4>
+<p>"Your kitchen is prepping weekends anyway. Party platters or corporate bundles via online ordering. 1-2 orders a weekend at $200-500 each = $2,000-4,000/month you don't get today."</p>
+
+<h4>Fixed cost leverage</h4>
+<p>"Manpower and rent are fixed whether you serve 50 or 100. Every additional customer is almost pure margin. That's why data capture and repeat visits are the highest-ROI activity in your business."</p>
+
+</div><!-- end content -->
+</div><!-- end wrap -->
+
+<script>
+function genPlan(){
+  const est=document.getElementById('sel-est').value;
+  const suit=document.getElementById('sel-suit').value;
+  const src=document.getElementById('sel-src').value;
+  const techs=[];
+  document.querySelectorAll('.chk input:checked').forEach(c=>techs.push(c.value));
+  if(!est||!suit){document.getElementById('gameplan').classList.remove('show');return}
+  const gp=document.getElementById('gameplan');
+  gp.classList.add('show');
+
+  const tones={new:'Encouraging. "You\'re building your foundation — best time to get it right."',growing:'Respectful. "You\'ve got momentum — let\'s capture it."',established:'Deferential. "You have the customers. The question is what you\'re getting from them."'};
+  let diag=[];
+  if(suit==='both'||suit==='res'){diag.push(techs.includes('reserve')?'Reserve: probe cost, value, data capture depth':'Reserve: surface absence — how do they manage bookings?')}
+  if(suit==='both'||suit==='del'){diag.push(techs.includes('eshop')?'eShop: probe cost, value (is it driving sales?), fragmentation':'eShop: surface missing revenue channel — corporate/group orders')}
+  diag.push(techs.includes('loyalty')?'Loyalty: probe capture rate vs diners, is data being used?':'Customer data: surface the data gap — how many invisible?');
+  diag.push(techs.includes('email')?'Email: probe segmentation, frequency, results':'Engagement: surface gap — nothing bringing customers back');
+  if(techs.length>=2) diag.push('Fragmentation: are tools connected?');
+  if(techs.length>=1) diag.push('Cost stack: total monthly spend');
+
+  let prods=[];
+  if(est==='new'){if(suit!=='res')prods.push('eShop');if(suit!=='del')prods.push('Reserve');prods.push('Enrolment')}
+  else if(est==='established'){prods.push('Enrolment','CDP + Email');if(!techs.includes('eshop')&&suit!=='res')prods.push('eShop')}
+  else{if(!techs.includes('eshop')&&suit!=='res')prods.push('eShop');if(!techs.includes('loyalty'))prods.push('Enrolment');prods.push('CDP + Email')}
+
+  let objs=[];
+  if(techs.length>0)objs.push('"Already have tools" → probe value gap');
+  if(techs.includes('eshop'))objs.push('"eShop more expensive" → growth math');
+  if(est==='new')objs.push('"$215 is a lot" → fixed cost leverage');
+  if(est==='established')objs.push('"Been fine without it" → 85% non-return stat');
+  objs.push('"Need to think" → pin down concern + set date');
+
+  document.getElementById('gp-c').innerHTML=`<div class="gp-grid">
+    <div class="gp-card"><h5>Opening Tone</h5><p>${tones[est]}</p></div>
+    <div class="gp-card"><h5>Diagnostic Focus</h5><ul>${diag.map(d=>'<li>'+d+'</li>').join('')}</ul></div>
+    <div class="gp-card"><h5>Products to Lead With</h5><p>${prods.join(' + ')}</p></div>
+    <div class="gp-card"><h5>Likely Objections</h5><ul>${objs.map(o=>'<li>'+o+'</li>').join('')}</ul></div>
+  </div>`;
+}
+</script>
+</body>
+</html>
