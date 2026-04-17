@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Sell Oddle — Sales Training Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --purple:#3B0764;--purple-l:#7C3AED;--purple-bg:#F5F3FF;--purple-bdr:#EDE9FE;
+  --fg:#1A1A1A;--muted:#6B7280;--border:#E5E7EB;
+  --green:#059669;--green-bg:#ECFDF5;--green-bdr:#A7F3D0;
+  --orange:#D97706;--orange-bg:#FFFBEB;--orange-bdr:#FDE68A;
+  --red:#DC2626;--red-bg:#FEF2F2;--red-bdr:#FECACA;
+  --blue:#2563EB;--blue-bg:#EFF6FF;--blue-bdr:#BFDBFE;
+  --r:10px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;color:var(--fg);background:#fff;line-height:1.7;overflow-x:hidden}
+a{color:var(--purple-l);text-decoration:none}
+
+/* ---- Top bar ---- */
+.topbar{background:var(--purple);color:#fff;padding:14px 32px;position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:16px}
+.topbar .logo{font-size:17px;font-weight:700;letter-spacing:-.02em}
+.topbar .sub{font-size:12px;opacity:.6;margin-left:auto}
+
+/* ---- Layout: sidebar + content ---- */
+.wrap{display:flex}
+
+/* ---- Sidebar ---- */
+.side{width:250px;position:sticky;top:52px;height:calc(100vh - 52px);overflow-y:auto;border-right:1px solid var(--border);flex-shrink:0;background:#FAFAFA;padding:16px 0 40px}
+.side::-webkit-scrollbar{width:4px}
+.side::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+
+/* Chapter selectors in sidebar */
+.ch-tabs{padding:0 14px;margin-bottom:16px}
+.ch-tab{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;cursor:pointer;margin-bottom:4px;transition:all .12s;font-size:13px;font-weight:500;color:var(--muted)}
+.ch-tab:hover{background:var(--purple-bg);color:var(--purple)}
+.ch-tab.active{background:var(--purple);color:#fff}
+.ch-tab .ch-n{width:22px;height:22px;border-radius:50%;background:var(--border);color:var(--muted);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ch-tab.active .ch-n{background:rgba(255,255,255,.25);color:#fff}
+
+/* Section links in sidebar */
+.side-sections{padding:0 14px}
+.side-group{margin-bottom:16px}
+.side-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);padding:0 12px;margin-bottom:6px}
+.side-link{display:block;padding:7px 12px;font-size:13px;color:var(--muted);border-radius:6px;transition:all .1s;cursor:pointer;border-left:3px solid transparent;margin-bottom:1px}
+.side-link:hover{background:var(--purple-bg);color:var(--purple)}
+.side-link.active{color:var(--purple);font-weight:600;border-left-color:var(--purple);background:var(--purple-bg)}
+
+.side-divider{height:1px;background:var(--border);margin:12px 14px}
+
+/* Chapter progress */
+.side-progress{padding:0 14px;margin-top:12px}
+.progress-bar{height:4px;background:var(--border);border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;background:var(--green);border-radius:2px;transition:width .3s}
+.progress-text{font-size:11px;color:var(--muted);margin-top:4px}
+
+/* ---- Content area ---- */
+.content{flex:1;max-width:760px;padding:0 48px 120px;margin:0 auto}
+
+/* Chapter panels */
+.chapter{display:none}
+.chapter.active{display:block;animation:fadeIn .2s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+/* ---- Chapter hero ---- */
+.hero{padding:48px 0 12px}
+.hero .ch-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple-l);margin-bottom:6px}
+.hero h1{font-size:30px;font-weight:700;color:var(--purple);margin-bottom:8px;line-height:1.2}
+.hero .desc{font-size:15px;color:var(--muted);margin-bottom:10px;max-width:580px}
+.hero .read-time{display:inline-block;font-size:11px;font-weight:600;color:var(--green);background:var(--green-bg);padding:3px 10px;border-radius:12px}
+
+/* ---- Typography ---- */
+h2{font-size:24px;font-weight:700;color:var(--purple);margin:48px 0 8px;padding-top:16px}
+h2:first-child{margin-top:0}
+h3{font-size:18px;font-weight:700;margin:28px 0 8px;color:var(--fg)}
+h4{font-size:15px;font-weight:700;margin:22px 0 6px}
+p{margin-bottom:14px;font-size:15px}
+ul,ol{margin-bottom:14px;padding-left:24px}
+li{margin-bottom:6px;font-size:15px}
+hr{border:none;border-top:1px solid var(--border);margin:40px 0}
+
+/* ---- Script / quote blocks ---- */
+.say{background:var(--purple-bg);border-left:4px solid var(--purple-l);padding:14px 20px;border-radius:0 8px 8px 0;margin:12px 0 16px;font-style:italic;font-size:15px;line-height:1.7}
+
+/* ---- Tables ---- */
+table{width:100%;border-collapse:collapse;margin:12px 0 20px;font-size:14px}
+th{background:var(--purple);color:#fff;padding:10px 14px;text-align:left;font-weight:600}
+td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:top}
+
+/* ---- Callouts ---- */
+.tip,.warn,.crit,.info{padding:14px 18px;border-radius:var(--r);margin:14px 0 18px;font-size:14px}
+.tip{background:var(--green-bg);border:1px solid var(--green-bdr)}
+.warn{background:var(--orange-bg);border:1px solid var(--orange-bdr)}
+.crit{background:var(--red-bg);border:1px solid var(--red-bdr)}
+.info{background:var(--blue-bg);border:1px solid var(--blue-bdr)}
+
+/* ---- Archetype boxes ---- */
+.arch-box{border-radius:var(--r);padding:16px 18px;margin:14px 0 18px;font-size:14px}
+.arch-box h5{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px}
+.arch-box p,.arch-box ul{margin-bottom:6px}
+.arch-box ul{padding-left:20px}
+.arch-est{background:#F0F9FF;border:1px solid #BAE6FD} .arch-est h5{color:#0369A1}
+.arch-suit{background:#FDF4FF;border:1px solid #F0ABFC} .arch-suit h5{color:#A21CAF}
+.arch-tech{background:var(--orange-bg);border:1px solid var(--orange-bdr)} .arch-tech h5{color:var(--orange)}
+
+/* ---- Step headers ---- */
+.step-head{display:flex;align-items:center;gap:12px;margin:48px 0 8px;padding-top:16px}
+.step-num{width:36px;height:36px;border-radius:50%;background:var(--purple);color:#fff;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.step-head h2{margin:0;padding:0}
+.step-head .step-time{font-size:12px;color:var(--muted);font-weight:500;margin-left:auto;background:#F3F4F6;padding:3px 10px;border-radius:12px}
+
+/* ---- Gap cards ---- */
+.gap-grid{display:grid;grid-template-columns:1fr;gap:12px;margin:16px 0 24px}
+.gap-card{background:#FAFAFA;border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;transition:border-color .15s}
+.gap-card:hover{border-color:var(--purple-l)}
+.gap-card .gap-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.gap-card h4{margin:0 0 6px;font-size:16px}
+.gap-card p{font-size:14px;color:var(--muted);margin-bottom:8px}
+.gap-card .gap-q{font-size:14px;font-style:italic;color:var(--purple);background:var(--purple-bg);padding:8px 14px;border-radius:6px;margin-bottom:8px}
+.gap-card .gap-ex{font-size:13px;color:var(--fg);background:#fff;border:1px solid var(--border);padding:10px 14px;border-radius:6px}
+.gap-card .gap-ex strong{color:var(--purple)}
+.gc-data .gap-label{color:var(--purple)}
+.gc-insight .gap-label{color:var(--blue)}
+.gc-engage .gap-label{color:var(--green)}
+.gc-revenue .gap-label{color:var(--orange)}
+.gc-ops .gap-label{color:var(--red)}
+
+/* ---- Flow diagram ---- */
+.flow{display:flex;gap:6px;margin:20px 0 32px;flex-wrap:wrap}
+.fs{flex:1;min-width:68px;background:#FAFAFA;border:2px solid var(--border);border-radius:8px;padding:12px 6px;text-align:center;transition:all .15s}
+.fs .fn{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:2px}
+.fs .ft{font-size:11px;font-weight:700;color:var(--fg)}
+.fs .fd{font-size:10px;color:var(--muted);margin-top:2px}
+.fs.hi{border-color:var(--green);background:var(--green-bg)}
+.fa{display:flex;align-items:center;color:var(--border);font-size:18px;font-weight:300}
+
+/* ---- Objection cards ---- */
+.obj-card{background:#FAFAFA;border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin:12px 0 16px}
+.obj-card h4{margin:0 0 8px}
+
+/* ---- Next chapter CTA ---- */
+.next-ch{background:var(--purple);color:#fff;border-radius:12px;padding:24px 28px;margin-top:48px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:all .12s}
+.next-ch:hover{opacity:.92;transform:translateY(-1px)}
+.next-ch h4{color:#fff;margin:0;font-size:16px}
+.next-ch p{color:rgba(255,255,255,.65);margin:4px 0 0;font-size:13px}
+.next-ch .arrow{font-size:22px;opacity:.6}
+
+/* ---- Planner ---- */
+.planner-toggle{background:var(--purple-bg);border:1px solid var(--purple-bdr);border-radius:var(--r);padding:14px 20px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;font-weight:600;font-size:14px;color:var(--purple);transition:all .12s}
+.planner-toggle:hover{background:var(--purple-bdr)}
+.planner-toggle::after{content:'▸';transition:transform .15s;font-size:16px}
+.planner-toggle.open::after{transform:rotate(90deg)}
+.planner-body{display:none;background:#FAFAFA;border:1px solid var(--purple-bdr);border-top:none;border-radius:0 0 var(--r) var(--r);padding:20px}
+.planner-body.open{display:block}
+.pl-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:14px}
+.pl-grid label{display:block;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
+.pl-grid select{width:100%;padding:8px 10px;border:2px solid var(--border);border-radius:6px;font-family:inherit;font-size:13px;background:#fff}
+.pl-checks{margin-bottom:14px}
+.pl-checks>label{display:block;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px}
+.chk-row{display:flex;flex-wrap:wrap;gap:6px}
+.chk{display:flex;align-items:center;gap:5px;padding:6px 12px;border:2px solid var(--border);border-radius:6px;cursor:pointer;font-size:12px;user-select:none;transition:all .1s;background:#fff}
+.chk:hover{border-color:var(--purple-l)}
+.chk.on{border-color:var(--purple);background:var(--purple-bg);font-weight:600}
+.chk input{display:none}
+.gp{background:var(--purple-bg);border-radius:var(--r);padding:18px;margin-top:14px;display:none}
+.gp.show{display:block}
+.gp h4{color:var(--purple);margin:0 0 10px;font-size:15px}
+.gp-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.gp-card{background:#fff;border-radius:8px;padding:12px;font-size:13px}
+.gp-card h5{font-size:12px;font-weight:700;color:var(--purple);margin-bottom:4px}
+.gp-card ul{padding-left:16px;margin:0}
+
+/* ---- Mobile ---- */
+@media(max-width:860px){
+  .side{display:none}
+  .content{padding:0 20px 80px;max-width:100%}
+  .hero{padding:28px 0 8px}
+  .hero h1{font-size:24px}
+  .pl-grid{grid-template-columns:1fr}
+  .gp-grid{grid-template-columns:1fr}
+  .flow{gap:4px}
+  .fs{min-width:56px;padding:8px 4px}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="logo">Oddle</div>
+  <span class="sub">Sales Training Guide</span>
+</div>
+
+<div class="wrap">
+
+<!-- ================================================================ -->
+<!-- SIDEBAR                                                          -->
+<!-- ================================================================ -->
+<nav class="side" id="sidebar">
+  <div class="ch-tabs">
+    <div class="ch-tab active" onclick="showCh(0)"><span class="ch-n">1</span>The Foundation</div>
+    <div class="ch-tab" onclick="showCh(1)"><span class="ch-n">2</span>Discovery</div>
+    <div class="ch-tab" onclick="showCh(2)"><span class="ch-n">3</span>Present & Close</div>
+    <div class="ch-tab" onclick="showCh(3)"><span class="ch-n">4</span>Reference</div>
+  </div>
+  <div class="side-divider"></div>
+  <div class="side-sections" id="side-links"></div>
+</nav>
+
+<!-- ================================================================ -->
+<!-- MAIN CONTENT                                                     -->
+<!-- ================================================================ -->
+<div class="content">
+
+<!-- ============================================================== -->
+<!-- CHAPTER 1: THE FOUNDATION                                       -->
+<!-- ============================================================== -->
+<div class="chapter active" id="ch0">
+
+<div class="hero">
+  <div class="ch-label">Chapter 1</div>
+  <h1>The Foundation</h1>
+  <div class="desc">The mental model behind everything. Read this first — before you learn any mechanics, understand what you're looking for and why.</div>
+  <span class="read-time">10 min read</span>
+</div>
+
+<h2 id="c0-overview">How We Sell</h2>
+<p>A diagnostic-led sales system. You don't pitch. You guide merchants to see their own gaps — then show them the way out.</p>
+<p>This guide has four chapters. Start here to learn the "what" and "why." Then Chapter 2 (Discovery) and Chapter 3 (Present & Close) for the "how." Chapter 4 is your reference toolkit for live calls.</p>
+
+<h3>The Full Pitch Flow</h3>
+<div class="flow">
+  <div class="fs"><div class="fn">Step 1</div><div class="ft">Rapport</div><div class="fd">~1 min</div></div><div class="fa">›</div>
+  <div class="fs"><div class="fn">Step 2</div><div class="ft">Intent</div><div class="fd">Why are they here?</div></div><div class="fa">›</div>
+  <div class="fs"><div class="fn">Step 3</div><div class="ft">Frame</div><div class="fd">Set the diagnostic</div></div><div class="fa">›</div>
+  <div class="fs"><div class="fn">Step 4</div><div class="ft">Diagnostic</div><div class="fd">Find the gaps</div></div><div class="fa">›</div>
+  <div class="fs"><div class="fn">Step 5</div><div class="ft">Summary</div><div class="fd">Mirror it back</div></div><div class="fa">›</div>
+  <div class="fs hi"><div class="fn">Step 6</div><div class="ft">Buy-In</div><div class="fd">Get commitment</div></div><div class="fa">›</div>
+  <div class="fs"><div class="fn">Step 7</div><div class="ft">Intro</div><div class="fd">Oddle overview</div></div><div class="fa">›</div>
+  <div class="fs"><div class="fn">Step 8</div><div class="ft">Close</div><div class="fd">Try to close first</div></div><div class="fa">›</div>
+  <div class="fs"><div class="fn">Step 9</div><div class="ft">Demo</div><div class="fd">Only if needed</div></div><div class="fa">›</div>
+  <div class="fs"><div class="fn">Step 10</div><div class="ft">Close</div><div class="fd">Final close</div></div>
+</div>
+
+<p>Steps 1–5 are in <strong>Chapter 2: Discovery</strong>. Steps 6–10 in <strong>Chapter 3: Present & Close</strong>.</p>
+
+<h3>The 5-Step Pre-Pitch Process</h3>
+<p>Before any product is mentioned, every call moves through:</p>
+<ol>
+<li><strong>Discover Intent</strong> — why are they here?</li>
+<li><strong>Discover Gaps & Opportunities</strong> — Socratic questioning adapted to their profile</li>
+<li><strong>Summarize & Confirm</strong> — mirror the gaps back, merchant agrees</li>
+<li><strong>Get Buy-In</strong> — merchant confirms they want to resolve these gaps</li>
+<li><strong>Then and only then</strong> → General Introduction & Demo</li>
+</ol>
+
+<!-- FIVE GAPS -->
+<hr>
+<h2 id="c0-gaps">The Five Gaps</h2>
+<p>Every restaurant has some combination of these. Your job is to find which ones apply, quantify them, and help the merchant see them clearly. This is the foundation of every diagnostic conversation.</p>
+
+<div class="gap-grid">
+<div class="gap-card gc-data">
+  <div class="gap-label">Gap 1</div>
+  <h4>Data Gap — Customer Identification</h4>
+  <p>Most customers are invisible. No contact info, no way to bring them back. Reservations only capture the booker — not the group.</p>
+  <div class="gap-q">"How many diners per month? How many do you actually have data on?"</div>
+  <div class="gap-ex"><strong>In practice:</strong> Restaurant serves 5,000 diners/month. 500 reservation bookings. They think they "know" 500 customers. In reality, 500 bookers — the other 4,500 walked out invisible. 90% of their business they can't reach.</div>
+</div>
+
+<div class="gap-card gc-insight">
+  <div class="gap-label">Gap 2</div>
+  <h4>Insight Gap — Customer Understanding</h4>
+  <p>Even with some data, they don't know WHY customers come — which channel, how far they travel, what drives return visits.</p>
+  <div class="gap-q">"Do you know how your customers discover you?"</div>
+  <div class="gap-ex"><strong>In practice:</strong> Merchant says "mostly Instagram." You ask: "Measured or gut feel?" Always gut feel. If 60% actually come from Google, they're investing in the wrong channel.</div>
+</div>
+
+<div class="gap-card gc-engage">
+  <div class="gap-label">Gap 3</div>
+  <h4>Engagement Gap — Not Driving Repeat</h4>
+  <p>Data sits idle. They're not segmenting, not targeting, not doing anything to drive repeat visits.</p>
+  <div class="gap-q">"What are you doing today to bring customers back?"</div>
+  <div class="gap-ex"><strong>In practice:</strong> They post on Instagram. But that reaches followers — not the specific customer who dined last Tuesday. 85% of first-timers don't return within a year. Not bad food — no follow-up.</div>
+</div>
+
+<div class="gap-card gc-revenue">
+  <div class="gap-label">Gap 4</div>
+  <h4>Revenue Gap — Missing Sales Channels</h4>
+  <p>Missing entire channels — corporate, group, direct delivery — because they only do marketplaces or have no online ordering.</p>
+  <div class="gap-q">"Do customers order for families, offices, groups? Are you capturing those?"</div>
+  <div class="gap-ex"><strong>In practice:</strong> Marketplace orders average $20-30 (impulse). Corporate/group orders average $100-120, planned 6+ hours ahead. Completely different customer they're not reaching.</div>
+</div>
+
+<div class="gap-card gc-ops">
+  <div class="gap-label">Gap 5</div>
+  <h4>Operational Gap — Systems & Efficiency</h4>
+  <p>Tools are fragmented, expensive, or underperforming. No visibility into traffic, conversion, or logistics.</p>
+  <div class="gap-q">"Do you know your online traffic? Conversion rate?"</div>
+  <div class="gap-ex"><strong>In practice:</strong> Paying $950/month across 4 tools that don't connect. A customer who books Saturday and orders Tuesday looks like two separate people in their system.</div>
+</div>
+</div>
+
+<div class="tip"><strong>The sequence is flexible. The thoroughness is not.</strong> Lead with whatever the merchant cares about. But by the end of the diagnostic, cover all five. Checklist, not script.</div>
+
+<!-- PHILOSOPHY -->
+<hr>
+<h2 id="c0-philosophy">Sales Philosophy</h2>
+
+<h3>Diagnose, Don't Pitch</h3>
+<p>A doctor doesn't walk in and say "you need surgery." They ask questions, run tests, help the patient understand. Then the patient asks for help. That's what we do.</p>
+<p>You're here to help a restaurant owner see — with their own numbers and words — where they're leaking revenue, overpaying, or flying blind. The pitch becomes inevitable because they already see the problem.</p>
+
+<h3>Questions > Statements</h3>
+<p>When you tell a merchant "you have a data gap," they can disagree. When you ask "how many of your 5,000 diners do you actually have contact info for?" and they calculate 500 — they can't disagree with their own math.</p>
+
+<h3>Two Things You Must Do Throughout</h3>
+<p><strong>1. Establish F&B credibility.</strong> Every question should carry an embedded insight about the restaurant business. They should think "these people really know their stuff."</p>
+<p><strong>2. Give value along the way.</strong> Drop tips that help even if they don't sign up. Each tip builds trust. See the <strong>Value Tips Library</strong> in Chapter 4.</p>
+
+<h3>Always Lead with the Big Picture</h3>
+<p>When you introduce Oddle, start with <strong>New → Known → Repeat</strong> and how Oddle grows revenue organically. Never lead with a specific product. eShop, Reserve, Enrolment — parts of the ecosystem, not the whole story.</p>
+
+<h3>"I Don't Know" Is Not a Dead End</h3>
+<table>
+<tr><th>What they mean</th><th>What you do</th></tr>
+<tr><td>They don't manage that area</td><td>Guide to an estimate: "Roughly how many on a typical weekday?"</td></tr>
+<tr><td>They've never checked</td><td>The not-knowing IS the gap. "Very common. Would it help if we looked together?"</td></tr>
+<tr><td>They have tech but can't answer</td><td>"Seems like you don't have full visibility. When's the last time your vendor proactively shared how you're doing?"</td></tr>
+</table>
+
+<div class="crit"><strong>The No-Pitch Rule:</strong> First 10–15 minutes — no pitching. Only questions. If you're mentioning Oddle features before diagnosing gaps, you've jumped ahead.</div>
+
+<!-- ARCHETYPES -->
+<hr>
+<h2 id="c0-archetypes">Know Your Merchant</h2>
+<p>The pitch flow is always the same 10 steps — but what you emphasise changes based on three dimensions. Learn these. You'll read them in real time on every call.</p>
+
+<h3>Dimension 1: Establishment</h3>
+<table>
+<tr><th>Type</th><th>What it means for you</th></tr>
+<tr><td><strong>New</strong> (&lt;1 yr)</td><td>Lighter diagnostic. Frame Oddle as the foundation: <em>"Best time to get the infrastructure right."</em></td></tr>
+<tr><td><strong>Growing</strong> (1-3+ yr)</td><td>Respect what they've built. Frame as scaling: <em>"You've got momentum — let's capture it."</em></td></tr>
+<tr><td><strong>Established</strong></td><td>Don't talk down. Frame as optimisation: <em>"You have the customers. Are you getting everything from that base?"</em></td></tr>
+</table>
+
+<h3>Dimension 2: Product Suitability</h3>
+<table>
+<tr><th>Type</th><th>Products that fit</th></tr>
+<tr><td><strong>Reservation + Delivery</strong></td><td>Reserve + eShop + Enrolment + CDP + Email. Full system.</td></tr>
+<tr><td><strong>Delivery Only</strong></td><td>eShop + Enrolment + CDP + Email.</td></tr>
+<tr><td><strong>Reservation Only</strong></td><td>Reserve + Enrolment* + CDP + Email. *Fine dining: concierge-style capture.</td></tr>
+</table>
+<div class="tip"><strong>All types suit Enrolment, CDP, and Email</strong> — capture → understand → engage → repeat applies universally.</div>
+
+<h3>Dimension 3: Current Tech Stack</h3>
+<table>
+<tr><th>If they have existing tools</th><th>If they don't</th></tr>
+<tr><td>Probe: <strong>1. Cost</strong> → <strong>2. Value</strong> → <strong>3. Fragmentation</strong></td><td>Surface the absence. Ask why they haven't set it up — each answer gives you an angle.</td></tr>
+</table>
+
+<!-- PLANNER -->
+<hr>
+<h2 id="c0-planner">Pre-Call Planner</h2>
+<p>Select the merchant's profile to generate a tailored game plan before your call.</p>
+
+<div class="planner-toggle" id="pt" onclick="document.getElementById('pt').classList.toggle('open');document.getElementById('pb').classList.toggle('open')">
+  Generate a Call Game Plan
+</div>
+<div class="planner-body" id="pb">
+<div class="pl-grid">
+  <div><label>Establishment</label><select id="sel-est" onchange="genPlan()"><option value="">—</option><option value="new">New (&lt;1yr)</option><option value="growing">Growing</option><option value="established">Established</option></select></div>
+  <div><label>Suitability</label><select id="sel-suit" onchange="genPlan()"><option value="">—</option><option value="both">Res + Delivery</option><option value="del">Delivery Only</option><option value="res">Reservation Only</option></select></div>
+  <div><label>Source</label><select id="sel-src" onchange="genPlan()"><option value="">—</option><option value="inbound">Inbound / Referral</option><option value="cold">Cold Outreach</option></select></div>
+</div>
+<div class="pl-checks">
+  <label>Current Tech</label>
+  <div class="chk-row">
+    <label class="chk" onclick="this.classList.toggle('on');this.querySelector('input').checked=this.classList.contains('on');genPlan()"><input type="checkbox" value="eshop"> Own eShop</label>
+    <label class="chk" onclick="this.classList.toggle('on');this.querySelector('input').checked=this.classList.contains('on');genPlan()"><input type="checkbox" value="reserve"> Reservation</label>
+    <label class="chk" onclick="this.classList.toggle('on');this.querySelector('input').checked=this.classList.contains('on');genPlan()"><input type="checkbox" value="loyalty"> Loyalty</label>
+    <label class="chk" onclick="this.classList.toggle('on');this.querySelector('input').checked=this.classList.contains('on');genPlan()"><input type="checkbox" value="email"> Email / CRM</label>
+  </div>
+</div>
+<div class="gp" id="gameplan"><h4>Your Call Game Plan</h4><div id="gp-c"></div></div>
+</div>
+
+<div class="next-ch" onclick="showCh(1);window.scrollTo(0,0)">
+  <div><h4>Next: Chapter 2 — Discovery →</h4><p>The exact questions to ask in Steps 1–5</p></div>
+</div>
+
+</div><!-- end ch0 -->
+
+<!-- ============================================================== -->
+<!-- CHAPTER 2: DISCOVERY (Steps 1-5)                                -->
+<!-- ============================================================== -->
+<div class="chapter" id="ch1">
+
+<div class="hero">
+  <div class="ch-label">Chapter 2</div>
+  <h1>Discovery</h1>
+  <div class="desc">Steps 1–5. The questioning engine — where the merchant tells you everything and sees their own gaps in the process.</div>
+  <span class="read-time">15 min read</span>
+</div>
+
+<!-- STEP 1 -->
+<div class="step-head" id="c1-s1">
+  <div class="step-num">1</div>
+  <h2>Rapport</h2>
+  <div class="step-time">~1 min</div>
+</div>
+
+<div class="say">"How's business?"</div>
+<p>Light rapport — food, familiarity, a genuine compliment. Then transition quickly.</p>
+<div class="warn"><strong>Common mistake:</strong> New reps spend 5–10 minutes here because they're nervous. One minute is enough. The best rapport comes from a great diagnostic, not small talk.</div>
+
+<!-- STEP 2 -->
+<div class="step-head" id="c1-s2">
+  <div class="step-num">2</div>
+  <h2>Intent Discovery</h2>
+  <div class="step-time">~2 min</div>
+</div>
+
+<p>Understand why they took the meeting. This calibrates everything.</p>
+<div class="say">"What made you want to meet with us?"</div>
+
+<table>
+<tr><th>If they say...</th><th>What it tells you</th><th>Where to start</th></tr>
+<tr><td>"I need help with delivery"</td><td>Revenue is the pain.</td><td>Start with eShop/delivery probe.</td></tr>
+<tr><td>"A friend recommended you"</td><td>Social proof. Curious but vague.</td><td>Ask which restaurant. Then full diagnostic.</td></tr>
+<tr><td>"I want to save on costs"</td><td>Cost is the pain.</td><td>Start with tech stack probe.</td></tr>
+<tr><td>"Just curious"</td><td>Low intent.</td><td>Don't pitch. Set diagnostic frame, let conversation build.</td></tr>
+<tr><td>"I need reservations"</td><td>Want one tool. Don't see the system.</td><td>"Before I show you that, can I understand your business first?"</td></tr>
+</table>
+
+<div class="tip"><strong>Intent = entry point, not destination.</strong> By the Summary, you should have explored all relevant gaps.</div>
+
+<!-- STEP 3 -->
+<div class="step-head" id="c1-s3">
+  <div class="step-num">3</div>
+  <h2>Diagnostic Frame</h2>
+  <div class="step-time">~30 sec</div>
+</div>
+
+<div class="say">"Before I share more about what we do, I'd love to understand your business first — where the gaps might be, where the opportunities are. Would it be okay if I ask you a few questions?"</div>
+<p>This gives you control, positions you as a consultant, and gets explicit permission to go deep.</p>
+<div class="warn"><strong>If "just show me what you have":</strong> Go to the General Introduction (Ch.3, Step 7) but weave diagnostic questions in as you present.</div>
+
+<!-- STEP 4 -->
+<div class="step-head" id="c1-s4">
+  <div class="step-num">4</div>
+  <h2>The Diagnostic</h2>
+  <div class="step-time">~10-15 min</div>
+</div>
+
+<p>The core of the system. Five probes, organized by topic. Your intent discovery tells you which to start with — aim to cover all relevant areas by the Summary.</p>
+
+<div class="info"><strong>Seasoned rep move — Offer to Check Together.</strong> When they don't have numbers: <em>"Mind if we pull up your system right now?"</em> Turns the meeting into a working session. Note: merchants who genuinely don't know often can't log in on the spot either.</div>
+
+<h3 id="c1-probeA">Probe A — Baseline</h3>
+
+<table>
+<tr><th>#</th><th>Question</th><th>Listening for</th><th>Next</th></tr>
+<tr><td>1</td><td><strong>"Tell me about your business — how long open? How many outlets?"</strong></td><td>Establishment level.</td><td>Let them talk. You're calibrating.</td></tr>
+<tr><td>2</td><td><strong>"How's business been?"</strong></td><td>What matters to them.</td><td>"Good" → "At capacity or room to grow?"<br>"Could be better" → "What does better look like?"</td></tr>
+<tr><td>3</td><td><strong>"Roughly how many diners per month?"</strong></td><td>THE anchor number.</td><td>If unknown → guide: "Monthly revenue? Average spend?" and divide.</td></tr>
+<tr><td>4</td><td><strong>"What are you looking to grow?"</strong></td><td>Growth direction.</td><td>"Online" → eShop. "Repeat visits" → Enrolment + Email. "Everything" → full diagnostic.</td></tr>
+</table>
+
+<div class="arch-box arch-est">
+<h5>By establishment</h5>
+<p><strong>New:</strong> Estimates are fine. Add: <em>"What's holding you back from growing faster?"</em></p>
+<p><strong>Established:</strong> Push: <em>"Where are you leaving the most on the table?"</em></p>
+</div>
+
+<h4>The Capacity Question</h4>
+<div class="say">"Are you at maximum capacity?"</div>
+
+<table>
+<tr><th>If they say...</th><th>What it means</th></tr>
+<tr><td><strong>"Packed every night"</strong></td><td>Can't sell more covers. Sell: eShop (logistics), Enrolment (capture data NOW for when hype fades), CDP + Email (activate). <em>"You're full — are you capturing these customers for when things slow?"</em></td></tr>
+<tr><td><strong>"Weekdays are slow"</strong></td><td>Growth opportunity. Data + proximity targeting: <em>"Customers within 2km → midweek lunch offer → 30 extra covers on your quietest day."</em></td></tr>
+<tr><td><strong>"Want to grow"</strong></td><td>Broad opportunity. Full diagnostic.</td></tr>
+</table>
+
+<h3 id="c1-probeB">Probe B — Reservation</h3>
+<p style="font-size:13px;color:var(--muted)">Skip if delivery-only merchant.</p>
+
+<h4>If they have a reservation system:</h4>
+<table>
+<tr><th>#</th><th>Question</th><th>Listening for</th><th>Next</th></tr>
+<tr><td>5</td><td><strong>"What system? How much?"</strong></td><td>Cost ($200-500/mo typical).</td><td>Write it down.</td></tr>
+<tr><td>6</td><td><strong>"How many bookings/month? Covers per booking?"</strong></td><td>Known-customer math.</td><td>Do the math out loud.</td></tr>
+<tr><td>7</td><td><strong>"Beyond managing bookings — is it helping you grow?"</strong></td><td>Almost always "no."</td><td>"Operational tool, not growth tool."</td></tr>
+</table>
+
+<div class="crit"><strong>Do the reservation math out loud.</strong><br>
+"500 bookings × 3 per group = 1,500 diners through reservations. But the reservation only captures the booker — not the other 2. So you know <strong>500 customers, not 1,500</strong>."<br><br>
+Against total: "5,000 diners, 500 known. <strong>90% walking out invisible.</strong>" Let the silence work.</div>
+
+<h4>If no reservation system:</h4>
+<table>
+<tr><th>#</th><th>Question</th><th>Next</th></tr>
+<tr><td>5</td><td><strong>"How do customers book? Phone? WhatsApp?"</strong></td><td>"How much time? Miss bookings after hours?"</td></tr>
+<tr><td>6</td><td><strong>"Do you capture their info?"</strong></td><td>Almost always minimal. "Customers book, dine, leave — can't reach them."</td></tr>
+</table>
+
+<h3 id="c1-probeC">Probe C — Online Ordering</h3>
+<p style="font-size:13px;color:var(--muted)">Skip if reservation-only merchant.</p>
+
+<h4>If they have their own eShop:</h4>
+<table>
+<tr><th>#</th><th>Question</th><th>Listening for</th><th>Next</th></tr>
+<tr><td>8</td><td><strong>"What are you using? How much?"</strong></td><td>Cost.</td><td>Write it down.</td></tr>
+<tr><td>9</td><td><strong>"Monthly sales? Where you want it?"</strong></td><td>Value gap.</td><td>Low → "What's holding it back?"<br>Don't know → "When did your vendor last share a report?"</td></tr>
+<tr><td>10</td><td><strong>"Know your traffic? Conversion?"</strong></td><td>Almost never.</td><td>"Traffic × Conversion × Basket Size = Revenue. Which lever is low?"</td></tr>
+<tr><td>11</td><td><strong>"Is eShop data connected to other systems?"</strong></td><td>Always siloed.</td><td>"Dines Saturday, orders Tuesday — two separate people?"</td></tr>
+</table>
+
+<div class="arch-box arch-tech">
+<h5>When they have tech but can't answer</h5>
+<p><em>"Seems like you don't have full visibility. I'm guessing your vendor hasn't engaged you in a while?"</em> — surfaces the execution gap AND positions Oddle as a revenue partner vs tool vendor.</p>
+</div>
+
+<h4>If no online ordering (marketplace only or nothing):</h4>
+<table>
+<tr><th>#</th><th>Question</th><th>Next</th></tr>
+<tr><td>8</td><td><strong>"On any marketplaces? How's that going?"</strong></td><td>"Typical order $20-30? Those are impulse. Marketplaces are built for that."</td></tr>
+<tr><td>9</td><td><strong>"Do customers order for groups, families, offices?"</strong></td><td>"$100-120 average, planned ahead. Are you capturing those?"</td></tr>
+<tr><td>10</td><td><strong>"Why no own ordering?"</strong></td><td>Know-how → "We set it up." Logistics → "We handle delivery." Haven't gotten to it → "Every month is revenue on the table."</td></tr>
+</table>
+
+<div class="crit"><strong>eShop = NEW sales channel, not cheaper marketplace.</strong> Marketplace = impulse, $20-30. eShop = corporate, group, $100-120+. Nike and Footlocker — Nike opens its own shop for a different customer.</div>
+
+<h3 id="c1-probeD">Probe D — Customer Data & Engagement</h3>
+<p style="font-size:13px;color:var(--muted)">Always ask — all merchants.</p>
+
+<table>
+<tr><th>#</th><th>Question</th><th>If they say...</th><th>Your response</th></tr>
+<tr><td>12</td><td><strong>"Capture customer data today?"</strong></td><td><em>"Not really"</em></td><td>"Customers come, enjoy it, leave — you can't reach them. Return is entirely chance?"</td></tr>
+<tr><td></td><td></td><td><em>"Loyalty / members"</em></td><td>Go to Q13.</td></tr>
+<tr><td></td><td></td><td><em>"Through reservations"</em></td><td>"Captures the booker. Guests? Walk-ins?"</td></tr>
+<tr><td>13</td><td><strong>"How many members? New per month?"</strong></td><td>Low vs total.</td><td>"200 new but 5,000 diners — 4%. The other 96%?"</td></tr>
+<tr><td>14</td><td><strong>"Know how customers discover you?"</strong></td><td>Gut feel.</td><td>"Measured or gut feel? If 60% from Google, you'd invest differently."</td></tr>
+<tr><td>15</td><td><strong>"What brings customers back?"</strong></td><td><em>"Nothing"</em></td><td>"Customer dines, enjoys it, then... nothing. Return is entirely chance?"</td></tr>
+<tr><td></td><td></td><td><em>"Social media"</em></td><td>"Reaches followers — not the customer who dined last Tuesday. Broadcast vs personal."</td></tr>
+<tr><td></td><td></td><td><em>"We send emails"</em></td><td>"Same message to everyone? Your weekly VIP and a one-time visitor from 3 months ago?"</td></tr>
+<tr><td></td><td></td><td><em>"We segment"</em></td><td>"What segments? How do you decide?" Usually very basic.</td></tr>
+<tr><td>16</td><td><strong>"Know your return visit rate?"</strong></td><td>Never known.</td><td>"85% don't return within a year. But 2nd visit → 30-40% chance of 3rd. The 2nd visit is everything. Doing anything to drive it?"</td></tr>
+</table>
+
+<h3 id="c1-probeE">Probe E — Cost Stack & Silos</h3>
+<p style="font-size:13px;color:var(--muted)">Only if they have existing tools.</p>
+
+<div class="say">"What are you paying across all your tools?"</div>
+
+<table>
+<tr><th>Tool</th><th>Typical</th></tr>
+<tr><td>Reservation</td><td>$200-500/mo</td></tr>
+<tr><td>eShop</td><td>$100-300/mo + commission</td></tr>
+<tr><td>Loyalty</td><td>$50-200/mo</td></tr>
+<tr><td>Email</td><td>$0-150/mo</td></tr>
+</table>
+
+<h4>When the total is high ($650+)</h4>
+<div class="say">"$X/month across [N] tools that don't connect. Oddle: all of that plus data capture for $215."</div>
+
+<h4>When Oddle is more expensive</h4>
+<div class="say">"Your setup might be cheaper. But is it helping you grow? Can it drive corporate orders? Does reservation feed marketing? $215 is for the system that connects everything — and the team that drives growth with you."</div>
+
+<h4>Siloed Data — The Hidden Problem</h4>
+<table>
+<tr><th>Question</th><th>If they say...</th><th>Your response</th></tr>
+<tr><td><strong>"Are your tools connected?"</strong></td><td><em>"No, separate"</em></td><td>"Books Saturday, orders Tuesday, joins loyalty Wednesday — three separate people?"</td></tr>
+<tr><td><strong>"Analysing across systems?"</strong></td><td><em>"Separately"</em></td><td>"Can you answer: how many reservation customers also order delivery?"</td></tr>
+<tr><td><strong>"Manually combining spreadsheets?"</strong></td><td><em>"Yes"</em></td><td>"One customer profile, every touchpoint, one view. No exporting."</td></tr>
+</table>
+
+<div class="crit"><strong>Why this wins deals:</strong> Siloed data = can't segment, can't track journeys, can't do real engagement. One customer, one profile, every channel — hardest thing for competitors to replicate.</div>
+
+<!-- STEP 5 -->
+<div class="step-head" id="c1-s5">
+  <div class="step-num">5</div>
+  <h2>The Summary</h2>
+  <div class="step-time">~2 min</div>
+</div>
+
+<p>Mirror back what they told you. Their language, their numbers.</p>
+
+<h4>Move 1: Acknowledge</h4>
+<div class="say">"Thank you for sharing all of that. It gives me a much clearer picture of where the potential is."</div>
+
+<h4>Move 2: Stack gaps — lead with revenue</h4>
+<div class="say">"From what you've shared, there's a clear growth opportunity — [tailor].<br><br>
+But to do it, you need the data. From your [X] customers, you know [Y]. That's [Z]% walking out invisible.<br><br>
+[If applicable: 'And $[total] across [N] disconnected tools.']<br><br>
+The opportunity is real — the infrastructure isn't there yet."</div>
+
+<div class="tip"><strong>Use their numbers.</strong> "Your 5,000 diners and 500 bookings" — not "most restaurants."</div>
+
+<div class="arch-box arch-tech">
+<h5>Summary for tech-stack merchants</h5>
+<p><strong>Cost theme:</strong> "$X for tool A, $Y for tool B — $Z total for two functions."</p>
+<p><strong>Value theme:</strong> "Tools exist, data is siloed, engagement isn't happening."</p>
+<p><strong>No-numbers:</strong> "You have tools but no visibility into performance."</p>
+</div>
+
+<h4>Move 3: Confirm</h4>
+<div class="say">"Does that sound right? Are these the main areas you see opportunity?"</div>
+<div class="crit"><strong>Wait for yes.</strong> They must agree on the gaps before you present. No agreement = go back.</div>
+
+<div class="next-ch" onclick="showCh(2);window.scrollTo(0,0)">
+  <div><h4>Next: Chapter 3 — Present & Close →</h4><p>Turn their gaps into a decision — Steps 6–10</p></div>
+</div>
+
+</div><!-- end ch1 -->
+
+<!-- ============================================================== -->
+<!-- CHAPTER 3: PRESENT & CLOSE (Steps 6-10)                         -->
+<!-- ============================================================== -->
+<div class="chapter" id="ch2">
+
+<div class="hero">
+  <div class="ch-label">Chapter 3</div>
+  <h1>Present & Close</h1>
+  <div class="desc">Steps 6–10. The merchant agreed their gaps are real. Now turn that into a decision.</div>
+  <span class="read-time">12 min read</span>
+</div>
+
+<!-- STEP 6 -->
+<div class="step-head" id="c2-s6">
+  <div class="step-num" style="background:var(--green)">6</div>
+  <h2>Get Buy-In</h2>
+</div>
+
+<div class="say">"So based on what we've discussed — you want to [grow online / capture data / drive repeat]. If we have a system that addresses these, is that something you'd want to explore?"</div>
+
+<table>
+<tr><th>They say...</th><th>You do...</th></tr>
+<tr><td>"Yes, show me"</td><td>Go to Step 7. You have permission.</td></tr>
+<tr><td>"Looking at other options"</td><td>"Of course — let me share our approach." → Step 7.</td></tr>
+<tr><td>"Not sure"</td><td>"What's holding you back — timing, budget, something else?"</td></tr>
+<tr><td>"Not really"</td><td>Rare if Steps 4-5 done well. "Earlier you mentioned [gap]..."</td></tr>
+</table>
+
+<div class="warn"><strong>Why this matters:</strong> Without buy-in, your intro is a passive product tour. With it, it's the answer to their question.</div>
+
+<div class="arch-box arch-tech">
+<h5>For tech-stack merchants</h5>
+<p><em>"I'm not asking you to throw everything out. Let me show you how similar restaurants approached this."</em></p>
+</div>
+
+<!-- STEP 7 -->
+<div class="step-head" id="c2-s7">
+  <div class="step-num">7</div>
+  <h2>General Introduction</h2>
+  <div class="step-time">~10 min</div>
+</div>
+
+<div class="crit"><strong>Always lead big picture.</strong> New → Known → Repeat first. Then products.</div>
+
+<table>
+<tr><th>Deck Section</th><th>How to handle</th></tr>
+<tr><td><strong>Challenges</strong></td><td>Fast. "You'll recognise this — what we just discussed."</td></tr>
+<tr><td><strong>Two Leakages</strong></td><td>Connect to their specific leakages.</td></tr>
+<tr><td><strong>New → Known → Repeat</strong></td><td><strong>Take time.</strong> The methodology that ties everything together.</td></tr>
+<tr><td><strong>Success stories</strong></td><td>Pick stories that mirror this merchant.</td></tr>
+<tr><td><strong>5 products, 1 system</strong></td><td>Go deeper on products matching their gaps.</td></tr>
+<tr><td><strong>What makes Oddle different</strong></td><td>Revenue partner, not tool vendor.</td></tr>
+<tr><td><strong>Pricing ($215/mo)</strong></td><td>Confident. Anchor against their current spend.</td></tr>
+</table>
+
+<h4>Gap → Product → What to say</h4>
+<table>
+<tr><th>Gap</th><th>Product</th><th>Say</th></tr>
+<tr><td>Can't identify customers</td><td>Enrolment</td><td>"Turn 90% invisible into 60%+ known."</td></tr>
+<tr><td>Don't know why they come</td><td>Enrolment + CDP</td><td>"How they found you, whether they're local."</td></tr>
+<tr><td>Not driving repeat</td><td>Email + CDP</td><td>"From hoping they return to engineering it."</td></tr>
+<tr><td>Missing direct channel</td><td>eShop</td><td>"Your own Nike shop."</td></tr>
+<tr><td>Fragmented tools</td><td>Full system</td><td>"One system, $215 vs $X disconnected."</td></tr>
+</table>
+
+<div class="arch-box arch-suit">
+<h5>Emphasis by suitability</h5>
+<p><strong>Res + Delivery:</strong> Full system — unified data is the win.</p>
+<p><strong>Delivery Only:</strong> eShop → Enrolment → CDP + Email.</p>
+<p><strong>Res Only:</strong> Reserve → Enrolment → CDP + Email. Skip eShop.</p>
+</div>
+
+<div class="warn"><strong>Max 2-3 products to start.</strong> "The rest is there when you're ready."</div>
+
+<!-- STEP 8 -->
+<div class="step-head" id="c2-s8">
+  <div class="step-num">8</div>
+  <h2>First Close</h2>
+</div>
+
+<p>Always try before demoing. If they're ready, don't talk them out of it.</p>
+<div class="say">"Based on everything — ready to get started? Or specific things you'd like to see?"</div>
+
+<table>
+<tr><th>They say...</th><th>You do...</th></tr>
+<tr><td>"Let's do it"</td><td>"I'll send the sign-up link today. Menu + brand guidelines from you. Live within a week."</td></tr>
+<tr><td>"Show me how it works"</td><td>"Which part: ordering, data capture, or marketing?" → Step 9.</td></tr>
+<tr><td>"Need to think"</td><td>"What specifically — cost, transition, or something else?"</td></tr>
+<tr><td>"Talk to my partner"</td><td>"15-minute call with both of you?"</td></tr>
+<tr><td>"Send more info"</td><td>"Happy to. Can I follow up [specific day]?"</td></tr>
+</table>
+
+<div class="warn"><strong>Never demo when they're ready to buy.</strong> A demo gives them time to find worries.</div>
+
+<!-- STEP 9 -->
+<div class="step-head" id="c2-s9">
+  <div class="step-num">9</div>
+  <h2>Demo (If Needed)</h2>
+</div>
+
+<p>Show what they asked for — not the full suite.</p>
+
+<table>
+<tr><th>Principle</th><th>Meaning</th></tr>
+<tr><td><strong>Show what they asked for</strong></td><td>Don't demo everything.</td></tr>
+<tr><td><strong>Live examples</strong></td><td>Real merchant pages — real data, real results.</td></tr>
+<tr><td><strong>Mirror merchants</strong></td><td>Similar cuisine, location, or model.</td></tr>
+<tr><td><strong>Connect to gaps</strong></td><td>"You said 90% invisible? This restaurant captures 60%."</td></tr>
+<tr><td><strong>New → Known → Repeat</strong></td><td>eShop/Reserve = New. Enrolment/CDP = Known. Email = Repeat.</td></tr>
+</table>
+
+<div class="arch-box arch-suit">
+<h5>Demo focus by suitability</h5>
+<p><strong>Res + Delivery:</strong> Full journey — reservation, enrolment, ordering, then CDP + Email.</p>
+<p><strong>Delivery Only:</strong> eShop first. Then Enrolment. Then CDP + Email.</p>
+<p><strong>Res Only:</strong> Reserve (Google integration). Then Enrolment. Then CDP + Email.</p>
+</div>
+
+<!-- STEP 10 -->
+<div class="step-head" id="c2-s10">
+  <div class="step-num">10</div>
+  <h2>Final Close</h2>
+</div>
+
+<div class="say">"Does that give you a clearer picture? Ready to get started?"</div>
+
+<h4>Close A: Direct</h4>
+<div class="say">"I'll send the sign-up form. Our team pulls your menu, sets up eShop, gets you live within a week. Enrolment runs in parallel."</div>
+
+<h4>Close B: Hesitation</h4>
+<div class="say">"What's the one thing holding you back?"</div>
+<table>
+<tr><th>Concern</th><th>Response</th></tr>
+<tr><td>"Cost"</td><td>"$215 is ~$7/day. One extra order/week covers it. First $3K has no commission. What's it costing NOT to capture data?"</td></tr>
+<tr><td>"No time"</td><td>"Dedicated success manager for 45-60 days. They handle everything. After that, automations."</td></tr>
+<tr><td>"Check with partner"</td><td>"15-minute call with both of you?"</td></tr>
+<tr><td>"Compare options"</td><td>"Key question: tool or growth partner? We'll be here."</td></tr>
+</table>
+
+<h4>Close C: Soft</h4>
+<div class="say">"No rush. Summary tonight. Can I follow up [specific day]?"</div>
+
+<h4>The Follow-Up Cadence</h4>
+<div class="crit"><strong>The follow-up IS the close.</strong> Most deals close in follow-up.</div>
+<table>
+<tr><th>When</th><th>What</th><th>How</th></tr>
+<tr><td><strong>Same evening</strong></td><td>Summary</td><td>WhatsApp/email. Gaps, opportunities, pricing. 1 page. Include sign-up link.</td></tr>
+<tr><td><strong>Day you promised</strong></td><td>Follow up</td><td>"Following up as promised. Any questions?"</td></tr>
+<tr><td><strong>+2 days</strong></td><td>Nudge</td><td>"Just checking in. Ready to chat or get started?"</td></tr>
+<tr><td><strong>+2 weeks</strong></td><td>Value</td><td>Useful article, campaign idea, tip from the Value Tips Library.</td></tr>
+<tr><td><strong>Monthly</strong></td><td>Orbit</td><td>Light touch. They'll remember the rep who helped them think.</td></tr>
+</table>
+
+<div class="next-ch" onclick="showCh(3);window.scrollTo(0,0)">
+  <div><h4>Next: Chapter 4 — Reference →</h4><p>Product mapping, objections, and value tips for live calls</p></div>
+</div>
+
+</div><!-- end ch2 -->
+
+<!-- ============================================================== -->
+<!-- CHAPTER 4: REFERENCE                                             -->
+<!-- ============================================================== -->
+<div class="chapter" id="ch3">
+
+<div class="hero">
+  <div class="ch-label">Chapter 4</div>
+  <h1>Reference</h1>
+  <div class="desc">Your lookup toolkit. Keep this open during calls.</div>
+  <span class="read-time">Quick reference</span>
+</div>
+
+<!-- PRODUCT MAPPING -->
+<h2 id="c3-prodmap">Product Mapping</h2>
+
+<h3>Gap → Product → Outcome</h3>
+<table>
+<tr><th>Gap</th><th>Primary</th><th>Supporting</th><th>Outcome</th></tr>
+<tr><td>Data</td><td>Enrolment</td><td>Reserve, CDP</td><td>"90% invisible → 60%+ known"</td></tr>
+<tr><td>Insight</td><td>Enrolment + CDP</td><td>—</td><td>"Know how they found you, where they live"</td></tr>
+<tr><td>Engagement</td><td>Email</td><td>CDP</td><td>"Drive the 2nd visit. Automate win-back."</td></tr>
+<tr><td>Revenue</td><td>eShop</td><td>Oddle Eats</td><td>"$100+ AOV channel for corporate/group"</td></tr>
+<tr><td>Operational</td><td>Full system</td><td>—</td><td>"One system, one profile, $215/mo"</td></tr>
+</table>
+
+<h3>Suitability → Starting Products</h3>
+<table>
+<tr><th>Type</th><th>Start</th><th>Then add</th></tr>
+<tr><td>Res + Delivery</td><td>Reserve + eShop + Enrolment</td><td>CDP + Email</td></tr>
+<tr><td>Delivery Only</td><td>eShop + Enrolment</td><td>CDP + Email</td></tr>
+<tr><td>Res Only</td><td>Reserve + Enrolment*</td><td>CDP + Email</td></tr>
+</table>
+<p style="font-size:13px;color:var(--muted)">*Fine dining: concierge-style capture.</p>
+
+<!-- OBJECTIONS -->
+<hr>
+<h2 id="c3-objections">Objection Handling</h2>
+
+<div class="obj-card">
+<h4>"Your eShop is more expensive"</h4>
+<p><strong>Angle 1:</strong> "Can your sales be higher? Logistics issues? Is data unified with dine-in?" — almost always no.</p>
+<p><strong>Angle 2:</strong> "Real difference is 6.5% above $3K — ~$455. If we drive $1K more through abandoned cart + corporate → covered."</p>
+<p><strong>Angle 3:</strong> "Compare total stack to Oddle. $215 for everything vs $X disconnected."</p>
+</div>
+
+<div class="obj-card">
+<h4>"I already have loyalty"</h4>
+<p>"How many new members/month? Return rate? Using the data?" Usually idle. "Program isn't the problem — is it driving outcomes?"</p>
+</div>
+
+<div class="obj-card">
+<h4>"No time for another tool"</h4>
+<p>"Dedicated success manager for 45-60 days. They handle setup, campaigns, optimization. After that, automations."</p>
+</div>
+
+<div class="obj-card">
+<h4>"Start with one product?"</h4>
+<p>"Absolutely. Most do. The rest is there when ready. No new contract."</p>
+</div>
+
+<div class="obj-card">
+<h4>"My vendor has an account manager"</h4>
+<p>"When did they last proactively share a report? Suggest a campaign? Responding to tickets ≠ driving growth."</p>
+</div>
+
+<div class="obj-card">
+<h4>"Need to see it at a restaurant like mine"</h4>
+<p>Social proof ask. Name 2-3 similar restaurants, share high-level results, offer to show public pages.</p>
+</div>
+
+<div class="obj-card">
+<h4>"$215 is a lot right now"</h4>
+<p>"That's ~$7/day. Rent and manpower are fixed. Every extra customer is near-pure margin. 2-3 extra orders/month — conservative — pays for itself. And the database compounds."</p>
+</div>
+
+<!-- VALUE TIPS -->
+<hr>
+<h2 id="c3-tips">Value Tips Library</h2>
+<p>Drop these during calls to build trust and show F&B expertise.</p>
+
+<div class="obj-card">
+<h4>Google search ranking</h4>
+<p>"Google your name. No direct ordering link? You're losing orders to marketplaces who rank for YOUR name."</p>
+</div>
+
+<div class="obj-card">
+<h4>Reviews > Followers</h4>
+<p>"Someone choosing dinner tonight is Googling, not scrolling Instagram. 100 reviews at 4.5 stars > 10K followers."</p>
+</div>
+
+<div class="obj-card">
+<h4>Grow Google reviews</h4>
+<p>"QR code → Google review page. On the table or with the bill. Enrolment thank-you screen can include a review link."</p>
+</div>
+
+<div class="obj-card">
+<h4>Delivery fee psychology</h4>
+<p>"$21 delivery fee kills conversion. Mark up food 15% + charge $7 delivery = same economics, way more orders."</p>
+</div>
+
+<div class="obj-card">
+<h4>Corporate order opportunity</h4>
+<p>"Corporates Google '[cuisine] catering near me.' No ordering page? That $150 order goes elsewhere."</p>
+</div>
+
+<div class="obj-card">
+<h4>Email frequency — Nike lesson</h4>
+<p>"Nike sends 2x/week. Open rate under 15%. But when you want sneakers — Nike. Top-of-mind > open rates. Send weekly."</p>
+</div>
+
+<div class="obj-card">
+<h4>The 2nd visit is everything</h4>
+<p>"85% don't return in a year. 2nd visit → 30-40% chance of 3rd. All energy → driving that 2nd visit."</p>
+</div>
+
+<div class="obj-card">
+<h4>Off-peak hack</h4>
+<p>"Wednesday quiet? Nearby customers → midweek offer → 1,000 emails → 50 claims → 30 extra covers."</p>
+</div>
+
+<div class="obj-card">
+<h4>Weekend revenue</h4>
+<p>"Kitchen preps anyway. Party platters via online ordering. 1-2 orders at $200-500 = $2-4K/month new."</p>
+</div>
+
+<div class="obj-card">
+<h4>Fixed cost leverage</h4>
+<p>"Rent and staff are fixed for 50 or 100 customers. Every additional = near-pure margin. Data capture + repeat = highest ROI."</p>
+</div>
+
+</div><!-- end ch3 -->
+
+</div><!-- end content -->
+</div><!-- end wrap -->
+
+<!-- ================================================================ -->
+<!-- SCRIPTS                                                          -->
+<!-- ================================================================ -->
+<script>
+// Chapter section definitions for sidebar
+const chapters=[
+  {name:'The Foundation',sections:[
+    {id:'c0-overview',label:'How We Sell'},
+    {id:'c0-gaps',label:'The Five Gaps'},
+    {id:'c0-philosophy',label:'Sales Philosophy'},
+    {id:'c0-archetypes',label:'Know Your Merchant'},
+    {id:'c0-planner',label:'Pre-Call Planner'}
+  ]},
+  {name:'Discovery',sections:[
+    {id:'c1-s1',label:'1. Rapport'},
+    {id:'c1-s2',label:'2. Intent Discovery'},
+    {id:'c1-s3',label:'3. Diagnostic Frame'},
+    {id:'c1-s4',label:'4. The Diagnostic'},
+    {id:'c1-probeA',label:'   Probe A — Baseline'},
+    {id:'c1-probeB',label:'   Probe B — Reservation'},
+    {id:'c1-probeC',label:'   Probe C — Online Ordering'},
+    {id:'c1-probeD',label:'   Probe D — Data & Engagement'},
+    {id:'c1-probeE',label:'   Probe E — Cost & Silos'},
+    {id:'c1-s5',label:'5. The Summary'}
+  ]},
+  {name:'Present & Close',sections:[
+    {id:'c2-s6',label:'6. Get Buy-In'},
+    {id:'c2-s7',label:'7. General Introduction'},
+    {id:'c2-s8',label:'8. First Close'},
+    {id:'c2-s9',label:'9. Demo'},
+    {id:'c2-s10',label:'10. Final Close'}
+  ]},
+  {name:'Reference',sections:[
+    {id:'c3-prodmap',label:'Product Mapping'},
+    {id:'c3-objections',label:'Objection Handling'},
+    {id:'c3-tips',label:'Value Tips Library'}
+  ]}
+];
+
+let currentCh=0;
+
+function showCh(n){
+  currentCh=n;
+  document.querySelectorAll('.chapter').forEach((c,i)=>c.classList.toggle('active',i===n));
+  document.querySelectorAll('.ch-tab').forEach((t,i)=>t.classList.toggle('active',i===n));
+  buildSideLinks(n);
+}
+
+function buildSideLinks(n){
+  const container=document.getElementById('side-links');
+  const ch=chapters[n];
+  let html='<div class="side-group">';
+  html+='<div class="side-label">'+ch.name+'</div>';
+  ch.sections.forEach(s=>{
+    const indent=s.label.startsWith('   ');
+    const label=s.label.trim();
+    html+=`<div class="side-link" data-target="${s.id}" onclick="scrollToSection('${s.id}')" style="${indent?'padding-left:24px;font-size:12px':''}">${label}</div>`;
+  });
+  html+='</div>';
+  container.innerHTML=html;
+}
+
+function scrollToSection(id){
+  const el=document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// Highlight active section on scroll
+function updateActiveLink(){
+  const ch=chapters[currentCh];
+  const links=document.querySelectorAll('.side-link');
+  let activeIdx=0;
+  ch.sections.forEach((s,i)=>{
+    const el=document.getElementById(s.id);
+    if(el){
+      const rect=el.getBoundingClientRect();
+      if(rect.top<=120) activeIdx=i;
+    }
+  });
+  links.forEach((l,i)=>l.classList.toggle('active',i===activeIdx));
+}
+
+window.addEventListener('scroll',updateActiveLink);
+buildSideLinks(0);
+setTimeout(updateActiveLink,100);
+
+// Pre-call planner
+function genPlan(){
+  const est=document.getElementById('sel-est').value;
+  const suit=document.getElementById('sel-suit').value;
+  const techs=[];
+  document.querySelectorAll('.chk input:checked').forEach(c=>techs.push(c.value));
+  if(!est||!suit){document.getElementById('gameplan').classList.remove('show');return}
+  document.getElementById('gameplan').classList.add('show');
+
+  const tones={new:'Encouraging. "Building your foundation — best time to get it right."',growing:'Respectful. "You\'ve got momentum — let\'s capture it."',established:'Deferential. "You have the customers. What are you getting from them?"'};
+  let diag=[];
+  if(suit==='both'||suit==='res') diag.push(techs.includes('reserve')?'Reserve: cost, value, data depth':'Reserve: how do they manage bookings?');
+  if(suit==='both'||suit==='del') diag.push(techs.includes('eshop')?'eShop: cost, value, fragmentation':'eShop: missing revenue channel');
+  diag.push(techs.includes('loyalty')?'Loyalty: capture rate vs diners':'Data gap: how many invisible?');
+  diag.push(techs.includes('email')?'Email: segmentation, frequency':'Engagement gap: nothing driving repeat');
+  if(techs.length>=2) diag.push('Fragmentation: are tools connected?');
+  if(techs.length>=1) diag.push('Cost stack: total monthly spend');
+
+  let prods=[];
+  if(est==='new'){if(suit!=='res')prods.push('eShop');if(suit!=='del')prods.push('Reserve');prods.push('Enrolment')}
+  else if(est==='established'){prods.push('Enrolment','CDP + Email');if(!techs.includes('eshop')&&suit!=='res')prods.push('eShop')}
+  else{if(!techs.includes('eshop')&&suit!=='res')prods.push('eShop');if(!techs.includes('loyalty'))prods.push('Enrolment');prods.push('CDP + Email')}
+
+  let objs=[];
+  if(techs.length>0)objs.push('"Already have tools" → probe value');
+  if(techs.includes('eshop'))objs.push('"eShop more expensive" → growth math');
+  if(est==='new')objs.push('"$215 is a lot" → fixed cost leverage');
+  if(est==='established')objs.push('"Been fine" → 85% non-return stat');
+  objs.push('"Need to think" → pin down + set date');
+
+  document.getElementById('gp-c').innerHTML=`<div class="gp-grid">
+    <div class="gp-card"><h5>Opening Tone</h5><p>${tones[est]}</p></div>
+    <div class="gp-card"><h5>Diagnostic Focus</h5><ul>${diag.map(d=>'<li>'+d+'</li>').join('')}</ul></div>
+    <div class="gp-card"><h5>Lead Products</h5><p>${prods.join(' + ')}</p></div>
+    <div class="gp-card"><h5>Likely Objections</h5><ul>${objs.map(o=>'<li>'+o+'</li>').join('')}</ul></div>
+  </div>`;
+}
+</script>
+</body>
+</html>
