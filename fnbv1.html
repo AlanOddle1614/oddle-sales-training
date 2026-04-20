@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 1 — Understanding F&amp;B | Oddle Sales Onboarding</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --purple:#3B0764;--purple-l:#7C3AED;--purple-bg:#F5F3FF;--purple-bdr:#EDE9FE;
+  --fg:#1A1A1A;--muted:#6B7280;--border:#E5E7EB;
+  --green:#059669;--green-bg:#ECFDF5;--green-bdr:#A7F3D0;
+  --orange:#D97706;--orange-bg:#FFFBEB;--orange-bdr:#FDE68A;
+  --red:#DC2626;--red-bg:#FEF2F2;--red-bdr:#FECACA;
+  --blue:#2563EB;--blue-bg:#EFF6FF;--blue-bdr:#BFDBFE;
+  --r:10px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;color:var(--fg);background:#fff;line-height:1.7;overflow-x:hidden}
+a{color:var(--purple-l);text-decoration:none}
+
+/* ---- Top bar ---- */
+.topbar{background:var(--purple);color:#fff;padding:14px 32px;position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:16px}
+.topbar .logo{font-size:17px;font-weight:700;letter-spacing:-.02em}
+.topbar .sub{font-size:12px;opacity:.6;margin-left:auto}
+
+/* ---- Layout ---- */
+.wrap{display:flex}
+
+/* ---- Sidebar ---- */
+.side{width:240px;position:sticky;top:52px;height:calc(100vh - 52px);overflow-y:auto;border-right:1px solid var(--border);flex-shrink:0;background:#FAFAFA;padding:20px 0 40px}
+.side::-webkit-scrollbar{width:4px}
+.side::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+.side-sections{padding:0 14px}
+.side-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);padding:0 12px;margin-bottom:8px}
+.side-link{display:flex;gap:8px;padding:8px 12px;font-size:13px;color:var(--muted);border-radius:6px;transition:all .1s;cursor:pointer;border-left:3px solid transparent;margin-bottom:1px;line-height:1.35}
+.side-link .sl-num{font-size:11px;font-weight:600;color:#9CA3AF;min-width:18px}
+.side-link:hover{background:var(--purple-bg);color:var(--purple)}
+.side-link.active{color:var(--purple);font-weight:600;border-left-color:var(--purple);background:var(--purple-bg)}
+.side-link.active .sl-num{color:var(--purple)}
+
+/* ---- Content ---- */
+.content{flex:1;max-width:820px;padding:0 48px 120px;margin:0 auto}
+
+/* ---- Hero ---- */
+.hero{padding:48px 0 20px;border-bottom:1px solid var(--border);margin-bottom:32px}
+.hero .ch-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple-l);margin-bottom:8px}
+.hero h1{font-size:32px;font-weight:700;color:var(--purple);margin-bottom:12px;line-height:1.2;letter-spacing:-.015em}
+.hero .desc{font-size:15px;color:var(--muted);margin-bottom:14px;max-width:640px;line-height:1.65}
+.hero .read-time{display:inline-block;font-size:11px;font-weight:600;color:var(--green);background:var(--green-bg);padding:3px 10px;border-radius:12px;margin-right:6px}
+.hero .pre{display:inline-block;font-size:11px;font-weight:600;color:var(--muted);background:#F3F4F6;padding:3px 10px;border-radius:12px}
+
+/* ---- Typography ---- */
+h2{font-size:24px;font-weight:700;color:var(--purple);margin:48px 0 10px;padding-top:16px;letter-spacing:-.01em;line-height:1.25}
+h2:first-child{margin-top:0}
+h3{font-size:18px;font-weight:700;margin:28px 0 8px;color:var(--fg)}
+h4{font-size:15px;font-weight:700;margin:22px 0 6px}
+p{margin-bottom:14px;font-size:15px}
+ul,ol{margin-bottom:14px;padding-left:22px}
+li{margin-bottom:6px;font-size:15px}
+hr{border:none;border-top:1px solid var(--border);margin:40px 0}
+
+.sec-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple-l);margin:48px 0 4px}
+
+/* ---- Callouts ---- */
+.say{background:var(--purple-bg);border-left:4px solid var(--purple-l);padding:14px 20px;border-radius:0 8px 8px 0;margin:14px 0 18px;font-style:italic;font-size:15px;line-height:1.7}
+.say strong{font-style:normal;color:var(--purple)}
+.tip,.warn,.crit,.info{padding:14px 18px;border-radius:var(--r);margin:14px 0 18px;font-size:14px;line-height:1.6}
+.tip{background:var(--green-bg);border:1px solid var(--green-bdr)}
+.warn{background:var(--orange-bg);border:1px solid var(--orange-bdr)}
+.crit{background:var(--red-bg);border:1px solid var(--red-bdr)}
+.info{background:var(--blue-bg);border:1px solid var(--blue-bdr)}
+
+/* ---- Tables ---- */
+table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px}
+th{background:var(--purple);color:#fff;padding:10px 14px;text-align:left;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:top}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+tr.total td{font-weight:700;color:var(--purple);background:var(--purple-bg);border-bottom:2px solid var(--purple)}
+tr.delta td{color:var(--green);font-weight:600;background:var(--green-bg)}
+
+/* ---- Three Goals grid ---- */
+.goals{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0 24px}
+.goal{background:var(--purple-bg);border:1px solid var(--purple-bdr);border-radius:var(--r);padding:20px 18px}
+.goal .goal-num{font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--purple);margin-bottom:8px;text-transform:uppercase}
+.goal .goal-title{font-size:16px;font-weight:700;color:var(--fg);margin-bottom:8px}
+.goal .goal-desc{font-size:13px;color:var(--muted);line-height:1.6}
+
+/* ---- Stats row ---- */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0 24px}
+.stat{background:#FAFAFA;border:1px solid var(--border);border-radius:var(--r);padding:16px 14px}
+.stat .stat-num{font-size:22px;font-weight:700;color:var(--purple);letter-spacing:-.02em;line-height:1.1;margin-bottom:6px}
+.stat .stat-lbl{font-size:12px;color:var(--muted);line-height:1.45}
+
+/* ---- Segment table (non-return) ---- */
+.seg-row{display:grid;grid-template-columns:1fr 80px 140px;gap:12px;padding:10px 14px;border:1px solid var(--border);border-radius:8px;margin-bottom:8px;align-items:center;font-size:14px}
+.seg-row .seg-pct{font-weight:700;color:var(--red);font-size:18px;text-align:right;font-variant-numeric:tabular-nums}
+.seg-row .seg-note{font-size:12px;color:var(--muted)}
+
+/* ---- Challenges list ---- */
+.challenges{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0 20px}
+.ch-item{background:#FAFAFA;border:1px solid var(--border);border-radius:8px;padding:12px 14px;font-size:14px;display:flex;gap:10px;align-items:flex-start}
+.ch-item .ch-num{font-size:11px;font-weight:700;color:var(--purple);background:var(--purple-bg);border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.ch-item .ch-body strong{display:block;margin-bottom:2px;font-size:14px}
+.ch-item .ch-body span{font-size:12px;color:var(--muted);line-height:1.5}
+
+/* ---- Cost breakdown bars ---- */
+.cost-bar{display:grid;grid-template-columns:140px 1fr 90px;gap:10px;align-items:center;margin-bottom:8px;font-size:14px}
+.cost-bar .cb-name{font-weight:600}
+.cost-bar .cb-track{background:#F3F4F6;height:20px;border-radius:6px;overflow:hidden;position:relative}
+.cost-bar .cb-fill{background:linear-gradient(90deg,var(--purple-l),var(--purple));height:100%;border-radius:6px}
+.cost-bar .cb-range{text-align:right;color:var(--muted);font-variant-numeric:tabular-nums;font-size:13px}
+
+/* ---- Net margin tiers ---- */
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0 20px}
+.tier{background:#FAFAFA;border:1px solid var(--border);border-radius:var(--r);padding:16px;text-align:center}
+.tier .t-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:6px}
+.tier .t-num{font-size:22px;font-weight:700;color:var(--fg);margin-bottom:4px}
+.tier.hi{background:var(--green-bg);border-color:var(--green-bdr)}
+.tier.hi .t-num{color:var(--green)}
+.tier.mid{background:var(--orange-bg);border-color:var(--orange-bdr)}
+.tier.mid .t-num{color:var(--orange)}
+.tier.low{background:var(--red-bg);border-color:var(--red-bdr)}
+.tier.low .t-num{color:var(--red)}
+
+/* ---- Gap cards ---- */
+.gap-grid{display:grid;grid-template-columns:1fr;gap:12px;margin:16px 0 24px}
+.gap-card{background:#FAFAFA;border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;transition:border-color .15s}
+.gap-card:hover{border-color:var(--purple-l)}
+.gap-card .gap-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.gap-card h4{margin:0 0 8px;font-size:16px}
+.gap-card p{font-size:14px;color:var(--muted);margin-bottom:10px;line-height:1.6}
+.gap-card .gap-q{font-size:14px;font-style:italic;color:var(--purple);background:var(--purple-bg);padding:10px 14px;border-radius:6px;margin-bottom:8px;line-height:1.55}
+.gap-card .gap-q + .gap-q{margin-top:-4px}
+.gap-card .gap-formula{background:#fff;border:1px solid var(--border);padding:10px 14px;border-radius:6px;margin-bottom:8px;font-family:'DM Sans',sans-serif;font-size:13px;text-align:center;letter-spacing:.02em}
+.gap-card .gap-formula strong{color:var(--purple);font-weight:700}
+.gap-card .gap-ex{font-size:13px;color:var(--fg);background:#fff;border:1px solid var(--border);padding:10px 14px;border-radius:6px;line-height:1.55}
+.gap-card .gap-ex strong{color:var(--purple)}
+.gap-card .gap-foot{font-size:12px;color:var(--muted);margin-top:10px}
+.gap-card .gap-foot strong{color:var(--fg)}
+.gc-data .gap-label{color:var(--purple)}
+.gc-insight .gap-label{color:var(--blue)}
+.gc-engage .gap-label{color:var(--green)}
+.gc-revenue .gap-label{color:var(--orange)}
+.gc-cost .gap-label{color:var(--red)}
+.gc-exec .gap-label{color:#9333EA}
+
+/* ---- Funnel diagram (6 → 2) ---- */
+.funnel{margin:20px 0 32px}
+.funnel-row{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-bottom:0}
+.funnel-gap{background:#fff;border:2px solid var(--border);border-radius:8px;padding:10px 8px;text-align:center;font-size:12px;font-weight:600;color:var(--fg);line-height:1.3;min-height:56px;display:flex;align-items:center;justify-content:center}
+.funnel-gap.fg-data{border-color:var(--purple-bdr);background:var(--purple-bg);color:var(--purple)}
+.funnel-gap.fg-insight{border-color:var(--blue-bdr);background:var(--blue-bg);color:var(--blue)}
+.funnel-gap.fg-engage{border-color:var(--green-bdr);background:var(--green-bg);color:var(--green)}
+.funnel-gap.fg-revenue{border-color:var(--orange-bdr);background:var(--orange-bg);color:var(--orange)}
+.funnel-gap.fg-cost{border-color:var(--red-bdr);background:var(--red-bg);color:var(--red)}
+.funnel-gap.fg-exec{border-color:#E9D5FF;background:#FAF5FF;color:#7E22CE}
+.funnel-arrows{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin:6px 0}
+.funnel-arrow{text-align:center;color:#9CA3AF;font-size:16px;line-height:1}
+.funnel-arrow.split{color:var(--purple-l)}
+.funnel-leakages{display:grid;grid-template-columns:4fr 2fr;gap:10px;margin-top:4px}
+.funnel-leak{border-radius:var(--r);padding:16px 18px;color:#fff;font-weight:600}
+.funnel-leak.rev{background:linear-gradient(135deg,#EF4444,#DC2626)}
+.funnel-leak.cost{background:linear-gradient(135deg,#F59E0B,#D97706)}
+.funnel-leak .fl-lbl{font-size:11px;text-transform:uppercase;letter-spacing:.08em;opacity:.85;margin-bottom:4px;font-weight:700}
+.funnel-leak .fl-title{font-size:17px;font-weight:700;margin-bottom:6px}
+.funnel-leak .fl-desc{font-size:12px;opacity:.9;line-height:1.5;font-weight:400}
+.funnel-legend{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:10px;padding:0 4px}
+.funnel-legend strong{color:var(--fg)}
+
+/* ---- Dimensions explainer ---- */
+.dims{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:14px 0 18px}
+.dim{background:#FAFAFA;border:1px solid var(--border);border-radius:var(--r);padding:14px 16px}
+.dim .dim-num{font-size:11px;font-weight:700;color:var(--purple-l);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+.dim .dim-name{font-size:15px;font-weight:700;margin-bottom:4px}
+.dim .dim-opts{font-size:13px;color:var(--muted);line-height:1.5}
+
+/* ---- Archetype cards ---- */
+.arch-list{margin:16px 0 24px}
+.arch{background:#FAFAFA;border:1px solid var(--border);border-radius:var(--r);padding:22px 24px;margin-bottom:14px;transition:border-color .15s}
+.arch:hover{border-color:var(--purple-l)}
+.arch-head{display:flex;align-items:flex-start;gap:14px;margin-bottom:12px}
+.arch-idx{width:32px;height:32px;border-radius:8px;background:var(--purple);color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.arch-head-text{flex:1}
+.arch-name{font-size:17px;font-weight:700;color:var(--fg);margin-bottom:2px;letter-spacing:-.01em}
+.arch-tag{font-size:11px;color:var(--purple);font-weight:600;letter-spacing:.05em;text-transform:uppercase}
+.arch-profile{font-size:14px;color:var(--muted);line-height:1.6;margin-bottom:12px}
+.arch-row{display:grid;grid-template-columns:120px 1fr;gap:10px;padding:6px 0;font-size:13px;border-top:1px solid var(--border)}
+.arch-row:first-of-type{border-top:none}
+.arch-row .arch-lbl{color:var(--muted);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.04em;padding-top:2px}
+.arch-row .arch-val{color:var(--fg);line-height:1.55}
+.arch-row .arch-val em{color:var(--purple);font-style:italic}
+.arch-sub{background:#fff;border:1px solid var(--border);border-radius:8px;padding:10px 14px;margin:8px 0;font-size:13px;line-height:1.55}
+.arch-sub strong{color:var(--purple)}
+.arch-examples{background:#fff;border-left:3px solid var(--purple-l);padding:10px 14px;margin:10px 0 4px;font-size:13px;line-height:1.6;border-radius:0 6px 6px 0}
+.arch-examples strong{color:var(--purple);display:block;margin-bottom:4px;font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+.arch-exception{background:var(--orange-bg);border:1px dashed var(--orange);border-radius:var(--r);padding:16px 20px;margin-top:16px;font-size:13px;line-height:1.6}
+.arch-exception strong{color:var(--orange);display:block;margin-bottom:4px;font-size:12px;text-transform:uppercase;letter-spacing:.05em}
+
+/* ---- Tech stack — three scenarios ---- */
+.scenarios{display:grid;gap:14px;margin:14px 0 18px}
+.scen{background:#fff;border:1px solid var(--border);border-left:4px solid var(--purple);border-radius:var(--r);padding:18px 20px;transition:all .12s}
+.scen-1{border-left-color:var(--red)}
+.scen-2{border-left-color:var(--orange)}
+.scen-3{border-left-color:var(--green)}
+.scen-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;gap:10px;flex-wrap:wrap}
+.scen-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--purple);background:var(--purple-bg);padding:3px 10px;border-radius:10px}
+.scen-1 .scen-lbl{color:var(--red);background:var(--red-bg)}
+.scen-2 .scen-lbl{color:var(--orange);background:var(--orange-bg)}
+.scen-3 .scen-lbl{color:var(--green);background:var(--green-bg)}
+.scen-tag{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+.scen-title{font-size:16px;font-weight:700;margin-bottom:12px;color:var(--fg);line-height:1.4}
+.scen-row{font-size:14px;line-height:1.6;margin-bottom:6px}
+.scen-row strong.scen-key{display:inline-block;min-width:130px;font-weight:700;color:var(--purple);font-size:12px;text-transform:uppercase;letter-spacing:.04em;vertical-align:top}
+.scen-row.scen-pitch{background:var(--purple-bg);border-radius:6px;padding:12px 14px;margin-top:10px;margin-bottom:0}
+.scen-row.scen-pitch strong.scen-key{color:var(--purple)}
+@media(max-width:560px){
+  .scen-row strong.scen-key{display:block;min-width:0;margin-bottom:3px}
+}
+
+/* ---- Next module CTA ---- */
+.next-ch{background:var(--purple);color:#fff;border-radius:12px;padding:20px 24px;margin-top:40px;display:flex;align-items:center;justify-content:space-between;transition:all .12s}
+.next-ch h4{color:#fff;margin:0;font-size:15px}
+.next-ch p{color:rgba(255,255,255,.7);margin:4px 0 0;font-size:13px}
+.next-ch .nx-arrow{font-size:24px;opacity:.7}
+
+/* ---- CFU ---- */
+.cfu{background:var(--purple-bg);border:1px solid var(--purple-bdr);border-radius:var(--r);padding:22px 24px;margin:16px 0}
+.cfu h4{color:var(--purple);margin-top:0}
+.cfu ol{padding-left:20px;margin-bottom:10px}
+.cfu li{padding:4px 0;font-size:14px;line-height:1.6}
+
+/* ---- Footer ---- */
+footer{padding:40px 0 60px;border-top:1px solid var(--border);margin-top:48px;color:var(--muted);font-size:13px}
+footer strong{color:var(--fg)}
+
+@media(max-width:980px){
+  .side{display:none}
+  .content{padding:0 24px 80px;max-width:100%}
+  .stats,.goals,.challenges,.dims,.tiers{grid-template-columns:1fr 1fr}
+  .funnel-row{grid-template-columns:1fr 1fr 1fr;gap:6px}
+  .funnel-arrows{display:none}
+  .funnel-leakages{grid-template-columns:1fr}
+  .cost-bar{grid-template-columns:1fr 70px;gap:8px}
+  .cost-bar .cb-track{display:none}
+}
+@media(max-width:560px){
+  .stats,.challenges,.dims,.tiers,.goals{grid-template-columns:1fr}
+  .arch-row{grid-template-columns:1fr}
+  .arch-row .arch-lbl{padding-top:0;margin-bottom:-2px}
+  .seg-row{grid-template-columns:1fr 60px;gap:8px}
+  .seg-row .seg-note{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="logo">Oddle</div>
+  <span class="sub">Sales Onboarding Program · Module 1 of 8 — Understanding F&amp;B</span>
+</div>
+
+<div class="wrap">
+
+<!-- Sidebar: 10 sections -->
+<nav class="side">
+  <div class="side-sections" id="side-links">
+    <div class="side-label">On this page</div>
+    <a class="side-link" href="#goals"><span class="sl-num">01</span>The Three Goals</a>
+    <a class="side-link" href="#industry"><span class="sl-num">02</span>Industry Context</a>
+    <a class="side-link" href="#economics"><span class="sl-num">03</span>Restaurant Economics</a>
+    <a class="side-link" href="#gaps"><span class="sl-num">04</span>The Six Gaps</a>
+    <a class="side-link" href="#leakages"><span class="sl-num">05</span>Two Leakages</a>
+    <a class="side-link" href="#dimensions"><span class="sl-num">06</span>Archetype Dimensions</a>
+    <a class="side-link" href="#archetypes"><span class="sl-num">07</span>Eight Archetypes</a>
+    <a class="side-link" href="#techstack"><span class="sl-num">08</span>Tech Stack Check</a>
+    <a class="side-link" href="#decision"><span class="sl-num">09</span>Decision Making</a>
+    <a class="side-link" href="#cfu"><span class="sl-num">10</span>Check For Understanding</a>
+  </div>
+</nav>
+
+<!-- Main content -->
+<div class="content">
+
+<div class="hero">
+  <div class="ch-label">Module 1 · Understanding F&amp;B</div>
+  <h1>Understand the industry before you ever pitch the product.</h1>
+  <div class="desc">Restaurant owners respect reps who understand their business. This module turns you into that rep — fluent in the numbers operators live with, the gaps they quietly bleed from, and the archetypes they fall into. Nothing here sells Oddle. Everything here earns you the right to.</div>
+  <span class="read-time">~ 90 min read</span>
+  <span class="pre">No pre-requisites</span>
+</div>
+
+<!-- ===================== 01 — THE THREE GOALS ===================== -->
+<h2 id="goals">01 · The Three Goals</h2>
+<p>Strip away the lease complaint, the staffing drama, the bad review, the viral post — every F&amp;B operator, everywhere, is asking for the same three outcomes. They aren't independent. They compound.</p>
+
+<div class="goals">
+  <div class="goal">
+    <div class="goal-num">Goal 01</div>
+    <div class="goal-title">Grow Revenue</div>
+    <div class="goal-desc">Acquire new customers. Bring them back more often. Lift the cheque when they return. Fixed costs — rent, labour, utilities — don't move when a few hundred more covers walk in. So most of every new dollar drops to profit. Revenue growth is the single biggest lever on the P&amp;L.</div>
+  </div>
+  <div class="goal">
+    <div class="goal-num">Goal 02</div>
+    <div class="goal-title">Control Cost</div>
+    <div class="goal-desc">Stop the bleed. Marketplace commissions. Overlapping SaaS. Tools paid for but never used. Marketing spend that can't be measured. On a 3–5% net-margin business, a dollar saved is worth twenty earned. For the operator, cost discipline IS revenue growth.</div>
+  </div>
+  <div class="goal">
+    <div class="goal-num">Goal 03</div>
+    <div class="goal-title">Know the Customer</div>
+    <div class="goal-desc">Who they are. Where they live. How often they come. What brought them in. What stopped them coming back. Without this, every marketing, menu, and pricing decision is a guess. Data isn't a fourth goal — it's what makes the other two possible.</div>
+  </div>
+</div>
+
+<div class="tip"><strong>The universal rule.</strong> You cannot grow revenue or control cost at scale without knowing the customer. Every Oddle product exists to move one of these three forward. If a rep can't tie their pitch back to one of these three in a single sentence — they haven't earned the right to pitch.</div>
+
+<!-- ===================== 02 — INDUSTRY CONTEXT ===================== -->
+<hr>
+<h2 id="industry">02 · Industry Context</h2>
+<p>F&amp;B is a thin-margin business under compounding pressure. Before we talk about solving the operator's problem, understand the shape of the problem.</p>
+
+<h3>A. Thin-margin business</h3>
+<p>Most of a restaurant's dollar is already spoken for before the owner sees it. The four big buckets of cost:</p>
+
+<div class="cost-bar"><div class="cb-name">Cost of Goods</div><div class="cb-track"><div class="cb-fill" style="width:82%"></div></div><div class="cb-range">20 – 35%</div></div>
+<div class="cost-bar"><div class="cb-name">Labour</div><div class="cb-track"><div class="cb-fill" style="width:72%"></div></div><div class="cb-range">20 – 30%</div></div>
+<div class="cost-bar"><div class="cb-name">Rental</div><div class="cb-track"><div class="cb-fill" style="width:62%"></div></div><div class="cb-range">20 – 25%</div></div>
+<div class="cost-bar"><div class="cb-name">Overheads / Other</div><div class="cb-track"><div class="cb-fill" style="width:25%"></div></div><div class="cb-range">5 – 10%</div></div>
+
+<p>What's left over after all four — that's net margin. And the spread is brutal:</p>
+
+<div class="tiers">
+  <div class="tier low"><div class="t-lbl">Average</div><div class="t-num">3 – 5%</div><div class="t-lbl" style="font-weight:500;letter-spacing:normal;text-transform:none;color:var(--muted);margin-top:4px">Most restaurants</div></div>
+  <div class="tier mid"><div class="t-lbl">Successful</div><div class="t-num">10 – 15%</div><div class="t-lbl" style="font-weight:500;letter-spacing:normal;text-transform:none;color:var(--muted);margin-top:4px">Well-run operations</div></div>
+  <div class="tier hi"><div class="t-lbl">High-margin</div><div class="t-num">20 – 30%</div><div class="t-lbl" style="font-weight:500;letter-spacing:normal;text-transform:none;color:var(--muted);margin-top:4px">Rare — brand + scale</div></div>
+</div>
+
+<div class="say"><strong>What this means for the rep.</strong> Assume the operator across the table is running a 3–5% net-margin business until proven otherwise. Every dollar of cost savings is worth ~20 dollars of new revenue to them. Every dollar of new revenue that doesn't bring new variable cost drops almost entirely to profit. Know which lever you're pulling.</div>
+
+<h3>B. Tech laggard industry</h3>
+<p>F&amp;B is one of the slowest-adopting industries for technology. Two patterns repeat:</p>
+<ul>
+  <li>Most operators are either not adopting tech at all, or adopting late and reluctantly.</li>
+  <li>Even after they adopt, they typically don't capitalise on it for growth — they use tech operationally, not strategically.</li>
+</ul>
+<p>The core problem: operators don't know how to use tech effectively. They buy tools, plug them in, and move on. No one teaches them what lever each tool pulls. This is the single biggest opening for a consultative rep.</p>
+
+<h3>C. ~85% of first-time customers don't return within a year</h3>
+<p>Across a sample of 200 F&amp;B brands we work with, the first-year return rate is stark — and it varies sharply by segment. The 85% average hides a much wider distribution underneath.</p>
+
+<div class="seg-row"><div><strong>Fine Dining &amp; Higher End</strong></div><div class="seg-pct">95%</div><div class="seg-note">occasion-driven; infrequent by design</div></div>
+<div class="seg-row"><div><strong>Casual Restaurant</strong></div><div class="seg-pct">85%</div><div class="seg-note">the middle of the pipeline</div></div>
+<div class="seg-row"><div><strong>Neighbourhood Restaurant</strong></div><div class="seg-pct">75%</div><div class="seg-note">proximity helps, but no re-engagement</div></div>
+<div class="seg-row"><div><strong>Cafes, bubble tea, QSR</strong></div><div class="seg-pct">40%</div><div class="seg-note">habit-forming formats</div></div>
+
+<div class="warn"><strong>The takeaway.</strong> The average restaurant acquires a customer, feeds them once, and never sees them again. That's not a marketing problem — it's a data and engagement problem. They can't re-engage people they can't identify.</div>
+
+<h3>D. ~75% of dine-in customers cannot be identified</h3>
+<p>Even the restaurants that think they "know" their customers — don't. Two realities operators underestimate:</p>
+
+<div class="info"><strong>Reservation math.</strong> Assume a fully booked restaurant. Average covers per reservation ≈ 4. Only the person who booked is captured — name, phone, email. The other 3 of every 4 diners walk out unidentified. That's 75% invisible <em>at best</em>. And most restaurants aren't 100% reservation — the walk-ins are 100% invisible. So on average, captured data is well below 25%.</div>
+
+<div class="info"><strong>Loyalty programs don't fix it.</strong> In most loyalty programs, only the person who <em>pays</em> is identified. Their dining companions stay invisible. Add to that: a share of customers never join the program to begin with. You're capturing a fraction of a fraction.</div>
+
+<p>This is the data gap — and it's what makes every other growth lever harder.</p>
+
+<h3>E. The 5 core challenges every operator is navigating</h3>
+
+<div class="challenges">
+  <div class="ch-item"><div class="ch-num">1</div><div class="ch-body"><strong>Increasing competition</strong><span>Retail is dying. That floorspace is being taken up by F&amp;B. More options for consumers, but the number of consumers stays the same.</span></div></div>
+  <div class="ch-item"><div class="ch-num">2</div><div class="ch-body"><strong>Increasing cost</strong><span>Food inputs, rent, energy, packaging — all compounding. Price elasticity on the menu is weak.</span></div></div>
+  <div class="ch-item"><div class="ch-num">3</div><div class="ch-body"><strong>Manpower shortage</strong><span>F&amp;B hiring is structurally short across SG, MY, TW. Wages rise while productivity doesn't.</span></div></div>
+  <div class="ch-item"><div class="ch-num">4</div><div class="ch-body"><strong>Evolving consumer behaviour</strong><span>Delivery, dine-in, pickup, group orders, pre-orders — consumers expect all channels, on their schedule.</span></div></div>
+  <div class="ch-item"><div class="ch-num">5</div><div class="ch-body"><strong>More digital channels to manage</strong><span>POS, reservation, delivery platforms, marketing, socials, review sites — each needs attention, each pays someone a fee.</span></div></div>
+</div>
+
+<!-- ===================== 03 — RESTAURANT ECONOMICS ===================== -->
+<hr>
+<h2 id="economics">03 · Restaurant Economics</h2>
+<p>The single biggest moat between a pitcher and an educator is this: can you read a restaurant's P&amp;L? A rep who can explain why a small revenue lift drops disproportionately to the bottom line wins the conversation before they've pitched a product.</p>
+
+<h3>A simplified P&amp;L — the average restaurant</h3>
+<p>This is the shape of the business. Midpoints taken from the ranges above. It lands on a realistic 5% net margin — the ceiling for the average restaurant.</p>
+
+<table>
+  <thead>
+    <tr><th>Line item</th><th class="num">Amount</th><th class="num">% of revenue</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Revenue</td><td class="num">$100,000</td><td class="num">100%</td></tr>
+    <tr><td>Cost of Goods</td><td class="num">($28,000)</td><td class="num">28%</td></tr>
+    <tr><td>Labour</td><td class="num">($25,000)</td><td class="num">25%</td></tr>
+    <tr><td>Rental</td><td class="num">($22,000)</td><td class="num">22%</td></tr>
+    <tr><td>Overheads (utilities, admin, supplies)</td><td class="num">($7,500)</td><td class="num">7.5%</td></tr>
+    <tr><td>Other operating (marketing, commissions, SaaS)</td><td class="num">($12,500)</td><td class="num">12.5%</td></tr>
+    <tr class="total"><td>Net Profit</td><td class="num">$5,000</td><td class="num">5%</td></tr>
+  </tbody>
+</table>
+
+<h3>Why a 5% revenue lift produces a disproportionate profit lift</h3>
+<p>Labour, rental, and most overheads are <em>fixed</em> — they don't scale with a few hundred more covers. Only Cost of Goods scales with revenue. So when new revenue comes in that doesn't bring new labour or new rent, almost all of it falls to the bottom line.</p>
+
+<table>
+  <thead>
+    <tr><th>Line item</th><th class="num">Baseline</th><th class="num">After 5% lift</th><th class="num">Δ</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Revenue</td><td class="num">$100,000</td><td class="num">$105,000</td><td class="num">+$5,000</td></tr>
+    <tr><td>Cost of Goods (scales)</td><td class="num">($28,000)</td><td class="num">($29,400)</td><td class="num">($1,400)</td></tr>
+    <tr><td>All other costs (fixed)</td><td class="num">($67,000)</td><td class="num">($67,000)</td><td class="num">—</td></tr>
+    <tr class="total"><td>Net Profit</td><td class="num">$5,000</td><td class="num">$8,600</td><td class="num">+$3,600</td></tr>
+    <tr class="delta"><td>Profit lift</td><td class="num">—</td><td class="num">—</td><td class="num">+72%</td></tr>
+  </tbody>
+</table>
+
+<div class="tip"><strong>The math every rep must carry.</strong> A 5% revenue lift from existing operating capacity produces a 50–70% profit lift. Why? Because only ~28 cents of every new dollar becomes cost. The other ~72 cents is pure profit. This is the single most important number to anchor any revenue-growth pitch.</div>
+
+<!-- ===================== 04 — SIX GAPS ===================== -->
+<hr>
+<h2 id="gaps">04 · The Six Gaps</h2>
+<p>Every restaurant you meet will have some combination of these six gaps. Your job isn't to pitch products — it's to diagnose which gaps they have, surface them through questions, and let the operator self-diagnose. Only then is the door open.</p>
+
+<div class="gap-grid">
+
+<div class="gap-card gc-data">
+  <div class="gap-label">Gap 1 · Data</div>
+  <h4>Data Gap</h4>
+  <p>The restaurant captures almost no customer data. Reservations give you one name per group. POS gives you an order, not a person. Dine-in walk-ins leave as strangers. The industry baseline is a 25% capture rate — 75 of every 100 diners are invisible.</p>
+  <div class="gap-q">"How many diners do you serve on a monthly basis? How many reservation bookings do you get per month? The <strong>difference</strong> is the data gap."</div>
+  <div class="gap-foot"><strong>Feeds:</strong> Revenue Leakage · <strong>Product home:</strong> Enrolment, CDP</div>
+</div>
+
+<div class="gap-card gc-insight">
+  <div class="gap-label">Gap 2 · Insight</div>
+  <h4>Insight Gap</h4>
+  <p>Two sub-problems. <strong>Siloed data</strong> — POS, reservations, delivery, enrolment all sit in separate systems and don't talk to each other. And <strong>missing depth</strong> — no customer proximity, no acquisition source, no reason-for-lapse. The data you need to make decisions doesn't exist.</p>
+  <div class="gap-q">"If I asked you which daypart has your highest repeat rate, or what percentage of your customers live within 3km — could you answer?"</div>
+  <div class="gap-foot"><strong>Feeds:</strong> Revenue Leakage · <strong>Product home:</strong> CDP, Enrolment</div>
+</div>
+
+<div class="gap-card gc-engage">
+  <div class="gap-label">Gap 3 · Engagement</div>
+  <h4>Engagement Gap</h4>
+  <p>No mechanism to bring customers back. Either (a) no data, so no outreach possible, or (b) the data exists but is sitting idle — no campaigns, no automation, no reason for the customer to come back.</p>
+  <div class="gap-q">"When was the last time you sent a message to 1,000+ customers with something genuinely useful to them?"</div>
+  <div class="gap-foot"><strong>Feeds:</strong> Revenue Leakage · <strong>Product home:</strong> Email Marketing, Rewards</div>
+</div>
+
+<div class="gap-card gc-revenue">
+  <div class="gap-label">Gap 4 · Revenue</div>
+  <h4>Revenue Gap</h4>
+  <p>Three sub-problems. <strong>No organic online channel</strong> — corporate and group orders go nowhere, or to marketplaces at 30% commission. <strong>No retention mechanism</strong> — repeat rates stagnate at 8–15%. <strong>No playbook</strong> — tools sit idle without a strategy to grow with them.</p>
+  <div class="gap-q">"If a corporate wanted to place a $200 lunch order for their team today, where would they go?"</div>
+  <div class="gap-foot"><strong>Feeds:</strong> Revenue Leakage · <strong>Product home:</strong> eShop, Reserve, Email Marketing</div>
+</div>
+
+<div class="gap-card gc-cost">
+  <div class="gap-label">Gap 5 · Cost</div>
+  <h4>Cost Gap</h4>
+  <p>Margin bleeding in three ways: commissions to marketplaces (25–35% per order), a fragmented tool stack paying multiple vendors for overlapping capabilities, and features paid for that are never used.</p>
+  <div class="gap-q">"Based on how much you pay for your reservation system and the number of bookings you get, what does each online booking cost you?"</div>
+  <div class="gap-q">"How much are you paying for your email marketing tool plus reservation system plus eShop system — combined?"</div>
+  <div class="gap-foot"><strong>Feeds:</strong> Cost Leakage · <strong>Product home:</strong> eShop, All Access Plan</div>
+</div>
+
+<div class="gap-card gc-exec">
+  <div class="gap-label">Gap 6 · Execution</div>
+  <h4>Execution Gap</h4>
+  <p>The operator has the tool (eShop is live) — but doesn't know which lever to pull to actually grow online sales. And the vendor who sold the system offers no support to help them. Tools live, growth doesn't follow.</p>
+  <div class="gap-q">"If you want to improve your online sales, do you know which lever to pull?"</div>
+  <div class="gap-formula">Revenue = <strong>Traffic × Conversion × ABS</strong></div>
+  <div class="gap-q">"Do you know what impacts conversion?"</div>
+  <div class="gap-ex"><strong>Why this is a gap:</strong> most operators can't answer, which IS the gap. Most of their vendors can't either. Oddle's role is to help them pull each lever.</div>
+  <div class="gap-foot"><strong>Feeds:</strong> Revenue &amp; Cost Leakage · <strong>Product home:</strong> Full stack + Oddle execution support</div>
+</div>
+
+</div>
+
+<!-- ===================== 05 — TWO LEAKAGES ===================== -->
+<hr>
+<h2 id="leakages">05 · Six Gaps → Two Leakages</h2>
+<p>Gaps are the diagnostic. Leakages are the <em>so what</em>. When you close discovery, frame the leakage back to the operator in dollar terms — that's what triggers buy-in.</p>
+
+<div class="funnel">
+  <div class="funnel-row">
+    <div class="funnel-gap fg-data">Data</div>
+    <div class="funnel-gap fg-insight">Insight</div>
+    <div class="funnel-gap fg-engage">Engagement</div>
+    <div class="funnel-gap fg-revenue">Revenue</div>
+    <div class="funnel-gap fg-exec">Execution</div>
+    <div class="funnel-gap fg-cost">Cost</div>
+  </div>
+
+  <div class="funnel-arrows">
+    <div class="funnel-arrow">↓</div>
+    <div class="funnel-arrow">↓</div>
+    <div class="funnel-arrow">↓</div>
+    <div class="funnel-arrow">↓</div>
+    <div class="funnel-arrow split">↙ ↘</div>
+    <div class="funnel-arrow">↓</div>
+  </div>
+
+  <div class="funnel-leakages">
+    <div class="funnel-leak rev">
+      <div class="fl-lbl">Leakage 01</div>
+      <div class="fl-title">Revenue Leakage</div>
+      <div class="fl-desc">Dollars the restaurant didn't earn. Customers they couldn't reach, repeats that never happened, corporate orders that went elsewhere, tools that produced zero sales.</div>
+    </div>
+    <div class="funnel-leak cost">
+      <div class="fl-lbl">Leakage 02</div>
+      <div class="fl-title">Cost Leakage</div>
+      <div class="fl-desc">Dollars the restaurant shouldn't have paid. Marketplace commissions on orders that could have been direct. Redundant SaaS. Features never used.</div>
+    </div>
+  </div>
+
+  <div class="funnel-legend">
+    <span>Data · Insight · Engagement · Revenue → <strong>Revenue Leakage</strong></span>
+    <span>Execution → <strong>both</strong></span>
+    <span>Cost → <strong>Cost Leakage</strong></span>
+  </div>
+</div>
+
+<div class="crit"><strong>Why Execution straddles both.</strong> An under-used tool loses revenue (no growth from it) and costs money (you're paying for it anyway). That's why Execution is the only gap that feeds both leakages.</div>
+
+<!-- ===================== 06 — DIMENSIONS ===================== -->
+<hr>
+<h2 id="dimensions">06 · Archetype Dimensions</h2>
+<p>Before the 8 archetypes — here's how we derived them. A rep needs to know the logic, not just the labels, so they can classify any restaurant confidently in under a minute.</p>
+
+<h3>Four dimensions we looked at</h3>
+<div class="dims">
+  <div class="dim"><div class="dim-num">Dimension 01</div><div class="dim-name">Establishment Maturity</div><div class="dim-opts">New · Growing · Established · Traditional</div></div>
+  <div class="dim"><div class="dim-num">Dimension 02</div><div class="dim-name">Restaurant Format</div><div class="dim-opts">Fine Dining · Casual Full Service · QSR · Cloud Kitchen</div></div>
+  <div class="dim"><div class="dim-num">Dimension 03</div><div class="dim-name">Channel Mix</div><div class="dim-opts">Reservation · Delivery · Both · Neither</div></div>
+  <div class="dim"><div class="dim-num">Dimension 04</div><div class="dim-name">Tech Stack State (eShop)</div><div class="dim-opts">None · Marketplace-only · Organic · Hybrid · N/A</div></div>
+</div>
+
+<h3>Why we didn't build a 400-cell matrix</h3>
+<p>4 × 5 × 4 × 5 = ~400 theoretical combinations. After pruning invalid combos (Cloud Kitchen is always delivery-only, Fine Dining rarely QSR-shaped, etc.), ~40–60 real combos remain. Still too many for a rep to hold in their head.</p>
+
+<h3>How we landed on 8</h3>
+<ul>
+  <li><strong>Establishment Maturity × Format</strong> — archetype-defining. This is what the restaurant <em>is</em>.</li>
+  <li><strong>Channel Mix + eShop Stance</strong> — diagnostic overlays. This is what the restaurant <em>has right now</em>, captured during discovery.</li>
+</ul>
+<p>95% of real prospects pattern-match to one of 8 named archetypes. The overlays sharpen the motion once you've classified.</p>
+
+<!-- ===================== 07 — EIGHT ARCHETYPES ===================== -->
+<hr>
+<h2 id="archetypes">07 · The Eight Archetypes</h2>
+<p>For each archetype: the profile, the gaps you'll find, the likely objection, and the recommended sales motion. Learn these and you can calibrate your approach before the first question is asked.</p>
+
+<div class="arch-list">
+
+<!-- 01 Heritage Independent (REWRITTEN) -->
+<div class="arch">
+  <div class="arch-head">
+    <div class="arch-idx">1</div>
+    <div class="arch-head-text">
+      <div class="arch-name">Heritage Independent</div>
+      <div class="arch-tag">Traditional × Casual Full Service / Eatery</div>
+    </div>
+  </div>
+  <p class="arch-profile">Family-run heritage restaurants and eateries — 10+ years old, deep brand equity, deeply loyal customers, limited digital adoption. <strong>Not hawkers, not QSR chains</strong> — though the rare very-popular hawker stall can fit here (they'll still never take Reserve).</p>
+
+  <div class="arch-row"><div class="arch-lbl">Typical gaps</div><div class="arch-val">Data · Insight · Engagement · Revenue · Execution</div></div>
+  <div class="arch-row"><div class="arch-lbl">Objection</div><div class="arch-val"><em>"We've always done fine without this."</em></div></div>
+  <div class="arch-row"><div class="arch-lbl">Sales motion</div><div class="arch-val">
+    <div class="arch-sub"><strong>Lead with eShop.</strong> If they're already on delivery marketplaces, the Revenue Gap is live and eShop is the direct-channel upgrade. If they're not on anything, eShop is the simple add-on — "website + ecommerce, turn on the tap and earn." Most powerful when the brand already has pull.</div>
+    <div class="arch-sub"><strong>Reserve — only if they accept reservations.</strong> They're almost certainly doing manual bookings today (Data + Execution Gap). But many heritage operators are too old-school to adopt booking tech. Gauge first; don't force it.</div>
+    <div class="arch-sub"><strong>Enrolment — in principle, yes.</strong> They have almost no data. In practice, this is one step too far for most heritage operators unless a younger generation has taken over the business.</div>
+  </div></div>
+  <div class="arch-examples"><strong>Proof points</strong>
+    <em>Holland V XO Fish Beehoon</em> — old-school, no tech infra. Open to eShop because it's an additional sales channel. Still not on the rest. We pitch all, eShop is the likely winner.<br>
+    <em>Swee Choon, HJH Maimunah, Tan Ser Seng, Keng Eng Kee</em> — heritage brands that adopted more of the stack, but only because a younger generation took over.
+  </div>
+</div>
+
+<!-- 02 Growing Casual -->
+<div class="arch">
+  <div class="arch-head">
+    <div class="arch-idx">2</div>
+    <div class="arch-head-text">
+      <div class="arch-name">Growing Casual Concept</div>
+      <div class="arch-tag">Growing × Casual Full Service</div>
+    </div>
+  </div>
+  <p class="arch-profile">The meaty middle of the pipeline. 1–5 outlets. Multi-channel ambition but messy execution. Some tools in place, no unified view, growth-hungry.</p>
+  <div class="arch-row"><div class="arch-lbl">Typical gaps</div><div class="arch-val">All six — this is where the full ecosystem play wins</div></div>
+  <div class="arch-row"><div class="arch-lbl">Objection</div><div class="arch-val"><em>"We already use Grab / Chope / our own eShop."</em></div></div>
+  <div class="arch-row"><div class="arch-lbl">Sales motion</div><div class="arch-val">Big picture first. New → Known → Repeat, full ecosystem. Anchor on Revenue Leakage.</div></div>
+  <div class="arch-examples"><strong>Proof points</strong>
+    <em>Abundance</em> — was running different vendors for reservation, loyalty and eShop. Switched fully to Oddle (still on marketplaces too). Unified data and sharper insights; Email Marketing is now driving both repeat dine-in and online sales. Now at 3 outlets, one revenue platform (reservation, eShop, Enrolment, CDP, Email).<br>
+    <em>Brotzeit</em> — was on another eShop. Business was already good, but there was obvious room for growth and the previous vendor wasn't helping with sales or conversion settings. Switched to Oddle, outperformed at Christmas, and now leans on Email Marketing to drive repeat online sales.
+  </div>
+</div>
+
+<!-- 03 Group F&B -->
+<div class="arch">
+  <div class="arch-head">
+    <div class="arch-idx">3</div>
+    <div class="arch-head-text">
+      <div class="arch-name">Group F&amp;B / Multi-Outlet Chain</div>
+      <div class="arch-tag">Established × CFS / QSR · Multi-outlet</div>
+    </div>
+  </div>
+  <p class="arch-profile">10+ outlets, often multi-brand. Procurement mindset. Internal teams tend to focus on dine-in operations; online is typically handled by over-relying on food delivery marketplaces. Data is almost never unified across brands and outlets.</p>
+
+  <div class="arch-row"><div class="arch-lbl">Typical gaps</div><div class="arch-val">Revenue (marketplace-reliant online; corporate/group orders under-served) · Insight (no unified view across brands) · Cost (overlapping SaaS + marketplace commissions) · Execution</div></div>
+  <div class="arch-row"><div class="arch-lbl">Objection</div><div class="arch-val"><em>"We already have an internal team / POS bundle."</em></div></div>
+  <div class="arch-row"><div class="arch-lbl">Sales motion</div><div class="arch-val">
+    <div class="arch-sub"><strong>eShop — Revenue Gap.</strong> Capture the corporate and group-order demand that's currently leaking to marketplaces or left on the table entirely.</div>
+    <div class="arch-sub"><strong>Reserve — Cost Gap.</strong> Consolidate fragmented reservation vendors into one; cut aggregator dependencies.</div>
+    <div class="arch-sub"><strong>CDP — Insight Gap.</strong> Unified customer view across brands and outlets is the only way to answer portfolio-level questions.</div>
+    <div class="arch-sub"><strong>Email Marketing — Cost Gap.</strong> Retires the standalone marketing tool. Works off the CDP directly.</div>
+    <div class="arch-sub">Exec-level partnership pitch. Written proposal, multi-stakeholder buy-in (CMO / COO / CFO / procurement).</div>
+  </div></div>
+  <div class="arch-examples"><strong>Proof points</strong>
+    <em>Soup Restaurant</em> — Oddle guided them to tweak conversion levers for online ordering to grow direct sales. Using Oddle for Reserve unlocked more data capture, unified view; Email Marketing is now driving both repeat visits and online sales.<br>
+    <em>Putien, Dian Xiao Er, RE&amp;S Group, Jumbo Group</em> — multi-brand, multi-outlet groups running Oddle as the revenue platform.
+  </div>
+</div>
+
+<!-- 04 QSR / Fast-Casual / Bakeries & Cafés (REWRITTEN) -->
+<div class="arch">
+  <div class="arch-head">
+    <div class="arch-idx">4</div>
+    <div class="arch-head-text">
+      <div class="arch-name">QSR / Fast-Casual / Bakeries &amp; Cafés</div>
+      <div class="arch-tag">Established × QSR / Bakery / Café</div>
+    </div>
+  </div>
+  <p class="arch-profile">High volume, high throughput. Kiosk and/or QR and/or delivery. Data-rich in systems but disconnected. Customer relationship is transactional — the motion depends on the sub-type.</p>
+
+  <div class="arch-row"><div class="arch-lbl">Typical gaps</div><div class="arch-val">Data (75% walk-out) · Revenue (marketplace reliance; corporate/group/advance-order demand underserved) · Execution (transactional, not relational)</div></div>
+  <div class="arch-row"><div class="arch-lbl">Objection</div><div class="arch-val"><em>"Too busy, can't add anything new to the kitchen."</em></div></div>
+  <div class="arch-row"><div class="arch-lbl">Sales motion</div><div class="arch-val">
+    <div class="arch-sub"><strong>Delivery-suitable QSR chains.</strong> <em>eShop first.</em> Position Oddle as "your McDelivery system." They'll almost certainly be on marketplaces — even if they have their own eShop, the Revenue Gap is usually still live (an under-performing direct channel).</div>
+    <div class="arch-sub"><strong>Bakeries &amp; Cafés.</strong> <em>eShop for advance / scheduled orders.</em> Cakes, catering, large pickups — often run manually today. Oddle removes the logistics hassle and captures the demand directly.</div>
+    <div class="arch-sub"><strong>Self-ordering kiosk QSR.</strong> <em>Enrolment does not work</em> — don't pitch it. The kiosk is optimised for speed, not data capture. Lead with eShop (delivery) and tech-stack conversations only.</div>
+    <div class="arch-sub"><strong>Sit-down QSR with QR ordering.</strong> <em>Enrolment works.</em> Pitch it — QR ordering gives you the data-capture moment at the table. Then pair with Email Marketing for repeat.</div>
+  </div></div>
+  <div class="arch-examples"><strong>Proof points — corporate &amp; group orders</strong>
+    <em>Jollibee, Arnold's Fried Chicken, One Fattened Calf, The Lawn, Six Hands (salad shop), Baristart</em> — eShop now captures corporate and group orders that previously went to marketplaces or weren't served at all.
+  </div>
+  <div class="arch-examples"><strong>Proof points — advance cake / bakery orders</strong>
+    <em>Paris Baguette, Drips Bakery, Lola's, Henri Charpentier</em> — eShop runs scheduled / advance cake orders; resolves the logistics hassle of phone, DM and spreadsheet-driven orders.
+  </div>
+</div>
+
+<!-- 05 Cloud Kitchen -->
+<div class="arch">
+  <div class="arch-head">
+    <div class="arch-idx">5</div>
+    <div class="arch-head-text">
+      <div class="arch-name">Cloud Kitchen / Delivery-Only</div>
+      <div class="arch-tag">New / Growing × Cloud Kitchen</div>
+    </div>
+  </div>
+  <p class="arch-profile">No dine-in. Marketplace-dependent. Brand lives entirely online. Cost structure dominated by commission. No frontage, no walk-in.</p>
+  <div class="arch-row"><div class="arch-lbl">Typical gaps</div><div class="arch-val">Cost (commissions) · Data (marketplace owns the customer) · Revenue (no direct channel)</div></div>
+  <div class="arch-row"><div class="arch-lbl">Objection</div><div class="arch-val"><em>"But the marketplace has the traffic."</em></div></div>
+  <div class="arch-row"><div class="arch-lbl">Sales motion</div><div class="arch-val">eShop for direct channel. Email Marketing for repeat orders. Enrolment skip.</div></div>
+</div>
+
+<!-- 06 Viral (REWRITTEN motion) -->
+<div class="arch">
+  <div class="arch-head">
+    <div class="arch-idx">6</div>
+    <div class="arch-head-text">
+      <div class="arch-name">Viral Emerging Brand</div>
+      <div class="arch-tag">New × Any format</div>
+    </div>
+  </div>
+  <p class="arch-profile">Hot concept, queues out the door, social-media driven. Attention is high, operations are immature, window of leverage is short. Often no systems at all.</p>
+
+  <div class="arch-row"><div class="arch-lbl">Typical gaps</div><div class="arch-val">Data · Insight · Execution (no infrastructure behind the hype)</div></div>
+  <div class="arch-row"><div class="arch-lbl">Objection</div><div class="arch-val"><em>"We're flat-out busy, maybe next quarter."</em></div></div>
+  <div class="arch-row"><div class="arch-lbl">Sales motion</div><div class="arch-val">
+    <div class="arch-sub"><strong>Split by suitability.</strong> If the brand is more delivery-suitable, <em>lead with eShop</em> — capture the demand directly rather than leak it to marketplaces. If it's a dine-in / queueing concept, <em>lead with Reserve</em> — tame the queue, capture the booker, convert the hype into repeat.</div>
+    <div class="arch-sub"><strong>Enrolment is non-negotiable.</strong> This is the only window where a viral brand can capture a stranger at scale. Miss this, and every queue diner becomes a one-time visit forever.</div>
+    <div class="arch-sub"><strong>Urgency is the pitch.</strong> Viral attention is short. Ride the wave before it fades.</div>
+  </div></div>
+  <div class="arch-examples"><strong>Proof points</strong>
+    <em>Kikanbo, Spicy Noodles, Gyukatsu</em> — captured huge volumes of member data at peak hype. The return-redeemable concept (Enrolment + Rewards) auto-built the repeat-visit habit; automated reminders brought customers back without manual marketing effort.
+  </div>
+</div>
+
+<!-- 07 Independent Premium / Fine Dining (moved to bottom, eShop added to motion) -->
+<div class="arch">
+  <div class="arch-head">
+    <div class="arch-idx">7</div>
+    <div class="arch-head-text">
+      <div class="arch-name">Independent Premium / Fine Dining</div>
+      <div class="arch-tag">Established × Fine Dining</div>
+    </div>
+  </div>
+  <p class="arch-profile">Chef-led or restaurateur-led. Reservation-dominant. Cautious about delivery. Experience-focused. Tools exist but often underutilised. <strong>Honest context:</strong> not many independent premium restaurants use Oddle for reservation today — most of our reservation partners are casual. The sharpest angle into this archetype is usually <em>eShop for corporate and festive pre-orders</em>, not reservation.</p>
+
+  <div class="arch-row"><div class="arch-lbl">Typical gaps</div><div class="arch-val">Revenue (corporate / group advance orders, festive pre-orders underserved) · Insight · Engagement</div></div>
+  <div class="arch-row"><div class="arch-lbl">Objection</div><div class="arch-val"><em>"Our customers don't want loyalty programs."</em></div></div>
+  <div class="arch-row"><div class="arch-lbl">Sales motion</div><div class="arch-val">
+    <div class="arch-sub"><strong>eShop — the lead product.</strong> Additional revenue channel for corporate and group orders, plus seasonal festive pre-orders. Low operational lift, high margin.</div>
+    <div class="arch-sub"><strong>Seasonal festive pre-orders is the under-played Revenue Gap.</strong> Mooncake, CNY hampers, Christmas, Mother's Day — often run manually over email and spreadsheets. eShop unlocks this cleanly.</div>
+    <div class="arch-sub"><strong>Email Marketing</strong> for repeat engagement. Enrolment framed as customer <em>intelligence</em>, not loyalty.</div>
+    <div class="arch-sub"><strong>Reserve — situational.</strong> Only if the operator is actively looking to replace an existing reservation tool. Don't force it.</div>
+  </div></div>
+  <div class="arch-examples"><strong>Proof points</strong>
+    <em>Blue Label Pizza, Da Michele, Imperial Treasure</em> — online eShop as an additional revenue channel alongside the core dine-in business.
+  </div>
+</div>
+
+<!-- 08 Hotel F&B (moved to bottom, festive pre-orders added) -->
+<div class="arch">
+  <div class="arch-head">
+    <div class="arch-idx">8</div>
+    <div class="arch-head-text">
+      <div class="arch-name">Hotel F&amp;B</div>
+      <div class="arch-tag">Any × Fine Dining / CFS · Hotel-embedded</div>
+    </div>
+  </div>
+  <p class="arch-profile">Restaurants within hotels. Constrained by hotel infrastructure (booking systems, POS, brand rules). Decision-making is split between F&amp;B manager, GM, and corporate.</p>
+
+  <div class="arch-row"><div class="arch-lbl">Typical gaps</div><div class="arch-val">Insight (data hostage to hotel PMS) · Engagement (no owned channel) · Revenue (seasonal pre-orders underserved)</div></div>
+  <div class="arch-row"><div class="arch-lbl">Objection</div><div class="arch-val"><em>"Corporate decides our software."</em></div></div>
+  <div class="arch-row"><div class="arch-lbl">Sales motion</div><div class="arch-val">
+    <div class="arch-sub"><strong>Find a property-level champion.</strong> Educate the F&amp;B manager. Long cycle.</div>
+    <div class="arch-sub"><strong>Seasonal festive pre-orders is the under-played Revenue Gap.</strong> Hotels have strong festive pre-order businesses — Mooncake, hampers, hotel CNY catering, Christmas dine-in / takeaway. Often managed manually, underserved by current systems. eShop unlocks this cleanly.</div>
+  </div></div>
+  <div class="arch-examples"><strong>Proof points</strong>
+    <em>Goodwood Park Hotel, Ritz Carlton, Pan Pacific</em> — mainly using Oddle eShop to run festive-season sales (Mooncake, hampers, CNY, Christmas).
+  </div>
+</div>
+
+<!-- Exception -->
+<div class="arch-exception">
+  <strong>Exception — Pre-Open Restaurant</strong>
+  Doesn't fit the Socratic diagnostic because there's no operating reality to probe. Sell differently: understand their opening timeline, share relevant insights, position Oddle as the foundation they start on. No gap-surfacing — just partnership framing.
+</div>
+
+</div>
+
+<!-- ===================== 08 — TECH STACK CHECK ===================== -->
+<hr>
+<h2 id="techstack">08 · Tech Stack Check</h2>
+<p>Always check the tech stack of a restaurant in discovery. The tech stack is how you turn archetype into motion. But not every element carries equal weight — <strong>online ordering is the one signal that dictates the entire pitch</strong>. The rest are diagnostic inputs.</p>
+
+<h3>Online ordering — the signal that sets the entire pitch</h3>
+<p>Reservation choice is a feature / cost debate. POS is a budget decision. Enrolment — almost nobody has anything real. But online ordering is different. <strong>What you see on eShop posture tells you which of three conversations you're about to have.</strong> It's a worldview signal — it reveals whether the operator sees customers as theirs to own or theirs to rent — and that single read reshapes the motion.</p>
+
+<div class="scenarios">
+
+  <div class="scen scen-1">
+    <div class="scen-head"><span class="scen-lbl">Scenario 1</span><span class="scen-tag">Longest conversation — moving belief</span></div>
+    <div class="scen-title">No marketplace. No eShop. Not selling online at all.</div>
+    <div class="scen-row"><strong class="scen-key">What you see</strong> Dine-in or takeaway only. No delivery presence anywhere. Either the operator doesn't believe the demand is there, or they're scared of the ops complexity.</div>
+    <div class="scen-row"><strong class="scen-key">What it means</strong> You're not swapping a vendor — you're moving belief on the <em>category itself</em>. The sell isn't Oddle yet. It's the case for having any online channel at all.</div>
+    <div class="scen-row scen-pitch"><strong class="scen-key">The pitch</strong> Show them the organic demand they're leaving on the table — delivery, corporate lunch orders, group pre-orders, festive bulk (mooncake, CNY, Christmas). Then prove Oddle can operationalise it without burning their floor team (order cutoffs, kitchen batching, delivery partner flow).</div>
+  </div>
+
+  <div class="scen scen-2">
+    <div class="scen-head"><span class="scen-lbl">Scenario 2</span><span class="scen-tag">Medium conversation — selling the second channel</span></div>
+    <div class="scen-title">On delivery marketplaces only (GrabFood, Foodpanda, Deliveroo, Uber Eats). No direct eShop.</div>
+    <div class="scen-row"><strong class="scen-key">What you see</strong> Delivery revenue is flowing — but through rented channels. Every order costs 25–30% commission. No customer data. No corporate / group / bulk order capture. No way to reach past customers directly.</div>
+    <div class="scen-row"><strong class="scen-key">What it means</strong> They believe in delivery. What they haven't seen yet is the value of <em>owning</em> the channel. Your job is to close the second gap — not sell delivery, sell ownership.</div>
+    <div class="scen-row scen-pitch"><strong class="scen-key">The pitch</strong> Use the ownership analogy — "Nike has its own store on Nike.com alongside Zalora. McDonald's runs McDelivery alongside GrabFood. Why are you letting GrabFood be your <em>only</em> delivery channel?" Marketplaces rent you traffic at a tax. An organic eShop captures corporate orders, group pre-orders, and repeat customers at 0% commission — and you finally own the customer data to market back to them.</div>
+  </div>
+
+  <div class="scen scen-3">
+    <div class="scen-head"><span class="scen-lbl">Scenario 3</span><span class="scen-tag">Shortest conversation — diagnostic, not persuasion</span></div>
+    <div class="scen-title">Has organic eShop (on Oddle, a competitor, or hybrid with marketplace).</div>
+    <div class="scen-row"><strong class="scen-key">What you see</strong> They already own a direct channel. Belief in the category is not the gap. The question is whether that channel is actually performing.</div>
+    <div class="scen-row"><strong class="scen-key">What it means</strong> Don't re-sell the category — you'll lose them in 30 seconds if you do. Switch into diagnostic mode. Run their current setup against the 6 gaps.</div>
+    <div class="scen-row scen-pitch"><strong class="scen-key">The pitch</strong> The two gaps that bite hardest here: <strong>Cost Gap</strong> — what are they paying? Commission % · platform fees · plug-in costs · payment gateway markup. And <strong>Execution Gap</strong> — run Traffic × Conversion × ABS against their actual numbers. Is traffic arriving and not converting? Is the basket small? Is the shop a parked website? Then position Oddle as the upgrade (cleaner ops, better conversion, integrated CDP, no plug-in tax) — not as the first online channel.</div>
+  </div>
+
+</div>
+
+<div class="info"><strong>Edge cases.</strong> &nbsp;<strong>Hybrid</strong> (marketplace + organic eShop) → treat as Scenario 3 for the diagnostic; secondary move is shifting order share <em>from</em> marketplace <em>to</em> organic once they see the margin difference. &nbsp;<strong>N/A</strong> (fine dining, some heritage dine-in-only) → eShop as a category may not apply, but festive pre-orders (mooncake / CNY / Christmas hampers) usually do — probe there instead.</div>
+
+<div class="tip"><strong>Why online ordering uniquely matters.</strong> Reservation vendor, POS, enrolment tool — these are mostly budget, feature, or UI preferences. The operator's answer there tells you what to sell against, but the pitch structure doesn't change. eShop posture is different: it's a worldview decision that dictates whether you're moving belief (Scenario 1), selling ownership (Scenario 2), or diagnosing performance (Scenario 3). One question — three entirely different calls.</div>
+
+<h3>Reservation stack — a signal, not a belief</h3>
+<p>If a merchant is running multiple reservation systems or leaning on aggregators (Inline, Quandoo, Chope, OpenTable, Eatigo), they're typically chasing more exposure and sales. What they often forget: <strong>~90% of reservations are organic</strong>, not sourced from third-party aggregators. The aggregator fee is largely paying for bookings the restaurant would have received anyway.</p>
+<div class="warn"><strong>Open question for Alan.</strong> Should the 90%-organic point live in this module, or in a separate competitor / positioning doc? Flagged — not decided.</div>
+
+<h3>Other tech stacks — diagnostic inputs</h3>
+<p>Enrolment, POS, marketing channels — each of these tells you something about gaps, but none deserve dedicated sections. Capture them, probe against the 6 gaps, move on.</p>
+<ul>
+  <li><strong>Enrolment:</strong> None · Paper stamp · Plastic card · Digital (which)</li>
+  <li><strong>POS:</strong> Standalone · POS + bundle (StoreHub / Eats365 / iChef) · Integrated with other tools</li>
+  <li><strong>Marketing channel:</strong> Email (tool) · WhatsApp broadcast · Social (organic / paid) · SMS · None</li>
+</ul>
+
+<!-- ===================== 09 — DECISION MAKING ===================== -->
+<hr>
+<h2 id="decision">09 · Decision Making &amp; Buying Behaviour</h2>
+<p>The same pitch fails or succeeds based on who is in the room. Match your approach to the buying structure. Hotel F&amp;B and Group F&amp;B chains behave similarly — merged below.</p>
+
+<table>
+  <thead>
+    <tr><th>Archetype</th><th>Who Decides</th><th>Cycle <span style="font-weight:400;opacity:.7;text-transform:none">(est.)</span></th><th>What Wins</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Founder-led single outlet</strong></td>
+      <td>Owner</td>
+      <td>Days to 2 weeks</td>
+      <td>Direct conviction; trust the rep; fast proof points</td>
+    </tr>
+    <tr>
+      <td><strong>Growing multi-outlet</strong></td>
+      <td>Founder + Ops (sometimes marketing)</td>
+      <td>2–4 weeks</td>
+      <td>ROI math + ecosystem story + peer social proof</td>
+    </tr>
+    <tr>
+      <td><strong>Group F&amp;B chain / Hotel F&amp;B</strong></td>
+      <td>CMO / COO / GM + CFO + procurement / corporate</td>
+      <td>1–6 months</td>
+      <td>Unified reporting; exec-level partnership; written proposal; property-level champion (hotel); internal navigation</td>
+    </tr>
+    <tr>
+      <td><strong>Franchise / Master franchisee</strong></td>
+      <td>Franchisee (ops) + Franchisor (brand)</td>
+      <td>Variable</td>
+      <td>Clarity on who controls what; brand-level approval separately</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="warn"><strong>Open question for Alan — cycle data verification.</strong> The cycle durations above are industry estimates. Alan flagged these should be validated against Oddle's actual CRM data (via the <code>oddle-attio-data</code> skill) before publishing. Until verified, treat as directional, not ground truth.</div>
+
+<!-- ===================== 10 — CFU ===================== -->
+<hr>
+<h2 id="cfu">10 · Check For Understanding</h2>
+<p>The bar to graduate this module is that you can answer each of these out loud, in under 30 seconds, without notes. If you can't, re-read the relevant section. A separate interactive questionnaire will be provided; for now, self-assess on these:</p>
+
+<div class="cfu">
+  <ol>
+    <li>What is the typical net margin of the average F&amp;B restaurant, and why does that number matter to the sales conversation?</li>
+    <li>Explain — in one minute — why a 5% revenue lift produces a 50–70% profit lift.</li>
+    <li>Why is the ~75% unidentified figure still optimistic for most restaurants? (Reservation math + loyalty nuance.)</li>
+    <li>Name the 5 core challenges every F&amp;B operator is navigating.</li>
+    <li>What are the 3 goals every restaurant owner has?</li>
+    <li>Name all 6 gaps and one diagnostic question for each. For the Execution Gap — what formula does the rep use?</li>
+    <li>How do the 6 gaps map to the 2 leakages? Which gap feeds both, and why?</li>
+    <li>Name the 8 archetypes. Which two have seasonal festive pre-orders as an under-played Revenue Gap?</li>
+    <li>For a QSR prospect — how does the sales motion split by sub-type?</li>
+    <li>For each of the three eShop scenarios — no online presence, marketplace-only, has organic eShop — describe the rep's posture and the core pitch in one sentence. Why is online ordering a more load-bearing signal than reservation or enrolment?</li>
+    <li>A prospect is a Group F&amp;B chain. What's the likely buying structure and sales cycle?</li>
+  </ol>
+  <p style="margin-bottom:0;font-size:13px;color:var(--muted);margin-top:6px"><strong>Note:</strong> The standalone CFU questionnaire file — <code>Understanding-FB-CFU-questionnaire.html</code> — is a separate deliverable pending format confirmation (HTML form / Google Form / PDF).</p>
+</div>
+
+<!-- Next module CTA -->
+<div class="next-ch">
+  <div>
+    <h4>Next · Module 2 — The Oddle Way</h4>
+    <p>Restaurant Revenue Playbook · New → Known → Repeat · Products as revenue levers</p>
+  </div>
+  <div class="nx-arrow">→</div>
+</div>
+
+<footer>
+  <p><strong>Oddle Sales Onboarding Program</strong> · Module 1 of 8 · Understanding F&amp;B · v2</p>
+  <p style="margin-top:4px">Questions, corrections, proof-point additions — ping Alan.</p>
+</footer>
+
+</div><!-- /.content -->
+</div><!-- /.wrap -->
+
+<script>
+// Scroll-spy: highlight active sidebar link
+(function(){
+  var links = document.querySelectorAll('.side-link');
+  var sections = [];
+  links.forEach(function(link){
+    var id = link.getAttribute('href').replace('#','');
+    var el = document.getElementById(id);
+    if(el) sections.push({el: el, link: link});
+  });
+  function setActive(){
+    var y = window.scrollY + 90;
+    var current = sections[0];
+    for(var i=0;i<sections.length;i++){
+      if(sections[i].el.offsetTop <= y) current = sections[i];
+    }
+    links.forEach(function(l){l.classList.remove('active')});
+    if(current) current.link.classList.add('active');
+  }
+  window.addEventListener('scroll', setActive, {passive:true});
+  window.addEventListener('resize', setActive);
+  document.addEventListener('DOMContentLoaded', setActive);
+  setActive();
+})();
+
+// Smooth scroll + offset for sticky top bars
+document.querySelectorAll('.side-link').forEach(function(a){
+  a.addEventListener('click', function(e){
+    e.preventDefault();
+    var id = a.getAttribute('href').replace('#','');
+    var el = document.getElementById(id);
+    if(el){
+      var y = el.getBoundingClientRect().top + window.scrollY - 68;
+      window.scrollTo({top: y, behavior: 'smooth'});
+    }
+  });
+});
+</script>
+
+</body>
+</html>
