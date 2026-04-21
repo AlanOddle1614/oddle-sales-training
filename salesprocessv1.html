@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 4 — Buyer Journey &amp; Sales Process Design | Oddle Sales Onboarding</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --purple:#3B0764;--purple-l:#7C3AED;--purple-bg:#F5F3FF;--purple-bdr:#EDE9FE;
+  --fg:#1A1A1A;--muted:#6B7280;--border:#E5E7EB;
+  --green:#059669;--green-bg:#ECFDF5;--green-bdr:#A7F3D0;
+  --orange:#D97706;--orange-bg:#FFFBEB;--orange-bdr:#FDE68A;
+  --red:#DC2626;--red-bg:#FEF2F2;--red-bdr:#FECACA;
+  --blue:#2563EB;--blue-bg:#EFF6FF;--blue-bdr:#BFDBFE;
+  --r:10px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;color:var(--fg);background:#fff;line-height:1.7;overflow-x:hidden}
+a{color:var(--purple-l);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.topbar{background:var(--purple);color:#fff;padding:14px 32px;position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:16px}
+.topbar .logo{font-size:17px;font-weight:700;letter-spacing:-.02em}
+.topbar .sub{font-size:12px;opacity:.6;margin-left:auto}
+
+.wrap{display:flex}
+.side{width:240px;position:sticky;top:52px;height:calc(100vh - 52px);overflow-y:auto;border-right:1px solid var(--border);flex-shrink:0;background:#FAFAFA;padding:20px 0 40px}
+.side::-webkit-scrollbar{width:4px}
+.side::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+.side-sections{padding:0 14px}
+.side-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);padding:10px 12px 8px}
+.side-link{display:flex;gap:8px;padding:8px 12px;font-size:13px;color:var(--muted);border-radius:6px;transition:all .1s;cursor:pointer;border-left:3px solid transparent;margin-bottom:1px;line-height:1.35}
+.side-link .sl-num{font-size:11px;font-weight:600;color:#9CA3AF;min-width:18px}
+.side-link:hover{background:var(--purple-bg);color:var(--purple)}
+.side-link.active{color:var(--purple);font-weight:600;border-left-color:var(--purple);background:var(--purple-bg)}
+.side-link.active .sl-num{color:var(--purple)}
+
+.content{flex:1;max-width:900px;padding:0 48px 120px;margin:0 auto}
+
+.hero{padding:48px 0 22px;border-bottom:1px solid var(--border);margin-bottom:36px}
+.hero .ch-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple-l);margin-bottom:8px}
+.hero h1{font-size:32px;font-weight:700;color:var(--purple);margin-bottom:12px;line-height:1.2;letter-spacing:-.015em}
+.hero .desc{font-size:15px;color:var(--muted);margin-bottom:16px;max-width:680px;line-height:1.65}
+.hero .pill{display:inline-block;font-size:11px;font-weight:600;padding:3px 10px;border-radius:12px;margin-right:6px}
+.hero .pill.time{color:var(--green);background:var(--green-bg)}
+.hero .pill.pre{color:var(--muted);background:#F3F4F6}
+.hero .pill.outcome{color:var(--purple);background:var(--purple-bg)}
+
+h2{font-size:24px;font-weight:700;color:var(--purple);margin:52px 0 10px;letter-spacing:-.01em;line-height:1.25}
+h2:first-child{margin-top:0}
+h3{font-size:18px;font-weight:700;margin:28px 0 8px;color:var(--fg)}
+h4{font-size:15px;font-weight:700;margin:22px 0 6px}
+p{margin-bottom:14px;font-size:15px}
+ul,ol{margin-bottom:14px;padding-left:22px}
+li{margin-bottom:6px;font-size:15px}
+hr{border:none;border-top:1px solid var(--border);margin:44px 0}
+
+.sec-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple-l);margin:40px 0 6px}
+
+/* Callouts */
+.say{background:var(--purple-bg);border-left:4px solid var(--purple-l);padding:14px 20px;border-radius:0 8px 8px 0;margin:14px 0 18px;font-style:italic;font-size:15px;line-height:1.7}
+.say strong{font-style:normal;color:var(--purple)}
+.tip,.warn,.crit,.info{padding:14px 18px;border-radius:var(--r);margin:14px 0 18px;font-size:14px;line-height:1.65}
+.tip{background:var(--green-bg);border:1px solid var(--green-bdr)}
+.warn{background:var(--orange-bg);border:1px solid var(--orange-bdr)}
+.crit{background:var(--red-bg);border:1px solid var(--red-bdr)}
+.info{background:var(--blue-bg);border:1px solid var(--blue-bdr)}
+.tip strong{color:var(--green)}
+.warn strong{color:var(--orange)}
+.crit strong{color:var(--red)}
+.info strong{color:var(--blue)}
+
+/* Tables */
+table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px}
+th{background:var(--purple);color:#fff;padding:10px 14px;text-align:left;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:top}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+tr.total td{font-weight:700;color:var(--purple);background:var(--purple-bg);border-bottom:2px solid var(--purple)}
+tr.delta td{color:var(--green);font-weight:600;background:var(--green-bg)}
+
+/* Stage strip (top-of-module at-a-glance) */
+.stage-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:18px 0 30px;position:relative}
+.stage-strip .sc{background:#FAFAFA;border:1px solid var(--border);border-radius:var(--r);padding:14px 14px 16px;position:relative;text-align:center}
+.stage-strip .sc .n{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--purple-l);margin-bottom:4px}
+.stage-strip .sc .t{font-size:15px;font-weight:700;color:var(--fg);margin-bottom:4px}
+.stage-strip .sc .d{font-size:11.5px;color:var(--muted);line-height:1.4}
+.stage-strip .sc::after{content:"→";position:absolute;right:-14px;top:50%;transform:translateY(-50%);color:var(--purple-l);font-size:18px;font-weight:700;z-index:2}
+.stage-strip .sc:last-child::after{display:none}
+
+/* Stage deep-dive cards */
+.stage{border:1px solid var(--border);border-radius:12px;margin:20px 0;overflow:hidden;background:#fff}
+.stage-head{background:linear-gradient(135deg,var(--purple) 0%,var(--purple-l) 100%);color:#fff;padding:18px 24px}
+.stage-head .sn{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.8;margin-bottom:4px}
+.stage-head h3{color:#fff;font-size:22px;margin:0 0 6px;font-weight:700;letter-spacing:-.01em}
+.stage-head .tag{display:inline-block;background:rgba(255,255,255,.15);padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;margin-top:4px}
+.stage-body{padding:4px 24px 22px}
+.stage-body h4{margin:20px 0 6px;font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--purple-l)}
+.stage-body .quote{background:var(--purple-bg);border-left:3px solid var(--purple-l);padding:12px 16px;margin:6px 0 10px;font-style:italic;font-size:14.5px;color:var(--fg);border-radius:0 8px 8px 0}
+.stage-body .quote .who{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--purple-l);margin-bottom:5px;font-style:normal}
+.stage-body .role ul{margin:6px 0 0}
+.stage-body .exit{background:var(--green-bg);border:1px solid var(--green-bdr);padding:12px 16px;border-radius:8px;font-size:14px;margin-top:6px}
+.stage-body .exit strong{color:var(--green)}
+.stage-body .stall{background:var(--orange-bg);border:1px solid var(--orange-bdr);padding:12px 16px;border-radius:8px;font-size:14px;margin-top:6px}
+.stage-body .stall strong{color:var(--orange)}
+.stage-body .script{background:#0f1115;color:#fff;padding:14px 18px;border-radius:8px;font-size:14px;margin-top:6px;line-height:1.6}
+.stage-body .script .label{display:block;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fba893;margin-bottom:6px}
+.stage-body .script em{color:#fff;font-style:normal;background:rgba(251,168,147,.15);padding:1px 5px;border-radius:3px}
+
+/* Swimlane */
+.swim{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:18px 0 24px;font-size:12.5px}
+.swim-hdr{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:0}
+.swim-hdr div{background:var(--purple);color:#fff;padding:8px 10px;border-radius:6px 6px 0 0;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;text-align:center}
+.swim-row{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:4px}
+.swim-row .who{padding:10px 12px;border-radius:6px;border:1px solid var(--border);background:#FAFAFA;text-align:center;font-size:12.5px;line-height:1.4}
+.swim-row .who.owns{background:var(--purple-bg);border-color:var(--purple-bdr);color:var(--purple);font-weight:600}
+.swim-row .who.contrib{background:var(--blue-bg);border-color:var(--blue-bdr);color:var(--blue)}
+.swim-row .who.quiet{opacity:.45}
+.swim-row .label{padding:10px 12px;font-weight:700;font-size:12px;color:var(--fg);background:#FAFAFA;border:1px solid var(--border);border-radius:6px}
+
+/* Funnel math tables: highlight critical row */
+tr.target td{background:var(--green-bg);color:var(--green);font-weight:700}
+
+/* CFU */
+.cfu{background:#FAFAFA;border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin:20px 0 30px}
+.cfu ol{padding-left:22px}
+.cfu li{margin-bottom:10px;font-size:14.5px}
+
+/* Operating section accent */
+.ops-banner{background:#0f1115;color:#fff;border-radius:12px;padding:20px 24px;margin:20px 0 12px}
+.ops-banner h2{color:#fff;margin:0 0 6px}
+.ops-banner .tag{display:inline-block;background:rgba(251,168,147,.2);color:#fba893;padding:3px 10px;border-radius:12px;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
+.ops-banner p{color:#d1d5db;margin:0;font-size:14px;line-height:1.6}
+
+/* Key number emphasis */
+.kn{font-variant-numeric:tabular-nums;font-weight:700;color:var(--purple)}
+.kn.green{color:var(--green)}
+.kn.red{color:var(--red)}
+
+@media (max-width: 900px){
+  .side{display:none}
+  .content{padding:0 20px 80px;max-width:100%}
+  .stage-strip{grid-template-columns:1fr 1fr;gap:6px}
+  .stage-strip .sc::after{display:none}
+  .swim{font-size:11px}
+  .swim-hdr,.swim-row{grid-template-columns:repeat(5,1fr)}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <span class="logo">Oddle Sales Onboarding</span>
+  <span style="opacity:.5">·</span>
+  <span style="font-size:13px;opacity:.85">Module 4 · Buyer Journey &amp; Sales Process Design</span>
+  <span class="sub">Framework-first equipping</span>
+</div>
+
+<div class="wrap">
+
+<nav class="side">
+  <div class="side-sections">
+    <div class="side-label">Module 4 sections</div>
+    <a class="side-link" href="#why"><span class="sl-num">00</span><span>Why this module</span></a>
+    <a class="side-link" href="#glance"><span class="sl-num">01</span><span>5 stages at a glance</span></a>
+    <a class="side-link" href="#latent"><span class="sl-num">02</span><span>Stage 1 · Latent</span></a>
+    <a class="side-link" href="#curious"><span class="sl-num">03</span><span>Stage 2 · Curious</span></a>
+    <a class="side-link" href="#evaluating"><span class="sl-num">04</span><span>Stage 3 · Evaluating</span></a>
+    <a class="side-link" href="#decision"><span class="sl-num">05</span><span>Stage 4 · Decision</span></a>
+    <a class="side-link" href="#onboarded"><span class="sl-num">06</span><span>Stage 5 · Onboarded</span></a>
+    <a class="side-link" href="#swim"><span class="sl-num">07</span><span>Who owns what</span></a>
+    <a class="side-link" href="#prospecting-math"><span class="sl-num">08</span><span>Prospecting math</span></a>
+    <a class="side-link" href="#cohort"><span class="sl-num">09</span><span>Cohort waterfall</span></a>
+    <a class="side-link" href="#disqualify"><span class="sl-num">10</span><span>Disqualification</span></a>
+    <a class="side-link" href="#cycle"><span class="sl-num">11</span><span>90-day rule</span></a>
+    <a class="side-link" href="#handoff"><span class="sl-num">12</span><span>Handoff to CSM</span></a>
+    <a class="side-link" href="#lir"><span class="sl-num">13</span><span>LIR thresholds</span></a>
+    <a class="side-link" href="#ops"><span class="sl-num">14</span><span>Operating expectations</span></a>
+    <a class="side-link" href="#failures"><span class="sl-num">15</span><span>Common failure modes</span></a>
+    <a class="side-link" href="#cfu"><span class="sl-num">16</span><span>Check for understanding</span></a>
+  </div>
+</nav>
+
+<main class="content">
+
+<section class="hero">
+  <div class="ch-label">Module 4 · Equipping · Framework-first</div>
+  <h1>Buyer Journey &amp; Sales Process Design</h1>
+  <p class="desc">How a restaurant owner moves from <em>unaware of Oddle</em> to <em>signed and activated</em> — and the exact role the rep plays at each step. Master this and every other module snaps into place: prospecting, pitching, closing, handoff all become <em>moves</em> along a single spine, not disconnected tactics.</p>
+  <div>
+    <span class="pill time">~60 min read · 2× review</span>
+    <span class="pill pre">Pre-reads: Modules 1 &amp; 2</span>
+    <span class="pill outcome">Outcome: rep can name every stage, exit criterion, and their job in each</span>
+  </div>
+</section>
+
+<h2 id="why">Why this module exists</h2>
+<p>A rep who can't name the stages can't move deals. They work tactics — cold call, follow-up, demo — without knowing which tactic belongs to which moment. Deals stall and the rep can't tell <em>where</em>, because they don't have a map.</p>
+
+<p>This module is the map. Five stages. Each with a buyer mindset, a rep job, a testable exit criterion, a common stall pattern, and a scripted move to unstick it. When the rep knows where a deal is, they know what to do next. When they don't, they guess.</p>
+
+<div class="say">
+  <strong>Roberge's rule:</strong> the sales process is a <em>mirror</em> of the buyer journey. Stages have explicit exit criteria — not gut feel. If a rep moves a deal forward in Attio without meeting the exit criterion, the forecast lies and the coaching has nothing to fix.
+</div>
+
+<hr>
+
+<h2 id="glance">The 5 stages at a glance</h2>
+<p>Every Oddle deal passes through these five stages, in order. No skipping.</p>
+
+<div class="stage-strip">
+  <div class="sc"><div class="n">Stage 1</div><div class="t">Latent</div><div class="d">Doesn't know Oddle, doesn't name the problem</div></div>
+  <div class="sc"><div class="n">Stage 2</div><div class="t">Curious</div><div class="d">Heard of us, booked a meeting</div></div>
+  <div class="sc"><div class="n">Stage 3</div><div class="t">Evaluating</div><div class="d">Post-pitch, weighing options</div></div>
+  <div class="sc"><div class="n">Stage 4</div><div class="t">Decision</div><div class="d">Mentally committed, navigating friction</div></div>
+  <div class="sc"><div class="n">Stage 5</div><div class="t">Onboarded</div><div class="d">Signed, needs to see value</div></div>
+</div>
+
+<div class="info">
+  <strong>Attio mapping:</strong> Every stage above maps 1:1 to an Attio deal stage. The rep may only move the deal forward when the exit criterion for that stage is met. This is the CRM hygiene backbone.
+</div>
+
+<hr>
+
+<!-- ========== STAGE 1 ========== -->
+<section class="stage" id="latent">
+  <div class="stage-head">
+    <div class="sn">Stage 1 of 5</div>
+    <h3>Latent</h3>
+    <span class="tag">Buyer hasn't named the problem · Rep must break attention</span>
+  </div>
+  <div class="stage-body">
+
+    <h4>Merchant mental state</h4>
+    <div class="quote"><span class="who">Inside the merchant's head</span>
+      "Another slow week. Marketplace is eating 30%. Hard to get new faces in. Whatever — back to the kitchen."
+    </div>
+    <p style="font-size:14px;color:var(--muted);margin-top:-4px">Busy operating. Problem felt, not named. Hasn't heard of Oddle, or has and shrugged. Skeptical of sales calls. Protective of time. Will not self-initiate.</p>
+
+    <h4>Rep's role &amp; activities</h4>
+    <div class="role">
+      <ul>
+        <li><strong>Own the outbound motion</strong> — cold call, targeted email, LinkedIn message, WhatsApp, in-person walk-in</li>
+        <li><strong>Break attention with a restaurant-specific provocation</strong> — not a product pitch</li>
+        <li><strong>Qualify the lead against ICP</strong> — is this a restaurant? is the price point in range? are they here for the long run?</li>
+        <li><strong>Book the meeting</strong> — book it on the spot if possible, with a clear time and agenda</li>
+      </ul>
+    </div>
+
+    <h4>Marketing &amp; GTM team contribute here</h4>
+    <p style="font-size:14px;color:var(--muted);margin:0">Marketing drives inbound through ads, content, peer referrals. GTM runs scaled tech outreach. Both feed the rep's Curious-stage pipeline. But <strong>the rep owns their own Latent-to-Curious conversion via cold prospecting</strong> — inbound is bonus, not the plan.</p>
+
+    <h4>Testable exit criterion</h4>
+    <div class="exit"><strong>Exit =</strong> Merchant confirms a specific calendar slot for a diagnostic pitch (date, time, location / video link). No slot, no advance.</div>
+
+    <h4>Common stall pattern &amp; unstick move</h4>
+    <div class="stall"><strong>Stall:</strong> No reply across channels. Merchant not picking up. <strong>Unstick:</strong> switch channels (call → WhatsApp → walk-in), lead with a peer reference ("Chef K at [restaurant] uses us for X — 10 min to show you what they've seen?"), or pivot to a different decision-maker in the unit.</div>
+
+    <h4>Scripted move — Stage 1 → 2</h4>
+    <div class="script"><span class="label">Rep opener</span>
+      "Hi <em>[name]</em>, I'm <em>[rep]</em> from Oddle. I'm not pitching software — I run <em>[role]</em> and we help restaurants like <em>[relevant peer]</em> stop losing the <em>75% of customers</em> who walk out without a name. Got 10 minutes Tuesday or Thursday for a quick diagnostic on your numbers?"
+    </div>
+  </div>
+</section>
+
+<!-- ========== STAGE 2 ========== -->
+<section class="stage" id="curious">
+  <div class="stage-head">
+    <div class="sn">Stage 2 of 5</div>
+    <h3>Curious</h3>
+    <span class="tag">Meeting booked · Rep must diagnose and make them want more</span>
+  </div>
+  <div class="stage-body">
+
+    <h4>Merchant mental state</h4>
+    <div class="quote"><span class="who">Inside the merchant's head</span>
+      "Wait — so you're not a marketplace? What exactly do you do? Chef K uses you, right?"
+    </div>
+    <p style="font-size:14px;color:var(--muted);margin-top:-4px">Received a cold call, ad, or peer signal that broke through. Cautiously willing to give 15–30 minutes. Open to listen if the frame is right, will walk fast if pushed. Defensive posture — they've been pitched before.</p>
+
+    <h4>Rep's role &amp; activities</h4>
+    <ul>
+      <li><strong>Run the 5-stage pitch</strong> — Discovery → Buy-In → Intro → Present → Close (see Module 6)</li>
+      <li><strong>Diagnose the archetype</strong> — which of the 8 archetypes is this? (Module 2)</li>
+      <li><strong>Let the merchant self-diagnose</strong> — Socratic questions, not product pitching</li>
+      <li><strong>Quantify the leak</strong> — show the math on lost covers, missed frequency, unknown customers</li>
+      <li><strong>End with a specific next step</strong> — not "we'll be in touch"</li>
+    </ul>
+
+    <h4>Testable exit criterion</h4>
+    <div class="exit"><strong>Exit =</strong> Pitch completed <em>and</em> merchant verbally agrees there is a problem worth solving <em>and</em> agrees to receive a proposal. No verbal agreement, no advance — rep loops back or disqualifies.</div>
+
+    <h4>Common stall pattern &amp; unstick move</h4>
+    <div class="stall"><strong>Stall:</strong> Meeting booked but rescheduled 2+ times, or merchant shows up distracted and non-committal. <strong>Unstick:</strong> send a 2-line pre-read 24 hours before to pre-commit their thinking ("I'll show you how [peer] grew repeat covers by X"); if they cancel again, park them in a 30-day nurture — don't burn cycles on a half-interested lead.</div>
+
+    <h4>Scripted move — Stage 2 → 3 (end of pitch)</h4>
+    <div class="script"><span class="label">Rep close of pitch</span>
+      "Based on what you've told me — <em>[quote their problem back: 'you said walk-ins are down 20% and you don't know who any of them are']</em> — it sounds like <em>[Oddle product]</em> would give you <em>[quantified lever: +15% repeat cover rate]</em>. Shall I put together a proposal and walk you through the numbers by <em>[day]</em>?"
+    </div>
+  </div>
+</section>
+
+<!-- ========== STAGE 3 ========== -->
+<section class="stage" id="evaluating">
+  <div class="stage-head">
+    <div class="sn">Stage 3 of 5</div>
+    <h3>Evaluating</h3>
+    <span class="tag">Proposal out · Rep must prove &amp; quantify · 3/7/14 cadence</span>
+  </div>
+  <div class="stage-body">
+
+    <h4>Merchant mental state</h4>
+    <div class="quote"><span class="who">Inside the merchant's head</span>
+      "Okay I see it. But will my team use it? What's the real cost? How is this different from Chope / Grab / the thing my POS guy sells? Show me someone like me who this worked for."
+    </div>
+    <p style="font-size:14px;color:var(--muted);margin-top:-4px">Problem named. Oddle is one of a few paths forward. Analytical mode. Asking detailed ROI, adoption, implementation, comparison questions. Weighing risk, not interest.</p>
+
+    <h4>Rep's role &amp; activities</h4>
+    <ul>
+      <li><strong>Send the proposal within 1 day of the pitch</strong> — speed signals confidence</li>
+      <li><strong>Run the 3/7/14 follow-up cadence</strong> — at days 3, 7, 14 post-proposal</li>
+      <li><strong>Bring proof</strong> — peer case studies, ROI math, live demo, reference calls</li>
+      <li><strong>Handle objections crisply</strong> — Module 6 objection library</li>
+      <li><strong>Engage the full decision unit</strong> — if the first meeting was with a manager, get to the owner</li>
+    </ul>
+
+    <h4>Testable exit criterion</h4>
+    <div class="exit"><strong>Exit =</strong> Proposal reviewed <em>and</em> merchant commits to a decision date <em>and</em> surfaces their remaining blockers. Advancing without a commitment date = false positive.</div>
+
+    <h4>Common stall pattern &amp; unstick move</h4>
+    <div class="stall"><strong>Stall:</strong> Post-proposal ghost. Merchant opens the email but doesn't reply. Or meeting was with a manager, owner hasn't been looped in. <strong>Unstick:</strong> run the 3/7/14 cadence; at day 14, send a direct "what's blocking this?" ask with a yes/no bias. Offer an owner meeting. If the deal is real but the owner is travelling, that's a known pattern — keep it alive inside the 90-day window.</div>
+
+    <div class="info" style="margin-top:10px"><strong>Reality check:</strong> Some deals legitimately take time. Owner travel, partner approval, end-of-month timing. Most deals sign within 60 days; remnants close in the final 30 of the 90-day window. Don't confuse a slow deal with a dead deal. <strong>Use the exit criterion</strong> — has the merchant committed to a decision date? Yes = alive. No = dead.</div>
+
+    <h4>Scripted move — Stage 3 → 4 (post-proposal unstick)</h4>
+    <div class="script"><span class="label">Rep follow-up (day 7 or 14)</span>
+      "Hi <em>[name]</em>, checking in on the proposal. If any part of it feels off, I'd rather talk it through than wait. <em>What would make this a yes for you?</em> If the answer is 'nothing right now,' say so and I'll come back at the right time."
+    </div>
+  </div>
+</section>
+
+<!-- ========== STAGE 4 ========== -->
+<section class="stage" id="decision">
+  <div class="stage-head">
+    <div class="sn">Stage 4 of 5</div>
+    <h3>Decision</h3>
+    <span class="tag">Verbal yes · Rep must close paperwork and protect scope</span>
+  </div>
+  <div class="stage-body">
+
+    <h4>Merchant mental state</h4>
+    <div class="quote"><span class="who">Inside the merchant's head</span>
+      "Let me show this to my partner / accountant / head chef. Can we start after CNY? Send the proposal — but maybe hold the second product for now."
+    </div>
+    <p style="font-size:14px;color:var(--muted);margin-top:-4px">Mentally committed. Navigating final friction — price, timing, sign-off unit. Mild cold-feet risk. Needs reassurance, not more pitching. Often carves scope to feel safer.</p>
+
+    <h4>Rep's role &amp; activities</h4>
+    <ul>
+      <li><strong>Close on value, not on discount</strong> — if price becomes the blocker, reframe the ROI math</li>
+      <li><strong>Lock a specific start date</strong> — ambiguous timing kills momentum</li>
+      <li><strong>Protect the scope</strong> — merchants try to carve down to one product at the last moment; hold the line on the full lever set, or explain what they lose</li>
+      <li><strong>Drive paperwork to close</strong> — contract sent, signed, first invoice paid</li>
+      <li><strong>Log everything in Attio</strong> — the handoff to CSM depends on this</li>
+    </ul>
+
+    <h4>Testable exit criterion</h4>
+    <div class="exit"><strong>Exit =</strong> Contract signed <em>and</em> first invoice paid <em>and</em> kickoff meeting booked with CSM. A verbal yes is not a win — paid is the bar.</div>
+
+    <h4>Common stall pattern &amp; unstick move</h4>
+    <div class="stall"><strong>Stall:</strong> Verbal yes but contract sitting unsigned for a week. Or merchant quietly stripping scope in the redlines. <strong>Unstick:</strong> bring forward a concrete start date with "let's lock X — I'll block the CSM calendar now"; for scope creep, send a 2-line "what we lose if we drop product Y" note.</div>
+
+    <h4>Scripted move — Stage 4 → 5 (close)</h4>
+    <div class="script"><span class="label">Rep close</span>
+      "Let's lock it in — we can start on <em>[specific date]</em>. I'll send the paperwork now, and your CSM <em>[name]</em> will reach out within 48 hours to schedule kickoff. Any final questions before I hit send?"
+    </div>
+  </div>
+</section>
+
+<!-- ========== STAGE 5 ========== -->
+<section class="stage" id="onboarded">
+  <div class="stage-head">
+    <div class="sn">Stage 5 of 5</div>
+    <h3>Onboarded</h3>
+    <span class="tag">Signed · CSM owns · Rep supports the handoff &amp; LIR push</span>
+  </div>
+  <div class="stage-body">
+
+    <h4>Merchant mental state</h4>
+    <div class="quote"><span class="who">Inside the merchant's head</span>
+      "Did I make the right call? When does this actually start working? Why isn't the tablet picking up new customers yet?"
+    </div>
+    <p style="font-size:14px;color:var(--muted);margin-top:-4px">Signed. Anxious about the first 30 days. Wants fast proof. Vulnerable to buyer's remorse if activation drags. Every friction point is a churn risk.</p>
+
+    <h4>Rep's role shifts — CSM owns the relationship here</h4>
+    <ul>
+      <li><strong>Hand off cleanly to CSM</strong> — see handoff criteria below</li>
+      <li><strong>Stay visible for the first 2 weeks</strong> — the merchant bought from <em>you</em>, not the CSM; disappearing breaks trust</li>
+      <li><strong>Support the push to LIR</strong> — first 10 orders, first 500 enrolments, first email sent — the leading indicators that this will stick</li>
+    </ul>
+
+    <h4>Testable exit criterion (what "success" means at Stage 5)</h4>
+    <div class="exit"><strong>Exit =</strong> Merchant hits LIR threshold within the first 30–60 days. See <a href="#lir">LIR thresholds</a> below. This is the leading indicator that they will renew All Access Plan — and the real measure of whether the deal was "won."</div>
+
+    <h4>Common stall pattern &amp; unstick move</h4>
+    <div class="stall"><strong>Stall:</strong> Low activation in first 30 days. Tablet not being used. Team not trained. Owner disengaged. <strong>Unstick:</strong> CSM-led but rep should re-engage the owner directly with a "how's it going?" — merchants open up to the person who sold them. Flag the churn risk to CSM early.</div>
+
+    <h4>Scripted move — rep 2-week check-in</h4>
+    <div class="script"><span class="label">Rep check-in (week 2 post-sign)</span>
+      "Hi <em>[name]</em>, just checking in as you hit your first week. I want to make sure <em>[specific first milestone — first 10 orders / first 500 enrolments / first email sent]</em> is happening. How's it looking?"
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<h2 id="swim">Who owns what — ownership swimlane</h2>
+<p>The rep is not alone. Four teams touch the 5-stage journey. The rep owns three stages outright. The other two are shared — the rep must know whose swimlane they're in.</p>
+
+<div class="swim">
+  <div class="swim-hdr">
+    <div>Latent → Curious</div>
+    <div>Curious → Evaluating</div>
+    <div>Evaluating → Decision</div>
+    <div>Decision → Onboarded</div>
+    <div>Onboarded → LIR</div>
+  </div>
+  <div class="swim-row">
+    <div class="who owns">Sales rep<br><span style="font-size:11px;opacity:.8">Cold prospecting</span></div>
+    <div class="who owns">Sales rep<br><span style="font-size:11px;opacity:.8">Pitch</span></div>
+    <div class="who owns">Sales rep<br><span style="font-size:11px;opacity:.8">Proof &amp; objections</span></div>
+    <div class="who owns">Sales rep<br><span style="font-size:11px;opacity:.8">Close + paperwork</span></div>
+    <div class="who quiet">Sales rep<br><span style="font-size:11px;opacity:.8">Supports handoff</span></div>
+  </div>
+  <div class="swim-row">
+    <div class="who contrib">Marketing<br><span style="font-size:11px;opacity:.8">Inbound demand</span></div>
+    <div class="who quiet">Marketing</div>
+    <div class="who contrib">Marketing<br><span style="font-size:11px;opacity:.8">Case studies</span></div>
+    <div class="who quiet">Marketing</div>
+    <div class="who quiet">Marketing</div>
+  </div>
+  <div class="swim-row">
+    <div class="who contrib">GTM team<br><span style="font-size:11px;opacity:.8">Tech outreach</span></div>
+    <div class="who quiet">GTM team</div>
+    <div class="who quiet">GTM team</div>
+    <div class="who quiet">GTM team</div>
+    <div class="who quiet">GTM team</div>
+  </div>
+  <div class="swim-row">
+    <div class="who quiet">CSM</div>
+    <div class="who quiet">CSM</div>
+    <div class="who quiet">CSM</div>
+    <div class="who contrib">CSM<br><span style="font-size:11px;opacity:.8">Kickoff prep</span></div>
+    <div class="who owns">CSM<br><span style="font-size:11px;opacity:.8">Activation + LIR</span></div>
+  </div>
+</div>
+
+<p style="font-size:13px;color:var(--muted)"><span class="kn" style="color:var(--purple)">■</span> Owns the stage &nbsp;·&nbsp; <span class="kn" style="color:var(--blue)">■</span> Contributes &nbsp;·&nbsp; Faded = not active in this stage</p>
+
+<hr>
+
+<h2 id="prospecting-math">The funnel math — prospecting</h2>
+<p>Every rep must know their funnel by heart. You don't chase 20 pitches — you chase the <em>top</em> of the funnel, and the pitches fall out if the conversion rates hold.</p>
+
+<h3>April actuals (team · month-to-date)</h3>
+<table>
+  <thead>
+    <tr><th>Step</th><th class="num">Count</th><th class="num">% of previous</th><th class="num">% of calls</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>A — Total calls made</strong></td><td class="num">634</td><td class="num">—</td><td class="num">100%</td></tr>
+    <tr><td><strong>B — Connected with owner / influencer</strong></td><td class="num">178</td><td class="num">28%</td><td class="num">28%</td></tr>
+    <tr class="target"><td><strong>C — Appointments booked</strong></td><td class="num">101</td><td class="num">56%</td><td class="num">15%</td></tr>
+  </tbody>
+</table>
+
+<p>Work the math backwards from the monthly target:</p>
+<div class="tip"><strong>Target logic:</strong> Prospect <span class="kn green">200 unique companies</span> per month. At our <span class="kn">15%</span> prospect-to-appointment conversion, that delivers <span class="kn green">30 appointments</span> — of which <span class="kn green">20 become outbound pitches</span> (some reschedule, some no-show, some spill into the next month). <strong>The rep's measured floor is 20 outbound pitches. Everything above is bonus.</strong></div>
+
+<h3>Why 200 prospects is the right gauge</h3>
+<ul>
+  <li><strong>200 prospects × 15% appointment rate = 30 appointments</strong> — a buffer above the 20-pitch floor</li>
+  <li><strong>Buffer absorbs spillover</strong> — some April prospects become May pitches; that's normal</li>
+  <li><strong>Prospecting is the one activity fully in the rep's control</strong> — inbound depends on Marketing, GTM tech outreach depends on the team, but cold prospecting is 100% you</li>
+</ul>
+
+<hr>
+
+<h2 id="cohort">The funnel math — pitch-to-win cohort waterfall</h2>
+<p>A pitch in January doesn't close in January. Most close in the 30 days after. Some close 30–60 days later. A few close 60–90 days later. This means a rep's <em>calendar-month wins</em> are the sum of cohorts that started 0, 30, and 60+ days ago.</p>
+
+<div class="warn"><strong>Implication:</strong> A rep who crushes prospecting in their first month doesn't see the wins that month. They see them in month 2 and 3. This is why ramp exists — and why pipeline consistency matters more than any single month's activity.</div>
+
+<h3>Single cohort conversion (20 outbound pitches — the measured floor)</h3>
+<table>
+  <thead>
+    <tr><th>Cohort age</th><th class="num">Close rate</th><th class="num">Wins from this cohort</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>0–30 days (same month)</td><td class="num">20%</td><td class="num">4</td></tr>
+    <tr><td>30–60 days (next month)</td><td class="num">20%</td><td class="num">4</td></tr>
+    <tr><td>60–90 days (month after)</td><td class="num">10%</td><td class="num">2</td></tr>
+    <tr class="total"><td><strong>Total from one cohort</strong></td><td class="num">50%</td><td class="num">10</td></tr>
+  </tbody>
+</table>
+<p style="font-size:13.5px;color:var(--muted)">Out of every 20 pitches, 10 close (50%). 6 of 20 are straight-up rejected (≤30% rejection rate). The other 4 are stalled and eventually hit the 90-day auto-disqualify.</p>
+
+<h3>Calendar-month harvest — ramping up with 20 outbound pitches / month</h3>
+<table>
+  <thead>
+    <tr><th>Calendar month</th><th class="num">Same-month wins (20%)</th><th class="num">30–60d wins (20%)</th><th class="num">60–90d wins (10%)</th><th class="num">Total wins</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Month 1</strong> (first month of full output)</td><td class="num">4</td><td class="num">0</td><td class="num">0</td><td class="num">4</td></tr>
+    <tr><td><strong>Month 2</strong></td><td class="num">4</td><td class="num">4</td><td class="num">0</td><td class="num">8</td></tr>
+    <tr class="target"><td><strong>Month 3 onward — steady state</strong></td><td class="num">4</td><td class="num">4</td><td class="num">2</td><td class="num">10 ✓ quota</td></tr>
+  </tbody>
+</table>
+<div class="tip"><strong>Floor math:</strong> Even with <strong>zero inbound</strong>, a fully-ramped rep delivering only their 20 outbound pitches will hit <span class="kn green">10 wins/month</span> by Month 3 steady state. This is the quota. Hit the outbound number, the quota takes care of itself.</div>
+
+<h3>Calendar-month harvest — with inbound upside (30 total pitches / month = 20 outbound + 10 inbound)</h3>
+<table>
+  <thead>
+    <tr><th>Calendar month</th><th class="num">Same-month wins (20%)</th><th class="num">30–60d wins (20%)</th><th class="num">60–90d wins (10%)</th><th class="num">Total wins</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Month 1</strong></td><td class="num">6</td><td class="num">0</td><td class="num">0</td><td class="num">6</td></tr>
+    <tr><td><strong>Month 2</strong></td><td class="num">6</td><td class="num">6</td><td class="num">0</td><td class="num">12</td></tr>
+    <tr class="target"><td><strong>Month 3 onward — steady state</strong></td><td class="num">6</td><td class="num">6</td><td class="num">3</td><td class="num">15</td></tr>
+  </tbody>
+</table>
+<p style="font-size:13.5px;color:var(--muted)"><strong>Bonus math:</strong> Inbound is not measured — it varies week to week (could be 10, could be 40). But every inbound pitch adds leverage. The 3-month steady state lifts from 10 to ~15 when inbound is flowing.</p>
+
+<h3>Why the cohort waterfall matters — two rep takeaways</h3>
+<ol>
+  <li><strong>Your Month 1 pain is not a skill problem — it's a cohort problem.</strong> You can only harvest 20% of your pitches in the same month. Trust the process.</li>
+  <li><strong>Consistency wins.</strong> A rep who pitches 20 every month hits 10 every month at steady state. A rep who pitches 30 one month and 10 the next will see feast-famine wins for the next 3 months. Pipeline flatness = revenue flatness.</li>
+</ol>
+
+<hr>
+
+<h2 id="disqualify">Disqualification rules</h2>
+<p>Good reps disqualify fast. Bad reps hold onto dead deals and miss real ones. Every rep is expected to disqualify cleanly when these conditions are met:</p>
+
+<div class="crit"><strong>Disqualify immediately if:</strong>
+  <ul style="margin-top:8px;margin-bottom:0">
+    <li>The lead is <strong>not a restaurant</strong> (retail, FMCG, grocery — not ICP)</li>
+    <li>The lead is <strong>not in our ICP price point</strong> (too low avg ticket to justify All Access Plan value)</li>
+    <li>The lead is a <strong>pop-up or short-run operation</strong> (closing within 6 months, seasonal pop-up, event-only)</li>
+  </ul>
+</div>
+
+<div class="warn"><strong>Also disqualify (after following the cadence):</strong>
+  <ul style="margin-top:8px;margin-bottom:0">
+    <li>90 days since first contact with no stage progression → <strong>auto-disqualify</strong> unless manager override</li>
+    <li>Merchant ghosted through the full 3/7/14 cadence twice</li>
+    <li>Verbal-agreed but contract unsigned &gt; 30 days with no new signal</li>
+  </ul>
+</div>
+
+<hr>
+
+<h2 id="cycle">The 90-day deal cycle rule</h2>
+<p>Every Oddle deal has a 90-day life in the pipeline. After 90 days, it's auto-disqualified unless a manager override is applied.</p>
+
+<div class="info">
+  <strong>Why 90 days?</strong><br>
+  <ul style="margin-top:8px">
+    <li>Most deals close within 60 days of first contact</li>
+    <li>Remnants close in the final 30 days (days 60–90) — owner travel, partner approval, fiscal-year timing</li>
+    <li>Beyond 90 days the deal is statistically dead. Holding it in pipeline inflates the forecast and steals attention from live deals</li>
+  </ul>
+</div>
+
+<h4>Manager override — when 90 days is legitimately extended</h4>
+<ul>
+  <li>Owner is travelling and has confirmed a specific return-to-decision date</li>
+  <li>Deal is tied to a known external event (new outlet opening, CNY, fiscal year)</li>
+  <li>Contract is signed but payment processing delayed through finance — in which case move to Decision → Onboarded, not extend Evaluating</li>
+</ul>
+
+<div class="crit"><strong>Not a valid override:</strong> "merchant is still interested" / "just waiting" / "they said they'd get back to me." These are not commitments — they're stalls, and they are what the 90-day rule exists to clean out.</div>
+
+<hr>
+
+<h2 id="handoff">Handoff to CSM — Stage 4 → 5</h2>
+<div class="warn" style="margin-top:10px"><strong>WIP — to be finalised with CSM leadership + GM.</strong> Placeholder below. The rep must not sign-off on a deal until every criterion here is met.</div>
+
+<h4>Required at handoff (draft — pending final definition)</h4>
+<ul>
+  <li>Contract signed and stored in Attio</li>
+  <li>First invoice paid</li>
+  <li>Kickoff meeting booked with CSM + merchant</li>
+  <li>All merchant context documented in Attio notes: archetype, decision unit, key stakeholders, lever purchased, success metrics they expect</li>
+  <li>Product activation prerequisites identified (hardware, POS integration, team training needs)</li>
+  <li>Any commitments made during the sale are logged — special pricing, specific start dates, bundled features</li>
+</ul>
+
+<div class="info"><strong>Why this matters:</strong> CSM inherits the relationship. Every gap in the handoff is a churn risk. A merchant who has to re-explain their context to the CSM starts Stage 5 already disappointed.</div>
+
+<hr>
+
+<h2 id="lir">LIR — Leading Indicators of Retention</h2>
+<p>LIR is the measurable signal that a merchant will renew their All Access Plan. The rep is not measured on LIR — that's CSM turf — but the rep's job in Stage 5 is to support the push.</p>
+
+<h3>Standalone LIR thresholds</h3>
+<p style="font-size:14px;color:var(--muted)">When a merchant uses only one product, these are the standalone monthly targets that justify renewal:</p>
+<table>
+  <thead>
+    <tr><th>Product</th><th>LIR event</th><th>Value logic</th><th class="num">Monthly threshold</th><th class="num">Value</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Oddle Shop</strong></td><td>Monthly GMV</td><td>$1 GMV = $0.50 value</td><td class="num">$500 GMV</td><td class="num">$250</td></tr>
+    <tr><td><strong>Oddle Reserve</strong></td><td>Monthly bookings</td><td>$2 per booking</td><td class="num">125 bookings</td><td class="num">$250</td></tr>
+    <tr><td><strong>Oddle Enrolment</strong></td><td>Monthly enrolments</td><td>$1 per enrolment</td><td class="num">250 enrolments</td><td class="num">$250</td></tr>
+  </tbody>
+</table>
+
+<h3>Combined LIR — the cross-sell insight</h3>
+<p>With the All Access Plan, merchants can hit LIR through <em>any combination</em> of products. A merchant struggling to hit standalone LIR on one product may be one additional product away from strong retention.</p>
+<table>
+  <thead>
+    <tr><th>Product</th><th>Usage</th><th class="num">Value</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Oddle Shop</td><td>$300 GMV</td><td class="num">$150</td></tr>
+    <tr><td>Oddle Reserve</td><td>50 bookings</td><td class="num">$100</td></tr>
+    <tr><td>Oddle Enrolment</td><td>100 enrolments</td><td class="num">$100</td></tr>
+    <tr class="total"><td><strong>Combined total</strong></td><td>—</td><td class="num">$350 (≥ $250 ✓)</td></tr>
+  </tbody>
+</table>
+
+<div class="tip"><strong>Rep takeaway:</strong> When closing the deal, position the full All Access Plan — not a single product — because combined usage unlocks LIR faster. The merchant's best chance of renewing is <em>breadth</em> of product usage, not depth on one. <a href="https://docs.google.com/spreadsheets/d/1yFuoYNsksir3Zt6J2OWLQPNbsL_q5QEzAawDiKfBNks/edit?gid=0#gid=0">Full LIR source sheet →</a></div>
+
+<hr>
+
+<!-- ===================== OPERATING EXPECTATIONS ===================== -->
+<div class="ops-banner" id="ops">
+  <span class="tag">Operating expectations</span>
+  <h2 style="margin:0 0 6px">What you're measured on</h2>
+  <p>The above is the <em>curriculum</em> — how deals move. This section is the <em>operating layer</em> — the quotas and ramp schedule every rep is held to. Two different things, deliberately kept separate. Do not confuse the map with the meter.</p>
+</div>
+
+<h3>Monthly targets (fully ramped)</h3>
+<table>
+  <thead>
+    <tr><th>Metric</th><th class="num">Target</th><th>How it's measured</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Won deals per month</strong></td><td class="num">10</td><td>Signed contract + first invoice paid in the calendar month</td></tr>
+    <tr><td><strong>Self-generated outbound pitches per month</strong></td><td class="num">20</td><td>Pitches the rep sourced themselves (cold prospecting, not inbound)</td></tr>
+    <tr><td><strong>Inbound pitches per month</strong></td><td class="num" style="color:var(--muted)">bonus</td><td>Not measured — varies. Upside to wins.</td></tr>
+    <tr><td><strong>Unique companies prospected per month</strong></td><td class="num">200</td><td>Distinct companies worked — at 15% connect rate, this delivers ~30 appointments</td></tr>
+    <tr><td><strong>Pitch rejection rate</strong></td><td class="num">≤ 30%</td><td>Of pitches completed, no more than 30% end in a straight "no interest" outcome</td></tr>
+  </tbody>
+</table>
+
+<h3>Ramp schedule for new hires</h3>
+<p>A new hire does not hit full quota on day one. Ramp reflects the cohort waterfall: you can't harvest wins that haven't been pitched yet.</p>
+<table>
+  <thead>
+    <tr><th>Metric</th><th class="num">Month 1</th><th class="num">Month 2</th><th class="num">Month 3</th><th class="num">Month 4+</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Won deals (% of quota)</strong></td><td class="num">0%</td><td class="num">40%</td><td class="num">70%</td><td class="num">100%</td></tr>
+    <tr><td>= absolute wins</td><td class="num" style="color:var(--muted)">0</td><td class="num" style="color:var(--muted)">4</td><td class="num" style="color:var(--muted)">7</td><td class="num" style="color:var(--muted)">10</td></tr>
+    <tr><td><strong>Pitch completions (% of quota)</strong></td><td class="num">20%</td><td class="num">75%</td><td class="num">100%</td><td class="num">100%</td></tr>
+    <tr><td>= absolute pitches</td><td class="num" style="color:var(--muted)">4</td><td class="num" style="color:var(--muted)">15</td><td class="num" style="color:var(--muted)">20</td><td class="num" style="color:var(--muted)">20</td></tr>
+    <tr><td><strong>Unique companies prospected</strong></td><td class="num">100%</td><td class="num">100%</td><td class="num">100%</td><td class="num">100%</td></tr>
+    <tr><td>= absolute prospected</td><td class="num" style="color:var(--muted)">200</td><td class="num" style="color:var(--muted)">200</td><td class="num" style="color:var(--muted)">200</td><td class="num" style="color:var(--muted)">200</td></tr>
+  </tbody>
+</table>
+
+<div class="info"><strong>Why prospecting is 100% from Month 1:</strong> In Month 1, almost all of the new hire's time is spent on prospecting. They are building the pipeline that Month 2 and 3 will harvest. No prospecting in Month 1 = no pitches in Month 2 = no wins in Month 3. The cohort math is ruthless on this.</div>
+
+<h3>90-day deal cycle rule (recap)</h3>
+<ul>
+  <li>Every deal has a 90-day window from first contact to close</li>
+  <li>After 90 days: auto-disqualify unless manager override</li>
+  <li>Valid overrides: owner travel with specific return date; known external event; payment processing delay (move to Onboarded instead)</li>
+  <li>Not valid: "still interested," "just waiting"</li>
+</ul>
+
+<hr>
+
+<h2 id="failures">Common failure modes</h2>
+<p>Five patterns that kill deals and hide in reps' blind spots:</p>
+
+<ol>
+  <li><strong>Advancing the deal in Attio without meeting the exit criterion.</strong> Rep moves a deal to Evaluating because "the pitch went well" — but the merchant never verbally agreed to a problem. Forecast rots, coaching has nothing to fix.</li>
+  <li><strong>Confusing a slow deal with a dead deal.</strong> Rep drops a genuinely live 60-day deal because it's not closing fast enough. Or holds a ghost-lead past 90 days because "they said they'd come back." Use the exit criterion, not the feeling.</li>
+  <li><strong>Under-prospecting in Month 1.</strong> New hire focuses on the 4 pitches in front of them instead of building the pipeline for Month 2. Month 3 wins collapse.</li>
+  <li><strong>Disappearing after close.</strong> Rep signs the deal and ghosts. Merchant feels abandoned. Activation stalls. Handoff to CSM fails. Churn risk spikes.</li>
+  <li><strong>Scope-carving at the last moment.</strong> Merchant tries to drop a product at Decision stage. Rep accepts without showing what the merchant loses. LIR math now worse, renewal risk up.</li>
+</ol>
+
+<hr>
+
+<h2 id="cfu">Check for understanding</h2>
+<div class="cfu">
+  <p style="margin-bottom:14px"><strong>Before advancing to Module 5, a rep should be able to answer all of the below with no materials in front of them:</strong></p>
+  <ol>
+    <li>Name the 5 Oddle buyer stages in order, and state the merchant's mental state in one sentence for each.</li>
+    <li>For each stage, state the testable exit criterion — not a description, a criterion that can be checked yes/no.</li>
+    <li>Who owns each stage? Where does Marketing contribute? Where does GTM contribute? Where does CSM take over?</li>
+    <li>What is the math that says 200 prospected companies per month delivers ~30 appointments?</li>
+    <li>Given 20 outbound pitches per month, how many wins should a fully-ramped rep expect per calendar month? Show the cohort waterfall.</li>
+    <li>What is the 90-day rule? What are the three valid override reasons? What are two common invalid override excuses?</li>
+    <li>What are the three disqualification criteria for immediate drop?</li>
+    <li>What is LIR? What is the standalone threshold for Oddle Shop? For Reserve? For Enrolment?</li>
+    <li>What is the combined LIR insight — why does the rep always position All Access Plan at close?</li>
+    <li>Name two common failure modes a rep falls into, and the fix.</li>
+  </ol>
+</div>
+
+<p style="font-size:13px;color:var(--muted);margin-top:40px;text-align:center">
+  Module 4 of 11 · Oddle Sales Onboarding (Equipping Layer) · v1 · April 2026<br>
+  Pair with: <a href="Understanding-FB-v2.html">Module 1 — Understanding F&amp;B</a> · Module 2 — ICP &amp; Persona Mastery · <a href="Understanding-Oddle-v1.html">Module 3 — Understanding Oddle</a> · <a href="Module-6-Prospecting-Playbook-v1.html">Module 6 — Prospecting Playbook</a> · <a href="https://alanoddle1614.github.io/oddle-sales-training/v6.html">Module 7 — Sales Methodology &amp; Pitch (V6)</a>
+</p>
+
+</main>
+</div>
+
+<script>
+// sidebar active-link highlight on scroll
+const links = document.querySelectorAll('.side-link');
+const sections = [...links].map(l => document.querySelector(l.getAttribute('href'))).filter(Boolean);
+function updateActive(){
+  const y = window.scrollY + 120;
+  let active = sections[0];
+  for (const s of sections){ if (s.offsetTop <= y) active = s; }
+  links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + active.id));
+}
+window.addEventListener('scroll', updateActive, { passive:true });
+updateActive();
+</script>
+
+</body>
+</html>
