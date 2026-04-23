@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 8 — The Demo</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --purple:#3B0764;--purple-l:#7C3AED;--purple-bg:#F5F3FF;--purple-bdr:#EDE9FE;
+  --fg:#1A1A1A;--muted:#6B7280;--border:#E5E7EB;
+  --green:#059669;--green-bg:#ECFDF5;--green-bdr:#A7F3D0;
+  --orange:#D97706;--orange-bg:#FFFBEB;--orange-bdr:#FDE68A;
+  --red:#DC2626;--red-bg:#FEF2F2;--red-bdr:#FECACA;
+  --blue:#2563EB;--blue-bg:#EFF6FF;--blue-bdr:#BFDBFE;
+  --r:10px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;color:var(--fg);background:#fff;line-height:1.7;overflow-x:hidden}
+a{color:var(--purple-l);text-decoration:none}
+
+.topbar{background:var(--purple);color:#fff;padding:14px 32px;position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:16px}
+.topbar .logo{font-size:17px;font-weight:700;letter-spacing:-.02em}
+.topbar .sub{font-size:12px;opacity:.6;margin-left:auto}
+
+.chapnav{position:sticky;top:52px;z-index:99;background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;padding:0 20px;gap:0}
+.chapnav-tab{display:flex;align-items:center;gap:8px;padding:14px 20px;cursor:pointer;font-size:13px;font-weight:500;color:var(--muted);transition:all .15s;white-space:nowrap;border-bottom:3px solid transparent}
+.chapnav-tab:hover{color:var(--purple)}
+.chapnav-tab.active{color:var(--purple);font-weight:700;border-bottom-color:var(--purple)}
+.chapnav-tab .cn-num{width:24px;height:24px;border-radius:50%;background:var(--border);color:var(--muted);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s}
+.chapnav-tab.active .cn-num{background:var(--purple);color:#fff;box-shadow:0 0 0 3px var(--purple-bg)}
+.chapnav-arrow{color:var(--border);font-size:16px;padding:0 2px;user-select:none;font-weight:300}
+
+.wrap{display:flex}
+
+.side{width:220px;position:sticky;top:101px;height:calc(100vh - 101px);overflow-y:auto;border-right:1px solid var(--border);flex-shrink:0;background:#FAFAFA;padding:16px 0 40px}
+.side::-webkit-scrollbar{width:4px}
+.side::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+.side-sections{padding:0 14px}
+.side-group{margin-bottom:16px}
+.side-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);padding:0 12px;margin-bottom:6px}
+.side-link{display:block;padding:7px 12px;font-size:13px;color:var(--muted);border-radius:6px;transition:all .1s;cursor:pointer;border-left:3px solid transparent;margin-bottom:1px}
+.side-link:hover{background:var(--purple-bg);color:var(--purple)}
+.side-link.active{color:var(--purple);font-weight:600;border-left-color:var(--purple);background:var(--purple-bg)}
+
+.content{flex:1;max-width:760px;padding:0 48px 120px;margin:0 auto}
+.chapter{display:none}
+.chapter.active{display:block;animation:fadeIn .2s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+.hero{padding:48px 0 12px}
+.hero .ch-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple-l);margin-bottom:6px}
+.hero h1{font-size:30px;font-weight:700;color:var(--purple);margin-bottom:8px;line-height:1.2}
+.hero .desc{font-size:15px;color:var(--muted);margin-bottom:10px;max-width:580px}
+.hero .read-time{display:inline-block;font-size:11px;font-weight:600;color:var(--green);background:var(--green-bg);padding:3px 10px;border-radius:12px}
+
+h2{font-size:24px;font-weight:700;color:var(--purple);margin:48px 0 8px;padding-top:16px}
+h2:first-child{margin-top:0}
+h3{font-size:18px;font-weight:700;margin:28px 0 8px;color:var(--fg)}
+h4{font-size:15px;font-weight:700;margin:22px 0 6px}
+p{margin-bottom:14px;font-size:15px}
+ul,ol{margin-bottom:14px;padding-left:24px}
+li{margin-bottom:6px;font-size:15px}
+hr{border:none;border-top:1px solid var(--border);margin:40px 0}
+
+.say{background:var(--purple-bg);border-left:4px solid var(--purple-l);padding:14px 20px;border-radius:0 8px 8px 0;margin:12px 0 16px;font-style:italic;font-size:15px;line-height:1.7}
+
+table{width:100%;border-collapse:collapse;margin:12px 0 20px;font-size:14px}
+th{background:var(--purple);color:#fff;padding:10px 14px;text-align:left;font-weight:600}
+td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:top}
+
+.tip,.warn,.crit,.info{padding:14px 18px;border-radius:var(--r);margin:14px 0 18px;font-size:14px}
+.tip{background:var(--green-bg);border:1px solid var(--green-bdr)}
+.warn{background:var(--orange-bg);border:1px solid var(--orange-bdr)}
+.crit{background:var(--red-bg);border:1px solid var(--red-bdr)}
+.info{background:var(--blue-bg);border:1px solid var(--blue-bdr)}
+
+.nkr-pill{display:inline-block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:3px 10px;border-radius:12px;margin-left:8px;vertical-align:middle}
+.nkr-new{background:var(--blue-bg);color:var(--blue)}
+.nkr-known{background:var(--orange-bg);color:var(--orange)}
+.nkr-repeat{background:var(--green-bg);color:var(--green)}
+
+.step-head{display:flex;align-items:center;gap:14px;margin:40px 0 8px;padding-top:16px}
+.step-num{width:36px;height:36px;border-radius:50%;background:var(--purple);color:#fff;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.step-head h2{margin:0;padding:0}
+
+.feat{background:#FAFAFA;border:1px solid var(--border);border-radius:var(--r);padding:16px 20px;margin:10px 0 16px}
+.feat h4{margin:0 0 8px;color:var(--purple);font-size:14px;text-transform:uppercase;letter-spacing:.03em;font-weight:700}
+.feat ul{margin:0;padding-left:20px}
+.feat li{font-size:14px;margin-bottom:4px}
+.feat li strong{color:var(--fg)}
+
+.flow{display:flex;gap:6px;margin:20px 0 28px;flex-wrap:wrap;align-items:stretch}
+.flow-step{flex:1;min-width:140px;background:#FAFAFA;border:2px solid var(--border);border-radius:10px;padding:14px 12px;text-align:center;transition:all .15s}
+.flow-step .fs-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:4px}
+.flow-step .fs-name{font-size:14px;font-weight:700;color:var(--fg);margin-bottom:4px}
+.flow-step .fs-sub{font-size:11px;color:var(--muted);line-height:1.5}
+.flow-step.hi{border-color:var(--purple-l);background:var(--purple-bg)}
+.flow-arrow{display:flex;align-items:center;color:var(--border);font-size:20px;font-weight:300}
+
+.next-ch{background:var(--purple);color:#fff;border-radius:12px;padding:24px 28px;margin-top:48px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:all .12s}
+.next-ch:hover{opacity:.92;transform:translateY(-1px)}
+.next-ch h4{color:#fff;margin:0;font-size:16px}
+.next-ch p{color:rgba(255,255,255,.65);margin:4px 0 0;font-size:13px}
+
+.pair-with{background:#FAFAFA;border:1px solid var(--border);border-radius:var(--r);padding:16px 20px;margin-top:32px;font-size:13px}
+.pair-with strong{color:var(--purple);display:block;margin-bottom:6px;font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+.pair-with a{margin-right:8px}
+
+@media(max-width:860px){
+  .side{display:none}
+  .chapnav{padding:0 8px;overflow-x:auto;-webkit-overflow-scrolling:touch;justify-content:flex-start}
+  .chapnav-tab{padding:10px 10px;font-size:11px;gap:4px}
+  .chapnav-tab .cn-num{width:20px;height:20px;font-size:9px}
+  .content{padding:0 20px 80px;max-width:100%}
+  .hero{padding:28px 0 8px}
+  .hero h1{font-size:24px}
+  .flow{flex-direction:column}
+  .flow-arrow{transform:rotate(90deg);justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="logo">Oddle</div>
+  <span class="sub">Module 8 · The Demo</span>
+</div>
+
+<nav class="chapnav" id="chapnav">
+  <div class="chapnav-tab active" onclick="showCh(0)"><span class="cn-num">1</span><span class="cn-label">Why We Demo</span></div>
+  <span class="chapnav-arrow">›</span>
+  <div class="chapnav-tab" onclick="showCh(1)"><span class="cn-num">2</span><span class="cn-label">The Core Flow</span></div>
+  <span class="chapnav-arrow">›</span>
+  <div class="chapnav-tab" onclick="showCh(2)"><span class="cn-num">3</span><span class="cn-label">What They Ask Next</span></div>
+</nav>
+
+<div class="wrap">
+
+<nav class="side" id="sidebar">
+  <div class="side-sections" id="side-links"></div>
+</nav>
+
+<div class="content">
+
+<!-- ==================== CHAPTER 1 — WHY WE DEMO ==================== -->
+<div class="chapter active" id="ch0">
+
+<div class="hero">
+  <div class="ch-label">Chapter 1</div>
+  <h1>Why We Demo</h1>
+  <div class="desc">The demo is proof — not selling. The merchant already agrees our solution makes sense. They haven't signed yet. They want to see the system before they decide. The demo is what turns "this sounds right" into "let's do it."</div>
+  <span class="read-time">3 min read</span>
+</div>
+
+<h2 id="c0-when">When a Demo Happens</h2>
+<p>A demo is not the start of the sale. It's the last step before they sign — the part that turns "yes, this sounds right" into "ok, let's do it." Run a demo only after three things are true:</p>
+
+<table>
+<tr><th>#</th><th>What must already be agreed</th><th>Where it was earned</th></tr>
+<tr><td>1</td><td>The merchant has agreed on their gaps and opportunities — and wants to solve them.</td><td>M7 · Discovery + Get Buy-In</td></tr>
+<tr><td>2</td><td>The merchant has seen our intro and the All Access Plan — and agrees it's the right direction.</td><td>M7 · Intro</td></tr>
+<tr><td>3</td><td>The merchant wants to see how it actually works before they sign.</td><td>M7 · Transition to Demo</td></tr>
+</table>
+
+<div class="crit"><strong>If any of these three is missing, you are not demoing. You are still pitching.</strong> Stop. Go back to M7. A demo run before the merchant agrees is just a feature tour — and feature tours don't close deals.</div>
+
+<div class="info"><strong>Important — the merchant has not said yes yet.</strong> They agree the direction is right. Now they want to see it before they sign. The demo's job is to move them from "sounds right" to "let's go." Don't treat the demo like a victory lap. It's the last thing that gets them to sign.</div>
+
+<h2 id="c0-what">What the Demo Is For</h2>
+<p>One job. Show them it's real — and that they can see themselves running it.</p>
+
+<div class="say">"You've agreed this is the right direction for your business. Let me show you exactly how it works — so you can see it before you decide."</div>
+
+<p>Everything before the demo was talk — gaps, leakages, the All Access Plan on paper. The demo is where the talk becomes real software the merchant can see, click through, and picture themselves using next week. Do this part well and the close is easy.</p>
+
+<h2 id="c0-spine">Follow the Same Three Parts Every Time</h2>
+<p>Every merchant is different. What you show more or less of depends on their business. But every Oddle demo walks the same three parts, in the same order:</p>
+
+<div class="flow">
+  <div class="flow-step"><div class="fs-num">Part 1</div><div class="fs-name">Touchpoints</div><div class="fs-sub">eShop + Reserve</div></div>
+  <div class="flow-arrow">›</div>
+  <div class="flow-step"><div class="fs-num">Part 2</div><div class="fs-name">Enrolment</div><div class="fs-sub">Capture the diner</div></div>
+  <div class="flow-arrow">›</div>
+  <div class="flow-step hi"><div class="fs-num">Part 3</div><div class="fs-name">CDP + Email</div><div class="fs-sub">Segment + engage</div></div>
+</div>
+
+<p>Cover all three in order. Skip one and you've broken New → Known → Repeat in front of the merchant — and the story falls apart.</p>
+
+<h3 id="c0-skip">What You Can Skip — and What You Can't</h3>
+<p>Inside a part, you can skip things that don't apply to their business. For example — don't demo Reserve to a fried-chicken QSR. But you can't skip a whole part. Use this table to decide:</p>
+
+<table>
+<tr><th>Segment</th><th>Skip when…</th><th>Why</th></tr>
+<tr><td><strong>eShop</strong> (Part 1)</td><td>Fine dining or any merchant who has <em>clearly</em> said they won't do delivery or takeaway.</td><td>They don't do the channel. Showing eShop wastes time and makes it look like you didn't listen.</td></tr>
+<tr><td><strong>Reserve</strong> (Part 1)</td><td>QSR, fast casual, fried chicken, counter-service, cloud kitchens — any place where diners don't book a table.</td><td>Jollibee-type merchants don't take reservations. Showing Reserve wastes time and makes it look like you didn't listen.</td></tr>
+<tr><td><strong>Enrolment</strong> (Part 2)</td><td><strong>Never skip.</strong></td><td>Every restaurant captures diners — dine-in, takeaway, delivery, walk-in. The QR on the table works for all of them. This is the part most merchants have never seen done right. If you skip it, you've missed the whole point.</td></tr>
+<tr><td><strong>CDP + Email</strong> (Part 3)</td><td><strong>Never skip.</strong></td><td>Without this, the merchant sees how to collect data — but not how to make money from it. No Repeat story means the whole All Access Plan doesn't make sense.</td></tr>
+</table>
+
+<div class="warn"><strong>Decide what to skip before you open the laptop.</strong> You should already know the business from M7. If you're unsure whether eShop or Reserve applies, ask one question before you start — don't find out mid-demo. Fumbling mid-share makes you look unprepared.</div>
+
+<div class="tip"><strong>The closing line of every demo.</strong> After Part 3, look up from the screen and say: <em>"That's what Oddle is."</em> Four words. Don't add anything. The demo did the work.</div>
+
+<div class="next-ch" onclick="showCh(1)">
+  <div>
+    <h4>Next — The Core Flow</h4>
+    <p>Touchpoints → Enrolment → CDP + Email. The three-part spine every demo walks.</p>
+  </div>
+  <div style="font-size:24px">›</div>
+</div>
+
+</div>
+<!-- END CHAPTER 1 -->
+
+
+<!-- ==================== CHAPTER 2 — THE CORE FLOW ==================== -->
+<div class="chapter" id="ch1">
+
+<div class="hero">
+  <div class="ch-label">Chapter 2</div>
+  <h1>The Core Flow</h1>
+  <div class="desc">Three parts, always in this order. Touchpoints → Enrolment → CDP + Email. At the end of Part 3 you say: "That's what Oddle is."</div>
+  <span class="read-time">12 min read</span>
+</div>
+
+<div class="info"><strong>Before you open any tab.</strong> You should already know the business from M7. Open <em>Reserve</em> tabs if the merchant takes bookings. Open <em>eShop</em> tabs if they do delivery or takeaway. Open both if they do both. Skip what doesn't apply — but <strong>never skip Enrolment or CDP + Email.</strong> (See <a href="#c0-skip" onclick="event.preventDefault();showCh(0);setTimeout(function(){var el=document.getElementById('c0-skip');if(el){window.scrollTo({top:el.getBoundingClientRect().top+window.scrollY-112,behavior:'smooth'});}},50);">skip table in Chapter 1</a>.)</div>
+
+<!-- PART 1 -->
+<div class="step-head">
+  <div class="step-num">1</div>
+  <h2 id="c1-p1">Discovery Touchpoints <span class="nkr-pill nkr-new">New</span> <span class="nkr-pill nkr-known">Known</span></h2>
+</div>
+
+<p>Show where a diner first meets the restaurant. Two touchpoints: <strong>eShop</strong> (online order) and <strong>Reserve</strong> (reservation). Demo whichever applies. If both, demo both.</p>
+
+<h3 id="c1-p1-eshop">eShop — The Customer Journey</h3>
+
+<div class="warn"><strong>Skip this if:</strong> the merchant is fine dining or has <em>clearly</em> said they won't do delivery or takeaway. Example — an omakase that only serves diners in the seat. Don't demo eShop to someone who's ruled it out. Go straight to Reserve.</div>
+
+<p>Open a live partner eShop. Walk through it from the diner's side — browse menu, add to cart, check out. Then show the two features that make eShop more than a menu page.</p>
+
+<div class="feat">
+  <h4>Key features to cover</h4>
+  <ul>
+    <li><strong>Variants and options</strong> — size, add-ons, modifiers. Show how one menu item can carry full customisation and still order cleanly.</li>
+    <li><strong>Promos</strong> — discount codes, bundles, time-limited offers. Show how the merchant runs a promo themselves without calling IT.</li>
+  </ul>
+</div>
+
+<h3 id="c1-p1-reserve">Reserve — The Customer Journey</h3>
+
+<div class="warn"><strong>Skip this if:</strong> the merchant is QSR, fast casual, fried chicken, counter-service, or cloud kitchen — any place where diners don't book a table. Example — Jollibee doesn't take reservations. Don't demo Reserve to them. Go straight to Enrolment.</div>
+
+<p>Open a live partner Reserve. Show a diner booking a table — from Google, from the restaurant's own site, from the Virtual Lounge. Then walk through the four things most merchants care about.</p>
+
+<div class="feat">
+  <h4>Key features to cover</h4>
+  <ul>
+    <li><strong>Google Reserve</strong> — booking direct from Google search. Zero clicks to a third-party.</li>
+    <li><strong>Normal reservation</strong> — the default flow from the restaurant's own site.</li>
+    <li><strong>Reservations for different areas</strong> — bar, dining room, private room, terrace. Each area bookable on its own with its own rules.</li>
+    <li><strong>Credit card hold / prepayment</strong> — for busy slots, omakase seats, tasting menus. Cuts no-shows.</li>
+  </ul>
+</div>
+
+<div class="tip"><strong>Stay on the diner's side.</strong> In Part 1 you only show what a customer sees. Back-of-house and ops come later in Chapter 3 — and only if they ask.</div>
+
+<!-- PART 2 -->
+<div class="step-head">
+  <div class="step-num">2</div>
+  <h2 id="c1-p2">Enrolment — Capture the Diner <span class="nkr-pill nkr-known">Known</span></h2>
+</div>
+
+<p>This is the part most merchants have never seen done properly. Spend time here. Walk the <em>full flow</em> — don't shortcut.</p>
+
+<div class="say">"Most restaurants lose the diner the moment they walk out the door. Enrolment is how you keep them."</div>
+
+<h3 id="c1-p2-why">Why Enrolment Gets Its Own Part</h3>
+<p>eShop and Reserve only capture the diners who book or order online. The walk-in guest, the one who came because a friend brought them — they stay invisible. Unless you have a way to capture them right at the table.</p>
+<p>Enrolment is new to most operators. They haven't seen it work before. That's why you go deeper here than anywhere else in the demo.</p>
+
+<h3 id="c1-p2-flow">Walk the Full Flow</h3>
+<p>Walk it as one continuous loop, from the diner's point of view:</p>
+
+<div class="feat">
+  <h4>The full Enrolment flow</h4>
+  <ul>
+    <li><strong>Trigger</strong> — the QR code or NFC on the table. Diner scans.</li>
+    <li><strong>Landing</strong> — the Virtual Lounge opens. Menu, membership sign-up, survey, reward.</li>
+    <li><strong>Membership</strong> — name, phone, email, birthday captured. Diner is now a known customer.</li>
+    <li><strong>Survey</strong> — "How did you hear about us? First time here? What did you order? Would you recommend us?" Data you can measure instead of guess.</li>
+    <li><strong>Reward</strong> — automatic voucher, usable within 90 days on their next visit. You've just booked their return.</li>
+    <li><strong>Loop</strong> — every redemption triggers the next voucher. One-time diner becomes a regular, automatically.</li>
+  </ul>
+</div>
+
+<div class="tip"><strong>Say the number.</strong> "Most restaurants know only about 25% of their diners. With Enrolment on every table, our operators typically know 60–70% within 90 days." If they raised this gap in M7, they'll remember the number.</div>
+
+<!-- PART 3 -->
+<div class="step-head">
+  <div class="step-num">3</div>
+  <h2 id="c1-p3">CDP + Email Marketing <span class="nkr-pill nkr-known">Known</span> <span class="nkr-pill nkr-repeat">Repeat</span></h2>
+</div>
+
+<p>Everything from Part 1 and Part 2 — eShop orders, reservations, walk-in enrolments — lands in one place. The CDP. From the CDP you segment customers. From segments you send emails. Emails bring them back.</p>
+
+<div class="flow">
+  <div class="flow-step"><div class="fs-num">Inputs</div><div class="fs-name">Touchpoints + Enrolment</div><div class="fs-sub">Every diner captured</div></div>
+  <div class="flow-arrow">›</div>
+  <div class="flow-step"><div class="fs-num">Unify</div><div class="fs-name">CDP</div><div class="fs-sub">One profile per diner</div></div>
+  <div class="flow-arrow">›</div>
+  <div class="flow-step hi"><div class="fs-num">Engage</div><div class="fs-name">Email Marketing</div><div class="fs-sub">Broadcast + automation</div></div>
+</div>
+
+<h3 id="c1-p3-cdp">CDP — Segment the Customers</h3>
+<p>Open the CDP. Show one customer profile — every booking, order, enrolment, visit, and spend — stitched into one record. Then show segmentation.</p>
+
+<div class="feat">
+  <h4>Show the merchant how to segment</h4>
+  <ul>
+    <li><strong>By value</strong> — top 20% spenders, VIPs, one-time high-spend diners.</li>
+    <li><strong>By frequency</strong> — weekly regulars, monthly, lapsed, never returned.</li>
+    <li><strong>By channel</strong> — dine-in only, delivery only, both.</li>
+    <li><strong>By source</strong> — Google, Instagram, walk-in, referral.</li>
+    <li><strong>By recency</strong> — visited in last 30 days, 60 days, 90+ days lapsed.</li>
+  </ul>
+</div>
+
+<p>Each of these is a segment. Each segment is a campaign. Which is where Email Marketing comes in.</p>
+
+<h3 id="c1-p3-email">Email Marketing — Broadcast + Automation</h3>
+<p>Open Email Marketing. Show both modes — broadcasts the merchant runs, and automations that run by themselves.</p>
+
+<div class="feat">
+  <h4>Broadcast</h4>
+  <ul>
+    <li><strong>AI-generated</strong> — pick a segment, tell the AI what the campaign is about, it writes the email for you.</li>
+    <li><strong>Self-generated</strong> — full editor, templates, preview.</li>
+    <li>Send to a segment, track opens and conversions, feed results back to the CDP.</li>
+  </ul>
+</div>
+
+<div class="feat">
+  <h4>Automation</h4>
+  <ul>
+    <li><strong>Win back lapsed regulars</strong> — runs every Monday, finds anyone who hasn't come back in 60 days, skips those who already redeemed.</li>
+    <li><strong>Birthday campaigns</strong> — auto-send a voucher one week before a diner's birthday.</li>
+    <li><strong>Post-visit follow-up</strong> — survey or thank-you, fires automatically after every visit.</li>
+    <li>Set it up once. Runs forever.</li>
+  </ul>
+</div>
+
+<hr>
+
+<h2 id="c1-close">That's What Oddle Is</h2>
+<p>Close the laptop lid half an inch. Look up. Say:</p>
+
+<div class="say"><strong>"That's what Oddle is. Touchpoints bring in new diners. Enrolment turns them into known customers. CDP and Email turn known customers into regulars. New → Known → Repeat — one system, one piece of software, running in your restaurant."</strong></div>
+
+<p>That's the end of the core demo. The merchant now has a clear picture of what they'd be running. Chapter 3 covers what usually comes next — the "how do I run this?" and "what does it cost?" questions that come up right before they sign.</p>
+
+<div class="next-ch" onclick="showCh(2)">
+  <div>
+    <h4>Next — What They Ask Next</h4>
+    <p>Operations questions + costing. Show only what they ask for.</p>
+  </div>
+  <div style="font-size:24px">›</div>
+</div>
+
+</div>
+<!-- END CHAPTER 2 -->
+
+
+<!-- ==================== CHAPTER 3 — WHAT THEY ASK NEXT ==================== -->
+<div class="chapter" id="ch2">
+
+<div class="hero">
+  <div class="ch-label">Chapter 3</div>
+  <h1>What They Ask Next</h1>
+  <div class="desc">After the core flow, most merchants have two kinds of follow-up questions — operational ("how do I actually run this?") and costing ("what does this cost me?"). Show only what they ask for.</div>
+  <span class="read-time">6 min read</span>
+</div>
+
+<div class="info"><strong>Only show this if they ask.</strong> Unlike the core flow, Chapter 3 isn't compulsory. Open these tabs only when the merchant raises the question. Showing ops and costing when no one asked just adds time and hurts the close.</div>
+
+<h2 id="c2-ops">Operations Questions</h2>
+<p>Once they've seen the customer side, operators want to know how their team runs it. Three common questions — show each only if they ask.</p>
+
+<h3 id="c2-ops-orders">Manage Orders</h3>
+<p>Open the eShop ops dashboard. Show how an order comes in, how it goes to the kitchen, how the team marks it ready, how the status goes back to the customer. Keep it short — most operators just need to see it's one clean screen.</p>
+
+<div class="feat">
+  <h4>What to show</h4>
+  <ul>
+    <li>New orders with their status</li>
+    <li>Kitchen print or KDS</li>
+    <li>Prep-time rules — adjustable for peak hours</li>
+    <li>Menu, pricing, promo control — live, no IT needed</li>
+  </ul>
+</div>
+
+<h3 id="c2-ops-logistics">Manage Logistics</h3>
+<p>For merchants running their own delivery or using a fleet. Show how delivery works end to end.</p>
+
+<div class="feat">
+  <h4>What to show</h4>
+  <ul>
+    <li>Delivery options — your own drivers, integrated fleet, or a mix</li>
+    <li>Zone and distance rules for delivery fees</li>
+    <li>Driver assignment and live tracking</li>
+    <li>Customer-facing tracking link</li>
+  </ul>
+</div>
+
+<h3 id="c2-ops-reservations">Manage Reservations</h3>
+<p>For merchants with a dine-in business. Show the Reserve dashboard from the host's point of view.</p>
+
+<div class="feat">
+  <h4>What to show</h4>
+  <ul>
+    <li>Today's bookings by time slot</li>
+    <li>Floor plan and table assignments by area</li>
+    <li>VIP flags, dietary notes, guest history on each booking</li>
+    <li>Walk-in capacity tracking</li>
+  </ul>
+</div>
+
+<h2 id="c2-cost">Costing</h2>
+<p>Most merchants want to see the numbers before they sign. For eShop, there's a tool for this — use it.</p>
+
+<h3 id="c2-cost-eshop">eShop Cost Calculator</h3>
+<p>Open the eShop cost calculator. Put in the merchant's own numbers — average online order value, orders per month, current marketplace commission. The calculator shows the saving vs marketplaces, line by line.</p>
+
+<div class="feat">
+  <h4>What the calculator shows</h4>
+  <ul>
+    <li>Current cost on marketplace — commission + fees per order × volume</li>
+    <li>Cost on Oddle eShop — platform fee + per-order costs</li>
+    <li>Net saving per month, per year</li>
+    <li>Break-even point — the month they start saving money from switching</li>
+  </ul>
+</div>
+
+<div class="tip"><strong>Use their real numbers, not sample ones.</strong> The power is in the merchant seeing their own data. If they don't know their current marketplace cost, help them estimate from monthly GMV and the marketplace commission % — but always use their numbers, never a generic example.</div>
+
+<div class="warn"><strong>Open question for Alan.</strong> Reserve costing and Enrolment / All Access Plan costing don't have a calculator today. For now, reps go to the standard pricing table and walk through All Access commercials as covered in Module 5. Is a full costing calculator covering Reserve + Enrolment in scope for a v2 build?</div>
+
+<hr>
+
+<h2 id="c2-wrap">Wrap-Up</h2>
+<p>After the core flow (Chapter 2) and any questions they raised (Chapter 3), you have nothing more to demo. What's left is the paperwork — confirm the plan, sign the agreement, set the start date. That's Module 5 (Products &amp; Pricing) and the closing flow in M7 — not this module.</p>
+
+<div class="crit"><strong>Don't keep demoing.</strong> When the merchant stops asking, the demo is done. Reps who keep clicking through tabs "just one more thing" hurt the close. The demo did its job — move to paperwork.</div>
+
+<h2 id="c2-cfu">Check-For-Understanding</h2>
+<p>Before your first live demo, you should be able to answer these from memory.</p>
+
+<ol>
+  <li>What are the three things that must be true <em>before</em> you run a demo?</li>
+  <li>In one sentence — what is the job of a demo?</li>
+  <li>Name the three parts of the core flow, in order. Which NKR stages does each cover?</li>
+  <li>Which part of the demo do you go deepest on, and why?</li>
+  <li>Name the four Reserve features you always cover in Part 1.</li>
+  <li>Name the two eShop features you always cover in Part 1.</li>
+  <li>Walk the full Enrolment flow in 6 steps — trigger to loop.</li>
+  <li>What are the five segmentation lenses you demo in the CDP?</li>
+  <li>What are the two modes of Email Marketing? Name at least one automation.</li>
+  <li>What is the closing line after Part 3?</li>
+  <li>A merchant asks "how does my team manage orders?" — what do you open, and how long do you spend on it?</li>
+  <li>When do you stop demoing?</li>
+</ol>
+
+<div class="pair-with">
+  <strong>Pair this module with:</strong>
+  <a href="Understanding-Oddle-v1.html">M3 · Oddle Methodology</a> ·
+  <a href="Module-4-Buyer-Journey.html">M4 · Buyer Journey</a> ·
+  <a href="Module-6-Prospecting-Playbook-v1.html">M6 · Prospecting</a> ·
+  <a href="pitchguidev1.html">M7 · Sales Methodology &amp; Pitch</a>
+</div>
+
+<div class="next-ch" onclick="window.location.href='Onboarding-Program-Dashboard.html'">
+  <div>
+    <h4>Back to Program Dashboard</h4>
+    <p>See where Module 8 fits across the onboarding spine.</p>
+  </div>
+  <div style="font-size:24px">›</div>
+</div>
+
+</div>
+<!-- END CHAPTER 3 -->
+
+</div>
+</div>
+
+<script>
+const SIDE_LINKS = [
+  [
+    {g:'Chapter 1 · Why We Demo', items:[
+      {h:'c0-when', t:'When a demo happens'},
+      {h:'c0-what', t:'What it\'s for'},
+      {h:'c0-spine', t:'Cater + spine'},
+      {h:'c0-skip', t:'— Skip matrix'}
+    ]}
+  ],
+  [
+    {g:'Chapter 2 · The Core Flow', items:[
+      {h:'c1-p1', t:'Part 1 · Touchpoints'},
+      {h:'c1-p1-eshop', t:'— eShop'},
+      {h:'c1-p1-reserve', t:'— Reserve'},
+      {h:'c1-p2', t:'Part 2 · Enrolment'},
+      {h:'c1-p2-why', t:'— Why it\'s deep'},
+      {h:'c1-p2-flow', t:'— Full flow'},
+      {h:'c1-p3', t:'Part 3 · CDP + Email'},
+      {h:'c1-p3-cdp', t:'— CDP segmentation'},
+      {h:'c1-p3-email', t:'— Email broadcast + auto'},
+      {h:'c1-close', t:'"That\'s Oddle"'}
+    ]}
+  ],
+  [
+    {g:'Chapter 3 · What They Ask', items:[
+      {h:'c2-ops', t:'Operations'},
+      {h:'c2-ops-orders', t:'— Orders'},
+      {h:'c2-ops-logistics', t:'— Logistics'},
+      {h:'c2-ops-reservations', t:'— Reservations'},
+      {h:'c2-cost', t:'Costing'},
+      {h:'c2-cost-eshop', t:'— eShop calculator'},
+      {h:'c2-wrap', t:'Wrap-up'},
+      {h:'c2-cfu', t:'CFU self-test'}
+    ]}
+  ]
+];
+
+let currentCh = 0;
+
+function renderSidebar(chIdx){
+  const side = document.getElementById('side-links');
+  side.innerHTML = '';
+  SIDE_LINKS[chIdx].forEach(group=>{
+    const groupDiv = document.createElement('div');
+    groupDiv.className = 'side-group';
+    const label = document.createElement('div');
+    label.className = 'side-label';
+    label.textContent = group.g;
+    groupDiv.appendChild(label);
+    group.items.forEach(item=>{
+      const a = document.createElement('a');
+      a.className = 'side-link';
+      a.href = '#' + item.h;
+      a.textContent = item.t;
+      a.onclick = function(e){
+        e.preventDefault();
+        const el = document.getElementById(item.h);
+        if(el){
+          const y = el.getBoundingClientRect().top + window.scrollY - 112;
+          window.scrollTo({top:y, behavior:'smooth'});
+        }
+      };
+      groupDiv.appendChild(a);
+    });
+    side.appendChild(groupDiv);
+  });
+}
+
+function showCh(idx){
+  currentCh = idx;
+  document.querySelectorAll('.chapter').forEach((c,i)=>c.classList.toggle('active', i===idx));
+  document.querySelectorAll('.chapnav-tab').forEach((t,i)=>t.classList.toggle('active', i===idx));
+  renderSidebar(idx);
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function activateScrollSpy(){
+  const links = document.querySelectorAll('.side-link');
+  let closest = null, closestDist = Infinity;
+  links.forEach(l=>{
+    const h = l.getAttribute('href');
+    if(!h || !h.startsWith('#')) return;
+    const target = document.getElementById(h.substring(1));
+    if(!target) return;
+    const rect = target.getBoundingClientRect();
+    const dist = Math.abs(rect.top - 120);
+    if(rect.top < 200 && dist < closestDist){
+      closest = l;
+      closestDist = dist;
+    }
+  });
+  links.forEach(l=>l.classList.remove('active'));
+  if(closest) closest.classList.add('active');
+}
+
+renderSidebar(0);
+window.addEventListener('scroll', activateScrollSpy);
+</script>
+
+</body>
+</html>
